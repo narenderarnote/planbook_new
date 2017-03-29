@@ -3,7 +3,7 @@
 }
 @media only screen and ( max-width:1199px) {
 .header-form p { padding-left: 0; padding-right: 0; }
-.navbar .navbar-nav > li a{ padding-left: 21px; padding-right: 21px; }
+.navbar .navbar-nav > li a { padding-left: 21px; padding-right: 21px; }
 .banner-cat > ul > li { max-width: 99px; }
 .banner-cat > ul > li .aCircle { width: 80px; height: 80px; }
 .banner-cat > ul > li .aFeature { font-size: 14px; }
@@ -14,14 +14,9 @@
 .teacher-r p { padding: 35px; font-size: 11pt; }
 .teacher-r { height: 220px; width: 265px; }
 .review-auth { padding-left: 140px; }
-.mobile-app .img-box img {	max-width: 132px;}
-.form-top {
-    margin-left: 15px;
- 
+.mobile-app .img-box img { max-width: 132px; }
+.form-top { margin-left: 15px; }
 }
-}
-
-
-@media only screen and ( min-width:768px){
-nav.navbar {    border: 0;    min-height: 0;}
+ @media only screen and ( min-width:768px) {
+nav.navbar { border: 0; min-height: 0; }
 }
