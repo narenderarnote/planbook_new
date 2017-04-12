@@ -46,7 +46,7 @@ class GuestController extends Controller
     public function register(Request $request)
     {
 
-        echo"xsxs";die;
+       // echo"xsxs";die;
 
 
         $response = array();

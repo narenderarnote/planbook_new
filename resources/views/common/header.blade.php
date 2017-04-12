@@ -72,7 +72,7 @@
       <input id="newPW" name="newPW" type="password" placeholder="Password" class="popup-input mb-4" />
       <input id="confirmPW" name="confirmPW" type="password" placeholder="Confirm Password" class="popup-input mb-4" />
       <div class="mb-4">
-        <input type="submit" name="applyNewUser" id="applyNewUser" class="button popup-btn" value="Sign Up"  />
+        <input type="button" name="applyNewUser" id="applyNewUser" class="button popup-btn" value="Sign Up"  />
         <span style="display:none;" id="regNewUser" class="full-section" >Registering...</span>
         <input type="button" id="cancelNewUser" class="greybutton  popup-btn" Value="Cancel" />
       </div>
@@ -123,6 +123,8 @@ $(document).ready(function() {
 
 
   $('#applyNewUser').click(function (event) {
+
+    console.log(event.target);
     var obj = $(this);
 
     event.preventDefault()
