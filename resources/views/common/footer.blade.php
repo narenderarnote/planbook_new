@@ -43,27 +43,7 @@
       Your browser does not support the video tag. </video>
   </div>
 </div>
-<!-- popup-signup-->
-<div id="newUserBox" class="editBox" >
-  <p class="popup-heading">Sign Up</p>
-  <div class="editBoxRow alertContainer text-center" style="display:none;">
-    <div class="alertImage"> <img src="images/icon-alert.png" /> </div>
-    <div class="alertMessage" id="newUserErrorMsg"> </div>
-  </div>
-  <div class="pl-4 pt-4 pr-4">
-    <form>
-      <input id="newEmail" name="newEmail" type="email" placeholder="Email Address" class="popup-input mb-4" />
-      <input id="newPW" name="newPW" type="password" placeholder="Password" class="popup-input mb-4" />
-      <input id="confirmPW" name="confirmPW" type="password" placeholder="Confirm Password" class="popup-input mb-4" />
-      <div class=" mb-4">
-        <input type="submit" name="applyNewUser" id="applyNewUser" class="button popup-btn" value="Sign Up"  />
-        <span id="regNewUser" class="full-section" >Registering...</span>
-        <input type="button" id="cancelNewUser" class="greybutton  popup-btn" Value="Cancel" />
-      </div>
-    </form>
-  </div>
-</div>
-<!-- popup-signup--> 
+
 <!-- popup-re-->
 <div id="retrievePW" class="editBox">
   <p class="popup-heading">Retrieve Password</p>
@@ -84,4 +64,5 @@
 </div>
 
 @include('common.script')
+@stack('js')
 

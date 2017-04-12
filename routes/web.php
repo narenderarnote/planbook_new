@@ -14,6 +14,15 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::post('/signUp', array(
+    'as' => 'auth_register_postRegister',
+    'uses' => 'GuestController@register'
+));
+
+
+
+
 Route::get('/privacy', function () {
     return view('privacy');
 });
