@@ -42,12 +42,13 @@ div#load { display: none; position: absolute; z-index: 50; height: 55px; width: 
 .close { background: #606061; color: #FFFFFF; line-height: 25px; position: absolute; right: -12px; text-align: center; top: -10px; width: 24px; text-decoration: none; font-weight: bold; -webkit-border-radius: 12px; -moz-border-radius: 12px; border-radius: 12px; -moz-box-shadow: 1px 1px 3px #000; -webkit-box-shadow: 1px 1px 3px #000; box-shadow: 1px 1px 3px #000; }
 .close:hover { background: #00d9ff; }
 /*signin*/
-
+a:hover { text-decoration: none }
 .btn-primary { -moz-box-shadow: inset -1px 1px 0px 0px #54a3f7; -webkit-box-shadow: inset -1px 1px 0px 0px #54a3f7; box-shadow: inset -1px 1px 0px 0px #54a3f7; background-color: #0057c1; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; border: 1px solid #0057c1; }
 .dropdown-menu { border: 2px solid #0057c1; padding: 4px; border-radius: 3px; }
 .text-bold { font-weight: 600 }
 .bg-theme { background-color: #0057C1; color: #fff }
 .color-theme { color: #0057c1; }
+.text-white { color: #fff }
 .text-transparent { color: transparent }
 .text-transparent:hover { color: #286090 }
 .padding-tb-40 { padding-top: 40px; padding-bottom: 40px; }
@@ -177,10 +178,11 @@ nav.navbar { padding-top: 0; padding-bottom: 0; }
 .banner-cat> ul>li { display: inline-block; padding: 0 5px; box-sizing: border-box; vertical-align: top; max-width: 119px; text-align: center; }
 .banner-cat> ul>li .aFeature { float: left; width: 100%; }
 /*banner */
-/*teacher plan*/
 
+/*teacher plan*/
 .teacher-plan { background-color: #fff; }
 /*teacher plan*/
+
 /*teacher gradebook*/
 .teacher-gb { background-image: url('../images/gradebook-photo.jpg'); background-size: cover; }
 .teacher-gb .sectionHeader2 { color: #FF4E00; display: inline-block; line-height: normal }
@@ -283,9 +285,27 @@ span.commentTo { background-color: green; color: #fff; padding: 3px 7px; margin-
 /*dashboard custom popup */
 .popup-custom { position: fixed; top: 0; bottom: 0; left: 0; background-color: rgba(0,0,0,.5); right: 0;/*
  */ display: none }
-.popup-content { width: 800px; background-color: #f5f5f5; margin-left: auto; margin-right: auto; margin: auto; min-height: 500px; top: 50%; left: 0; right: 0; position: absolute; margin-top: -250px; border: 4px solid rgb(0,59,129); border-top: 0; border-radius: 3px; -webkit-border-radius: 3px; -moz-border-radius: 3px; }
+.popup-content { width: 800px; background-color: #f5f5f5; margin-left: auto; margin-right: auto; margin: auto; min-height: 500px; top: 10%; left: 0; right: 0; position: absolute; margin-top: 0px; border: 4px solid rgb(0,59,129); border-top: 0; border-radius: 3px; -webkit-border-radius: 3px; -moz-border-radius: 3px; }
 .popup-header { background-color: rgb(0,59,129); color: #fff; font-size: 20px; padding: 7px; }
 .popup-body { padding: 30px; }
 .popup-content textarea.form-control { min-height: 150px; }
-.popup-custom .btn-lg {     padding: 9px 25px;    font-size: 15px; }
+.popup-custom .btn-lg { padding: 9px 25px; font-size: 15px; }
 /*dashboard custom popup */
+
+/*classes page*/
+.class-numbering { width: 50px; }
+.color-column, .color-column { padding: 0 !important; width: 40px; }
+.color-column a.class-colors { float: left; height: 35px; width: 40px; cursor: pointer; }
+.class-page table { max-width: 70%; }
+/*teacher datapopup*/
+
+/*dynamic  data popup*/
+.d-render-popoup { position: fixed; left: 0; right: 0; top: 0; bottom: 0; background-color: rgba(0,0,0,.5); z-index: 9999;     overflow-y: scroll;}
+.t-data-popup .header-title { font-size: 2.5rem; line-height: 4rem; }
+.t-data-popup .popup-header { padding-top: 3px; padding-bottom: 3px; }
+input[type=color].form-control { padding: 0; width: auto; min-width: 40px; }
+.d-render-popoup input[type=date] { max-width: 150px; display: inline-block; }
+.d-render-popoup .checkbox { display: inline-block; padding-left: 6px; }
+.d-render-popoup .radio input[type="radio"] { position: relative; margin-left: 5px; margin-top: 10px; margin-bottom: 0px; margin-right: 10px; top: 2px; }
+.d-render-popoup .radio { padding: 0; }
+/*dynamic  data popup*/

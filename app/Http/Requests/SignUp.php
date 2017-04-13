@@ -15,7 +15,7 @@ class SignUp extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     public function response(array $errors)
@@ -56,6 +56,8 @@ class SignUp extends FormRequest
                 //Registed as a Teacher Validations
                
                 $validation['email'] = 'required|email|max:255|unique:users';
+                $validation['password'] = 'required|confirmed';
+                $validation['password_confirmation'] = 'required';
 
                 break;
             case 3:

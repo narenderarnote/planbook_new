@@ -18,28 +18,43 @@
       </div>
       <div class="col-sm-4 text-center head-center"><img class="img-responsive" src="images/planbook.png" alt=""></div>
       <div class="col-sm-4">
-        <form>
+        
           <div class="header-form text-right">
-            <p> <span class="text-bold">Login</span> <span id="viewPlans" class="form-top navButton">Student View</span> <span  id="forgotPW" class="form-top navButton">Forgot Password</span> </p>
             <p>
-              <input type="text" id="loginEmail" class="hf-input"  placeholder="Email Address">
+              <span class="text-bold">Login</span>
+              <span id="viewPlans" class="form-top navButton">Student View</span>
+              <span  id="forgotPW" class="form-top navButton">Forgot Password</span>
             </p>
-            <p>
-              <input type="password" id="loginPW" class="hf-input"  placeholder="Password">
-            </p>
-            <table>
-              <tr>
-                <td><div class="loginerr-box">
-                    <p id="loginErrorMsg" class="error"></p>
-                  </div></td>
-                <td><div class="head-f-s">
-                    <input type="submit" name="applyLogin" id="applyLogin" class="button" value="Login" >
-                    <p id="loadingMsg" class="text-bold mt-1" >Loading...</p>
-                  </div></td>
-              </tr>
-            </table>
+
+            <form role="form" method="POST" id="login_form">
+              {{ csrf_field() }}
+              <p>
+                <input type="email" id="loginEmail" name="email" value="" class="hf-input"  placeholder="Email Address">
+              </p>
+              <p>
+                <input type="password" id="loginPW" name="password" value="" class="hf-input"  placeholder="Password">
+              </p>
+              <table>
+                <tr>
+                  <td>
+                    <div class="loginerr-box">
+                      <p id="loginErrorMsg" class="error"></p>
+                    </div>
+                  </td>
+
+                  <td>
+                    <div class="head-f-s">
+                      <input type="submit" name="applyLogin" id="login_button" class="button" value="Login" >
+                      <p id="loadingMsg" class="text-bold mt-1" style="display:none;" >Loading...</p>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+
+            </form>
+
           </div>
-        </form>
+        
       </div>
     </div>
   </div>
@@ -68,9 +83,10 @@
     <div class="clearfix"></div>
     <form id="signupform" role="form" method="POST">
       {{ csrf_field() }}
-      <input id="newEmail" name="newEmail" type="email" placeholder="Email Address" class="popup-input mb-4" />
-      <input id="newPW" name="newPW" type="password" placeholder="Password" class="popup-input mb-4" />
-      <input id="confirmPW" name="confirmPW" type="password" placeholder="Confirm Password" class="popup-input mb-4" />
+      <input id="user_role" name="user_role" type="hidden" value="2" />
+      <input id="email" name="email" type="email" placeholder="Email Address" class="popup-input mb-4" />
+      <input id="password" name="password" type="password" placeholder="Password" class="popup-input mb-4" />
+      <input id="password_confirmation" name="password_confirmation" type="password" placeholder="Confirm Password" class="popup-input mb-4" />
       <div class="mb-4">
         <input type="button" name="applyNewUser" id="applyNewUser" class="button popup-btn" value="Sign Up"  />
         <span style="display:none;" id="regNewUser" class="full-section" >Registering...</span>
@@ -112,6 +128,7 @@
   // A $( document ).ready() block.
 $(document).ready(function() {
 
+  //teacher signup
 
   $('#signUpButton').on('click', function() {
     $('#newUserBox').show();
@@ -169,8 +186,66 @@ $(document).ready(function() {
         }
 
       }
+
     });
-});
+
+  });
+
+
+
+
+  //login with ajax
+
+  $('#login_button').click(function (event) {
+      var obj = $(this);
+
+      event.preventDefault();
+
+      //$('#login_loader').show();
+
+      $.ajax({
+          url: "{{ url('/login') }}",
+          type: 'POST',
+          dataType: 'json',
+          data: $(this).closest('form').serialize(),
+          beforeSend: function () {
+              //obj.html('Saving... <i class="fa fa-floppy-o"></i>');
+          },
+          complete: function () {
+              //  obj.html('Save <i class="fa fa-floppy-o"></i>');
+          },
+          success: function (response) {
+              var html = '';
+
+              $('#warning-box').remove();
+              $('#success-box').remove();
+
+              if (response['error']) {
+                  html += '<div id="warning-box" class="alert alert-danger fade in">';
+                  html += '<a href="#" class="close" data-dismiss="alert">&times;</a>';
+                  html += '<strong>Error!</strong>';
+
+                  for (var i = 0; i < response['error'].length; i++) {
+                      html += '<p>' + response['error'][i] + '</p>';
+                  }
+
+                  html += '</div>';
+                  $('#loginErrorMsg').html(html);
+                  //$('#login_loader').hide();
+              }
+
+              if (response['success']) {
+
+
+                  window.location.href = APP_URL + response['success_redirect_url'];
+
+                  //$('#login_loader').hide();
+
+
+              }
+          }
+      });
+  });
 
 
    

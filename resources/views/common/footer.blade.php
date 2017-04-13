@@ -64,5 +64,4 @@
 </div>
 
 @include('common.script')
-@stack('js')
 

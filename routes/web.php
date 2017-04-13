@@ -16,9 +16,36 @@ Route::get('/', function () {
 });
 
 Route::post('/signUp', array(
-    'as' => 'auth_register_postRegister',
+    'as' => 'signUp',
     'uses' => 'GuestController@register'
 ));
+
+Route::post('/login', array(
+    'as' => 'login',
+    'uses' => 'GuestController@login',
+));
+
+Route::get('/logout', array(
+    'as' => 'logout',
+    'uses' => 'GuestController@logout',
+));
+
+/**  Dashboard  **/ 
+Route::group(['namespace' => 'Teacher','prefix' => 'teacher', 'as' => 'teacher.'], function()
+{
+
+    Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
+
+    Route::group([ 'prefix' => "classes", 'as' => 'classes.' ], function()
+    {
+
+        Route::match(['get','post'], '/index', [ 'as' => 'index', 'uses' => "ClassesController@index"]);
+        Route::match(['get','post'], '/add', [ 'as' => 'add', 'uses' => "ClassesController@addClass"]);
+        Route::match(['get','post'], '/edit/{class_id}', [ 'as' => 'edit', "uses" => "ClassesController@editClass"]);
+
+    });
+
+});
 
 
 

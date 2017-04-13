@@ -33,7 +33,7 @@ class GuestController extends Controller
     }
 
     /**
-     * Show the agency dashboard.
+     * S===
      *
      * @return \Illuminate\Http\Response
      */
@@ -43,7 +43,7 @@ class GuestController extends Controller
         return view('welcome');
     }
 
-    public function register(Request $request)
+    public function register(SignUp $request)
     {
 
        // echo"xsxs";die;
@@ -61,17 +61,20 @@ class GuestController extends Controller
 
                 //Registed as a teacher
 
+                //print_r($request->all());die;
+
                 $user->email = $request['email'];
+                $user->password = Hash::make($request['password']);
 
                 $user->save();
 
 
                 $user->roles()->attach($request['user_role']);
 
-                //Auth::login($user);
+                Auth::login($user);
 
                 $response['success'] = 'TRUE';
-                $response['success_redirect_url'] = '/';
+                $response['success_redirect_url'] = '/teacher/dashboard';
 
 
                 break;
@@ -88,10 +91,10 @@ class GuestController extends Controller
                 $user->roles()->attach($request['user_role']);
 
                 
-                //Auth::login($user);
+                Auth::login($user);
 
                 $response['success'] = 'TRUE';
-                $response['success_redirect_url'] = '/';
+                $response['success_redirect_url'] = '/student/dashboard';
 
 
                 break;
@@ -127,61 +130,14 @@ class GuestController extends Controller
             } else {
                 //authenticate user
 
-                if (Auth::attempt(['email' => $request['email'], 'password' => $request['password'], 'is_verified' => 1], $request->has('remember'))) {
+                if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']], $request->has('remember'))) {
 
                     $user = Auth::user();
 
-                    //$user = User::findOrFail($user->id);
-                    $roles = $user->roles;
 
-                    $logged_in_user_role = "";
-
-                    foreach ($roles as $role) {
-
-                        $logged_in_user_role = $role->id;
-                    }
-
-                    //print_r($logged_in_user_role);die;
-
-
-                    switch ($logged_in_user_role) {
-
-                        case 1:
-
-                            $response['success_redirect_url'] = '/dashboard';
-                            $response['success'] = 'TRUE';
-
-                            break;
-                        case 2:
-
-                            $response['success_redirect_url'] = '/dashboard';
-                            $response['success'] = 'TRUE';
-
-
-                            break;
-                        case 3:
-
-                            if ($user->gender == "F") {
-
-                                $response['success_redirect_url'] = '/dashboard';
-                                $response['success'] = true;
-
-
-                            } elseif ($user->gender == "M") {
-
-                                $response['success_redirect_url'] = '/dashboard';
-                                $response['success'] = true;
-
-                            }
-
-
-                            break;
-                        case 4:
-
-                            $response['success_redirect_url'] = '/';
-                            $response['success'] = true;
-                            break;
-                    }
+                    
+                    $response['success'] = 'TRUE';
+                    $response['success_redirect_url'] = '/teacher/dashboard';
 
                 } else {
 
@@ -217,25 +173,5 @@ class GuestController extends Controller
 
         //return Redirect::to('/');
 
-    }
-
-    public function emailVerify($token){
-
-        $where = array();
-
-        //$where['email'] = $email;
-        $where['email_verify_token'] = $token;
-
-        $user = User::where($where)->first();
-
-        if(empty($user)){
-            Session::flash('alert_error_message',"Token not matched. Your email not verified!!");
-        }else{
-            $user->is_verified = 1;
-            $user->email_verify_token = null;
-            $user->save();
-            Session::flash('alert_success_message',"Your email verified successfully!!");
-        }
-        return redirect()->to('/');
     }
 }
