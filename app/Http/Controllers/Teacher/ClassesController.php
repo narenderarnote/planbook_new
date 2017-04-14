@@ -32,8 +32,6 @@ class ClassesController extends Controller
 		
 		
 	}
-   
-
 
    /**
 	 * Classes List
@@ -50,7 +48,7 @@ class ClassesController extends Controller
 	}
 
 	/**
-	 * Classes add
+	 * Get add Class view
 	 */
 	public function getAddClass()
 	{
@@ -62,6 +60,10 @@ class ClassesController extends Controller
 
 		//return redirect()->to('/');
 	}
+
+	/**
+	 * Post add Class view
+	 */
 
 	public function postAddClass(Request $request)
 	{
@@ -87,7 +89,7 @@ class ClassesController extends Controller
             }else{
 
 
-                $class->name = $request['class_name'];
+                $class->class_name = $request['class_name'];
                 
 
                 if($class->save()){
