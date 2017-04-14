@@ -8,8 +8,8 @@
   <div class="container-fluid">
     <div class="col-sm-12">
       <div class="teacher-dash-action pt-5">
-        <button class="btn btn-primary bg-white border-2 border-theme add-comments popup-custom-show"><i class="fa fa-plus" aria-hidden="true"></i><span class="">Add Class</span></button>
-        <button class="btn btn-primary bg-white border-2 return-toplan "><span class="">Copy/Import Lessons</span></button>
+        <button type="button" class="btn btn-primary bg-white border-2 border-theme add-comments popup-custom-show" id="addClassButton" ><i class="fa fa-plus" aria-hidden="true"></i><span class="">Add Class</span></button>
+        <button type="button" class="btn btn-primary bg-white border-2 return-toplan "><span class="">Copy/Import Lessons</span></button>
       </div>
     </div>
     <div class="table-responsive col-sm-12 pt-5">
@@ -93,13 +93,116 @@
 
 
 <!-- Add class Popup Starts Here -->
-<div class="d-render-popoup t-data-popup" style="display:none;">
+<div class="d-render-popoup t-data-popup" id="dynamicRenderDiv" style="display:none;">
   
 
-  
+
 </div>
 
 <!-- Add class popup end here ! -->
 
 
 @endsection
+
+@push('js')
+<script type="text/javascript">
+
+// A $( document ).ready() block.
+$(document).ready(function() {
+
+  $("#addClassButton").click(function(){
+
+
+    $("#dynamicRenderDiv").show().load("/teacher/classes/add");
+  });
+
+
+
+  /* send AJAX REQUEST TO ADD NEW CLASS DATA*/
+
+
+
+  $("body").on('click','#save_class_data_button',function(){
+
+
+    var formData = $("#class_add_form").serialize();
+
+    var obj = $(this);
+    $.ajax({
+      type:'POST',
+      url: BASE_URL +'/teacher/classes/add',
+      data: formData,
+      dataType: 'json',
+
+      beforeSend: function () {
+        //obj.html('Sending... <i class="fa fa-send"></i>');
+      },
+      complete: function () {
+        //obj.html('Sent <i class="fa fa-send"></i>');
+      },
+
+      success: function (response) {
+        var html = '';
+
+        $('#warning-box').remove();
+        $('#success-box').remove();
+
+        if(response['error']){
+            html += '<div id="warning-box" class="alert alert-danger fade in">';
+            html += '<a href="#" class="close" data-dismiss="alert">&times;</a>';
+            html += '<strong>Error!</strong>';
+
+            for (var i = 0; i < response['error'].length; i++) {
+                html += '<p>' + response['error'][i] + '</p>';
+            }
+
+            html += '</div>';
+            $('#class_add_form').before(html);
+            
+        }
+
+        if(response['success']){
+               
+          console.log(response['success']);
+
+          html += '<div id="success-box" class="alert alert-success fade in">';
+          html += '<a href="#" class="close" data-dismiss="alert">&times;</a>';
+          html += '<strong>You Have Posted Feedback successfully !</strong>';
+          html += '</div>';
+
+          $('#class_add_form').before(html);
+          $('#class_add_form')[0].reset();
+
+
+          //window.location.reload();
+        }
+
+
+        },
+
+
+      error: function(data){
+        console.log("error");
+        console.log(data);
+      }
+
+    });
+      
+
+
+
+  }); 
+
+
+
+
+
+
+
+
+
+});
+
+
+</script>
+@endpush

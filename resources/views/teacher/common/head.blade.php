@@ -21,6 +21,8 @@
     <script type="text/javascript">
             
         var APP_URL = {!! json_encode(url('/')) !!};
+
+        var BASE_URL = "{{ url('/') }}";
         
     </script>
 

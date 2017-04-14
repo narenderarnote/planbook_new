@@ -1,24 +1,22 @@
-
-@extends('layouts.teacher')
-
-@section('content')
-
 <div class="popup-content">
     <div class="popup-header">
       <div class="row">
         <div class="col-sm-6 header-title">Class</div>
         <div class="col-sm-6 header-action-btn text-right">
-          <button class="btn btn-primary"><span class="">Save</span></button>
+          <button type="button" id="save_class_data_button" class="btn btn-primary"><span class="">Save</span></button>
           <button class="btn btn-primary"><span class="">Cancel</span></button>
           <a href="#" class="d-popoup-close btn px-3 text-white"><i class="fa fa-2x fa-times" aria-hidden="true"></i><span class="sr-only">Close</span></a> </div>
       </div>
     </div>
     <div class="popup-body">
-      <form action="" method="" class="form-horizontal class-form">
+      <form id="class_add_form" method="post" class="form-horizontal class-form">
+
+        {{ csrf_field() }}
+
         <div class="row">
           <label class="control-label col-sm-2 text-right">Class Name</label>
           <div class="form-group col-sm-5 ">
-            <input type="text" class="form-control"/>
+            <input type="text" id="class_name" name="class_name" value="" class="form-control"/>
           </div>
         </div>
         <div class="row">
@@ -199,5 +197,3 @@
       </form>
     </div>
 </div>
-
-@endsection

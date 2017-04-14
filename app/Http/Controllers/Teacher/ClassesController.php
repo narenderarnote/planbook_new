@@ -5,6 +5,21 @@ namespace App\Http\Controllers\Teacher;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use App\Classes;
+
+
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Paginator;
+use Session;
+use Input;
+use Validator;
+use Hash;
+use DB;
+use Redirect;
+use View;
+use Mail;
+use Exception;
+
 class ClassesController extends Controller
 {
     /**
@@ -33,4 +48,73 @@ class ClassesController extends Controller
 
 		//return redirect()->to('/');
 	}
+
+	/**
+	 * Classes add
+	 */
+	public function getAddClass()
+	{
+
+		//echo"Hi  there!";die;
+
+
+		return view('teacher.classes.add', $this->data);
+
+		//return redirect()->to('/');
+	}
+
+	public function postAddClass(Request $request)
+	{
+
+		$response = array();
+
+        $class = new Classes();
+
+
+        if($request->isMethod('post')) {
+
+            //echo"<pre>";print_r($request->all());die;
+
+
+            $validation['class_name'] = 'required';
+
+            $validator = Validator::make($request->all(), $validation);
+
+            if($validator->fails()) {
+
+                $response['error'] = $validator->errors()->all();
+
+            }else{
+
+
+                $class->name = $request['class_name'];
+                
+
+                if($class->save()){
+
+                    $response['success'] = 'TRUE';
+
+                }
+
+
+                
+
+            }
+
+
+        }
+
+
+        return response()->json($response);
+
+
+	}
+
+
+
+
+
+
+
+
 }
