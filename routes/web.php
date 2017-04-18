@@ -36,6 +36,23 @@ Route::group(['namespace' => 'Teacher','prefix' => 'teacher', 'as' => 'teacher.'
 
     Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
 
+
+
+    /* School Year Routes*/
+
+    Route::group([ 'prefix' => "school_year", 'as' => 'school_year.' ], function()
+    {
+
+        Route::match(['get','post'], '/index', [ 'as' => 'index', 'uses' => "SchoolYearController@index"]);
+        Route::match(['get'], '/add', [ 'as' => 'getAddSchoolYear', 'uses' => "SchoolYearController@getAddSchoolYear"]);
+        Route::match(['post'], '/add', [ 'as' => 'postAddSchoolYear', 'uses' => "SchoolYearController@postAddSchoolYear"]);
+        Route::match(['get','post'], '/edit/{school_year_id}', [ 'as' => 'editSchoolYear', "uses" => "SchoolYearController@editSchoolYear"]);
+
+    });
+
+
+    /* classes Routes*/
+
     Route::group([ 'prefix' => "classes", 'as' => 'classes.' ], function()
     {
 
