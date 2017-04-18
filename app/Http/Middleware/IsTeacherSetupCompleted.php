@@ -18,23 +18,23 @@ class IsTeacherSetupCompleted
     {
         if(Auth::check())
         {
-            if(Auth::user()->sign_step_completed == 0)
+            if(Auth::user()->signup_step_completed == 0)
             {
                 return redirect()->route('teacher.step');
             }
-            else if(Auth::user()->sign_step_completed == 1)
+            else if(Auth::user()->signup_step_completed == 1)
             {
                 return redirect()->route('teacher.step2');
             }
-            else if( Auth::user()->sign_step_completed == 2)
+            else if( Auth::user()->signup_step_completed == 2)
             {
                  return redirect()->route('teacher.step3');
             }
-            else if( Auth::user()->sign_step_completed == 3)
+            else if( Auth::user()->signup_step_completed == 3)
             {
                  return redirect()->route('teacher.step4');
             }
-            else if( Auth::user()->sign_step_completed == 4)
+            else if( Auth::user()->signup_step_completed == 4)
             {
                  return redirect()->route('teacher.step5');
             }

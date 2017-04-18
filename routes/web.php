@@ -31,7 +31,7 @@ Route::get('/logout', array(
 ));
 
 /**  Dashboard  **/ 
-Route::group(['namespace' => 'Teacher','prefix' => 'teacher', 'as' => 'teacher.'], function()
+Route::group(['namespace' => 'Teacher','prefix' => 'teacher', 'as' => 'teacher.','middleware'=>'auth'], function()
 {
 
     Route::match(['get','post'], 'step', ["as" => "step", "uses" => "SignupStepController@step"]);
@@ -40,34 +40,41 @@ Route::group(['namespace' => 'Teacher','prefix' => 'teacher', 'as' => 'teacher.'
     Route::match(['get','post'], 'step-4/{lesson_layout}', ["as" => "step4", "uses" => "SignupStepController@step4"]);
     Route::match(['get','post'], 'step-5', ["as" => "step5", "uses" => "SignupStepController@step5"]);
 
-    Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
+    Route::group(['middleware'=>'IsSignupCompleted'],function(){
 
 
 
-    /* School Year Routes*/
+        Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
 
-    Route::group([ 'prefix' => "school_year", 'as' => 'school_year.' ], function()
-    {
 
-        Route::match(['get','post'], '/index', [ 'as' => 'index', 'uses' => "SchoolYearController@index"]);
-        Route::match(['get'], '/add', [ 'as' => 'getAddSchoolYear', 'uses' => "SchoolYearController@getAddSchoolYear"]);
-        Route::match(['post'], '/add', [ 'as' => 'postAddSchoolYear', 'uses' => "SchoolYearController@postAddSchoolYear"]);
-        Route::match(['get','post'], '/edit/{school_year_id}', [ 'as' => 'editSchoolYear', "uses" => "SchoolYearController@editSchoolYear"]);
+
+        /* School Year Routes*/
+
+        Route::group([ 'prefix' => "school_year", 'as' => 'school_year.' ], function()
+        {
+
+            Route::match(['get','post'], '/index', [ 'as' => 'index', 'uses' => "SchoolYearController@index"]);
+            Route::match(['get'], '/add', [ 'as' => 'getAddSchoolYear', 'uses' => "SchoolYearController@getAddSchoolYear"]);
+            Route::match(['post'], '/add', [ 'as' => 'postAddSchoolYear', 'uses' => "SchoolYearController@postAddSchoolYear"]);
+            Route::match(['get','post'], '/edit/{school_year_id}', [ 'as' => 'editSchoolYear', "uses" => "SchoolYearController@editSchoolYear"]);
+
+        });
+
+
+        /* classes Routes*/
+
+        Route::group([ 'prefix' => "classes", 'as' => 'classes.' ], function()
+        {
+
+            Route::match(['get','post'], '/index', [ 'as' => 'index', 'uses' => "ClassesController@index"]);
+            Route::match(['get'], '/add', [ 'as' => 'getAddClass', 'uses' => "ClassesController@getAddClass"]);
+            Route::match(['post'], '/add', [ 'as' => 'postAddClass', 'uses' => "ClassesController@postAddClass"]);
+            Route::match(['get','post'], '/edit/{class_id}', [ 'as' => 'edit', "uses" => "ClassesController@editClass"]);
+
+        });
 
     });
-
-
-    /* classes Routes*/
-
-    Route::group([ 'prefix' => "classes", 'as' => 'classes.' ], function()
-    {
-
-        Route::match(['get','post'], '/index', [ 'as' => 'index', 'uses' => "ClassesController@index"]);
-        Route::match(['get'], '/add', [ 'as' => 'getAddClass', 'uses' => "ClassesController@getAddClass"]);
-        Route::match(['post'], '/add', [ 'as' => 'postAddClass', 'uses' => "ClassesController@postAddClass"]);
-        Route::match(['get','post'], '/edit/{class_id}', [ 'as' => 'edit', "uses" => "ClassesController@editClass"]);
-
-    });
+  
 
 });
 

@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('school_district')->nullable();
             $table->string('school_name')->nullable();
             $table->string('promotional_code')->nullable();
+            $table->string('signup_step_completed')->default(0);
             $table->string('email')->unique();
             $table->string('password');
             $table->rememberToken();
@@ -36,6 +37,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::drop('users');
     }
 }

@@ -30,6 +30,6 @@ class CreateUserSchoolYearsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_school_years');
+        Schema::drop('user_school_years');
     }
 }
