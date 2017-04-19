@@ -95,7 +95,14 @@ class SignupStepController extends Controller
         
         $userSchoolYear = auth()->user()->userSchoolYear()->first();
 
+        if(!$userSchoolYear){
+
+            $userSchoolYear = new UserSchoolYear;
+
+        }
+
         $this->data['userSchoolYear'] = $userSchoolYear;
+
 
     	if($request->isMethod('POST'))
     	{
@@ -123,11 +130,7 @@ class SignupStepController extends Controller
                 $user->save();
 
                 
-                if(!$userSchoolYear){
-
-                    $userSchoolYear = new UserSchoolYear;
-
-                }
+              
                 
                 $userSchoolYear->user_id = Auth::user()->id;
                 $userSchoolYear->year_name = $request->get('year_name');
