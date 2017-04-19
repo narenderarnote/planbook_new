@@ -54,7 +54,7 @@
               <div class="form-group  py-4">
                 <div class=" col-sm-7">
                   <button type="submit" class="btn button"   >Continue</button>
-                  <a href="{{route('teacher.step')}}" ><button type="button" class="btn greybutton">Cancle</button></a>
+                  <a href="{{route('teacher.step')}}" ><button type="button" class="btn greybutton">Cancel</button></a>
                 </div>
               </div>
             </form>

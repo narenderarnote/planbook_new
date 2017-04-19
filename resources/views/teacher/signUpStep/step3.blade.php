@@ -64,7 +64,7 @@
             </div>
           </div>
           <div class="clearfix  py-4">
-            <a href="{{route('teacher.step2')}}" ><button type="button" class="btn greybutton pull-left" >Cancle</button></a>
+            <a href="{{route('teacher.step2')}}" ><button type="button" class="btn greybutton pull-left" >Cancel</button></a>
           </div>
         </div>
       </div>
