@@ -13,7 +13,15 @@
       <div class="col-sm-8"><img class="img-responsive mx-auto" src="/images/planbook.png" alt=""></div>
       <div class="user-drop li-inline pull-right text-right col-sm-2">
         <div class="dropdown">
-          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">User Name <span class="caret"></span></button>
+          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+            @if(auth()->user()->display_name)
+
+              {{auth()->user()->display_name}}
+
+            @else
+                {{auth()->user()->email}}
+            @endif
+           <span class="caret"></span></button>
           <ul class="dropdown-menu pull-right">
             <li><a href="#"><span class="add-ico"><img src="/images/icon-account.png" width="36" height="35" alt="account"></span> <span class="add-text">Account</span></a></li>
             <li><a href="#"><span class="add-ico"><img src="/images/icon-overview.png" alt="overview"></span> <span class="add-text">Overview</span></a></li>

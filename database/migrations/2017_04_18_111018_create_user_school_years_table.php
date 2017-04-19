@@ -16,9 +16,11 @@ class CreateUserSchoolYearsTable extends Migration
         Schema::create('user_school_years', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->string('school_year')->nullable();
+            $table->string('year_name')->nullable();
             $table->string('first_day')->nullable();
             $table->string('last_day')->nullable();
+            $table->string('class_schedule')->nullable();
+            $table->string('cycle_days')->nullable();
             $table->timestamps();
         });
     }

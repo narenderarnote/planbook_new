@@ -24,7 +24,7 @@
                     <li>Standards</li>
                   </ul>
                 </div>
-                <div class="box-action text-center"><a href="{{ route('teacher.step4', 1) }}" class="btn  button"  data-toggle="modal" data-target="#classInfo" data-backdrop="static">Select</a></div>
+                <div class="box-action text-center"><a href="{{ route('teacher.step4', 1) }}" class="btn  button">Select</a></div>
               </div>
             </div>
             <div class="col-sm-4">
@@ -41,7 +41,7 @@
                     <li>Standard</li>
                   </ul>
                 </div>
-                <div class="box-action text-center"><a href="{{ route('teacher.step4', 2) }}" class="btn  button" data-toggle="modal" data-target="#classInfo" data-backdrop="static">Select</a></div>
+                <div class="box-action text-center"><a href="{{ route('teacher.step4', 2) }}" class="btn  button" >Select</a></div>
               </div>
             </div>
             <div class="col-sm-4">
@@ -59,12 +59,12 @@
                     <li>Notes / Reflection</li>
                   </ul>
                 </div>
-                <div class="box-action text-center"><a href="{{ route('teacher.step4', 3) }}" class="btn  button" data-toggle="modal" data-target="#classInfo" data-backdrop="static">Select</a></div>
+                <div class="box-action text-center"><a href="{{ route('teacher.step4', 3) }}" class="btn  button" >Select</a></div>
               </div>
             </div>
           </div>
           <div class="clearfix  py-4">
-            <button type="button" class="btn greybutton close pull-left" data-dismiss="modal" >Exit</button>
+            <a href="{{route('teacher.step2')}}" ><button type="button" class="btn greybutton pull-left" >Cancle</button></a>
           </div>
         </div>
       </div>
