@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 
 use App\User;
 use App\UserSchoolYear;
+use App\UserLessonSectionLayout;
+use App\UserClass;
 
 
 use Illuminate\Support\Facades\Auth;
@@ -130,8 +132,6 @@ class SignupStepController extends Controller
                 $user->save();
 
                 
-              
-                
                 $userSchoolYear->user_id = Auth::user()->id;
                 $userSchoolYear->year_name = $request->get('year_name');
                 $userSchoolYear->first_day = $request->get('first_day');
@@ -164,6 +164,8 @@ class SignupStepController extends Controller
 
     public function step3(Request $request)
     {
+
+
     	if($request->isMethod('POST'))
     	{
     		return  redirect()->route("teacher.step2");
@@ -174,16 +176,82 @@ class SignupStepController extends Controller
     	}
     }
 
-    public function step4(Request $request, $lesson_layout)
+    public function step4(Request $request, $LessonSectionLayout)
     {
-    	if($request->isMethod('POST'))
-    	{
-    		return  redirect()->route("teacher.step5");
-    	}
-    	else
-    	{
-    		return view('teacher.signUpStep.step4');	
-    	}
+        //print_r($LessonSectionLayout);die;
+        
+        /* Add User lesson section layout*/
+        $userLessonSectionLayout = auth()->user()->userLessonSectionLayout()->first();
+        if(!$userLessonSectionLayout){
+            $userLessonSectionLayout = new UserLessonSectionLayout;
+        }
+
+        $layout_name = "";
+        $lesson_sections = "";
+
+        switch ($LessonSectionLayout) {
+
+            case 1:
+                $layout_name = "basic";
+            break;
+
+            case 2:
+              $layout_name = "instructional";
+            break;
+
+            case 3:
+                $layout_name = "detailed";
+            break;
+
+            default:
+                $layout_name = "basic";
+            break;
+        }
+
+        $userLessonSectionLayout->user_id = Auth::user()->id;
+        $userLessonSectionLayout->layout_name = $layout_name ;
+        $userLessonSectionLayout->lesson_sections = $lesson_sections ;
+        $userLessonSectionLayout->save();
+
+         /* Add User Class Information*/
+
+        $userClass = auth()->user()->userClass()->first();
+
+        if(!$userClass){
+
+            $userClass = new UserClass;
+
+        }
+
+       
+        if($request->isMethod('POST'))
+        {
+            return view('teacher.signUpStep.step3');
+
+
+
+            $userClass->class_name = $request->get('class_name');
+               
+
+            if($userClass->save()){
+
+              
+               return  redirect()->route("teacher.step5");
+
+            }else{
+
+                
+                return redirect()->back();
+
+            }
+
+        }
+        else
+        {
+           return view('teacher.signUpStep.step4');   
+        }
+
+    	
     }
 
     public function step5(Request $request)

@@ -34,4 +34,20 @@ class User extends Authenticatable
         return $this->hasMany(UserSchoolYear::class);
 
     }
+
+    public function userLessonSectionLayout(){
+
+        return $this->hasOne(UserLessonSectionLayout::class);
+
+    }
+
+    public function userClass(){
+
+        return $this->hasMany(UserClass::class);
+
+    }
+
+
+
+
 }

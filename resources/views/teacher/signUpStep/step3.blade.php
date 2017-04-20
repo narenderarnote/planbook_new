@@ -11,7 +11,7 @@
           <h4 class="modal-title">Lesson Section Layout</h4>
         </div>
         <div class="modal-body">
-          <div class="sp-heading pb-4">Select a layout below to serveas a starting points for your lesson sections. You can change your lesson sections at any time on your <strong>display</strong> page</div>
+          <div class="sp-heading pb-4">Select a layout below to serve as a starting point for your lesson sections. You can change your lesson sections at any time on your <strong>display</strong> page</div>
           <div class="row m-0">
             <div class="col-sm-4">
               <div class="selectplan-box">
@@ -24,12 +24,12 @@
                     <li>Standards</li>
                   </ul>
                 </div>
-                <div class="box-action text-center"><a href="{{ route('teacher.step4', 1) }}" class="btn  button">Select</a></div>
+                <div class="box-action text-center"><a href="{{ route('teacher.step4', ['LessonSectionLayout'=>1]) }}" class="btn  button">Select</a></div>
               </div>
             </div>
             <div class="col-sm-4">
               <div class="selectplan-box">
-                <div class="box-header">Basic</div>
+                <div class="box-header">Instructional</div>
                 <div class="box-content">
                   <ul>
                     <li>Objective</li>
@@ -41,12 +41,12 @@
                     <li>Standard</li>
                   </ul>
                 </div>
-                <div class="box-action text-center"><a href="{{ route('teacher.step4', 2) }}" class="btn  button" >Select</a></div>
+                <div class="box-action text-center"><a href="{{ route('teacher.step4', ['LessonSectionLayout'=>2]) }}" class="btn  button" >Select</a></div>
               </div>
             </div>
             <div class="col-sm-4">
               <div class="selectplan-box">
-                <div class="box-header">Basic</div>
+                <div class="box-header">Detailed</div>
                 <div class="box-content">
                   <ul>
                     <li>Standard</li>
@@ -59,7 +59,7 @@
                     <li>Notes / Reflection</li>
                   </ul>
                 </div>
-                <div class="box-action text-center"><a href="{{ route('teacher.step4', 3) }}" class="btn  button" >Select</a></div>
+                <div class="box-action text-center"><a href="{{ route('teacher.step4', ['LessonSectionLayout'=>3]) }}" class="btn  button" >Select</a></div>
               </div>
             </div>
           </div>

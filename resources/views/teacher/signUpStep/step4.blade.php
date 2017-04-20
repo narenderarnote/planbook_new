@@ -33,7 +33,7 @@
                   </thead>
                   <tbody>
                     <tr>
-                      <td><input type="text" class="form-control" placeholder=" e.g. Mathematics"/></td>
+                      <td><input type="text" name="class_name" id="class_name" value="" class="form-control" placeholder=" e.g. Mathematics"/></td>
                       <td><input type="color" class="form-control p-0" /></td>
                       <td class="text-center"><div class="checkbox">
                           <label>

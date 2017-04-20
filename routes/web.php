@@ -37,7 +37,7 @@ Route::group(['namespace' => 'Teacher','prefix' => 'teacher', 'as' => 'teacher.'
     Route::match(['get','post'], 'step', ["as" => "step", "uses" => "SignupStepController@step"]);
     Route::match(['get','post'], 'step-2', ["as" => "step2", "uses" => "SignupStepController@step2"]);
     Route::match(['get','post'], 'step-3', ["as" => "step3", "uses" => "SignupStepController@step3"]);
-    Route::match(['get','post'], 'step-4/{lesson_layout}', ["as" => "step4", "uses" => "SignupStepController@step4"]);
+    Route::match(['get','post'], 'step-4/{LessonSectionLayout}', ["as" => "step4", "uses" => "SignupStepController@step4"]);
     Route::match(['get','post'], 'step-5', ["as" => "step5", "uses" => "SignupStepController@step5"]);
 
     Route::group(['middleware'=>'IsSignupCompleted'],function(){
