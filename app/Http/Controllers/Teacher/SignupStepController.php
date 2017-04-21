@@ -10,7 +10,7 @@ use App\User;
 use App\UserSchoolYear;
 use App\UserLessonSectionLayout;
 use App\UserClass;
-
+use Facades\App\Helpers\Common;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Paginator;
@@ -176,6 +176,7 @@ class SignupStepController extends Controller
     	}
     }
 
+
     public function step4(Request $request, $LessonSectionLayout)
     {
         //print_r($LessonSectionLayout);die;
@@ -186,31 +187,11 @@ class SignupStepController extends Controller
             $userLessonSectionLayout = new UserLessonSectionLayout;
         }
 
-        $layout_name = "";
-        $lesson_sections = "";
-
-        switch ($LessonSectionLayout) {
-
-            case 1:
-                $layout_name = "basic";
-            break;
-
-            case 2:
-              $layout_name = "instructional";
-            break;
-
-            case 3:
-                $layout_name = "detailed";
-            break;
-
-            default:
-                $layout_name = "basic";
-            break;
-        }
+        $lessonLayout =  Common::LessonLayout($LessonSectionLayout);
 
         $userLessonSectionLayout->user_id = Auth::user()->id;
-        $userLessonSectionLayout->layout_name = $layout_name ;
-        $userLessonSectionLayout->lesson_sections = $lesson_sections ;
+        $userLessonSectionLayout->layout_name = $lessonLayout['layout_name'];
+        $userLessonSectionLayout->lesson_sections = $lessonLayout['lesson_sections'] ;
         $userLessonSectionLayout->save();
 
          /* Add User Class Information*/
@@ -226,23 +207,15 @@ class SignupStepController extends Controller
        
         if($request->isMethod('POST'))
         {
-            return view('teacher.signUpStep.step3');
-
-
 
             $userClass->class_name = $request->get('class_name');
                
-
-            if($userClass->save()){
-
-              
+            if($userClass->save())
+            {
                return  redirect()->route("teacher.step5");
-
-            }else{
-
-                
+            }
+            else{
                 return redirect()->back();
-
             }
 
         }

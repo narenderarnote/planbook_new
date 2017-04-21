@@ -17,7 +17,7 @@ class CreateUserLessonSectionLayoutsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->string('layout_name')->nullable();
-            $table->string('lesson_sections')->nullable();
+            $table->text('lesson_sections')->nullable();
             $table->timestamps();
         });
     }

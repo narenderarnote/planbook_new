@@ -20,9 +20,17 @@ class UserLessonSectionLayout extends Model
 	
 
     public function user(){
-
-
         return $this->belongsTo('App\User');
+    }
+
+    public function setLessonSectionsAttribute($value)
+    {
+        $this->attributes['lesson_sections'] = json_encode($value);
+    }
+
+    public function getLessonSectionsAttribute($value)
+    {
+        return json_decode($value);
     }
 
     
