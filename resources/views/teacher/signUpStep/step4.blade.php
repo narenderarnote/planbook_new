@@ -32,9 +32,46 @@
                     </tr>
                   </thead>
                   <tbody>
+
+                  @if(count($userClasses) > 0)
+
+                  @foreach($userClasses as $userClass)
                     <tr>
-                      <td><input type="text" name="class_name" id="class_name" value="" class="form-control" placeholder=" e.g. Mathematics"/></td>
-                      <td><input type="color" class="form-control p-0" /></td>
+                      <td><input type="text" name="classes[0][class_name]" id="class_name" value="{{$userClass->class_name}}" class="form-control" placeholder=" e.g. Mathematics"/></td>
+                      <td><input type="color" name="classes[0][class_color]" id="class_color" value="{{$userClass->color}}" class="form-control p-0" /></td>
+                      <td class="text-center"><div class="checkbox">
+                          <label>
+                            <input type="checkbox">
+                            <span class="sr-only">mon</span></label>
+                        </div></td>
+                      <td class="text-center"><div class="checkbox">
+                          <label>
+                            <input type="checkbox">
+                            <span class="sr-only">tue</span></label>
+                        </div></td>
+                      <td class="text-center"><div class="checkbox">
+                          <label>
+                            <input type="checkbox">
+                            <span class="sr-only">wed</span></label>
+                        </div></td>
+                      <td class="text-center"><div class="checkbox">
+                          <label>
+                            <input type="checkbox">
+                            <span class="sr-only">thu</span></label>
+                        </div></td>
+                      <td class="text-center"><div class="checkbox">
+                          <label>
+                            <input type="checkbox">
+                            <span class="sr-only">fri</span></label>
+                        </div></td>
+                      <td class="text-center"><a href="#"><i class="fa fa-times" aria-hidden="true"></i></a></td>
+                    </tr>
+
+                  @endforeach
+                  @else
+                    <tr>
+                      <td><input type="text" name="classes[0][class_name]" id="class_name" value="" class="form-control" placeholder=" e.g. Mathematics"/></td>
+                      <td><input type="color" name="classes[0][class_color]" id="class_color" value="" class="form-control p-0" /></td>
                       <td class="text-center"><div class="checkbox">
                           <label>
                             <input type="checkbox">
@@ -63,8 +100,8 @@
                       <td class="text-center"><a href="#"><i class="fa fa-times" aria-hidden="true"></i></a></td>
                     </tr>
                     <tr>
-                      <td><input type="text" class="form-control" placeholder=" e.g. Mathematics"/></td>
-                      <td><input type="color" class="form-control p-0" /></td>
+                      <td><input type="text" name="classes[1][class_name]" class="form-control" placeholder=" e.g. Mathematics"/></td>
+                      <td><input type="color" name="classes[1][class_color]" id="class_color" value="" class="form-control p-0" /></td>
                       <td class="text-center"><div class="checkbox">
                           <label>
                             <input type="checkbox">
@@ -93,8 +130,8 @@
                       <td class="text-center"><a href="#"><i class="fa fa-times" aria-hidden="true"></i></a></td>
                     </tr>
                     <tr>
-                      <td><input type="text" class="form-control" placeholder=" e.g. Mathematics"/></td>
-                      <td><input type="color" class="form-control p-0" /></td>
+                      <td><input type="text" name="classes[2][class_name]" class="form-control" placeholder=" e.g. Mathematics"/></td>
+                      <td><input type="color" name="classes[2][class_color]" id="class_color" value="" class="form-control p-0" /></td>
                       <td class="text-center"><div class="checkbox">
                           <label>
                             <input type="checkbox">
@@ -122,6 +159,8 @@
                         </div></td>
                       <td class="text-center"><a href="#"><i class="fa fa-times" aria-hidden="true"></i></a></td>
                     </tr>
+
+                    @endif
                   </tbody>
                 </table>
               </div>
@@ -129,7 +168,7 @@
             <div class="clearfix row">
 	            <div class=" col-sm-12">
 	              <button type="submit" class="btn button"  >Continue</button>
-	              <button type="button" class="btn greybutton close " data-dismiss="modal" >Exit</button>
+	             <a href="{{route('teacher.step3')}}" > <button type="button" class="btn greybutton" >Exit</button></a>
 	            </div>
             </div>
             </form>

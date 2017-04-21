@@ -194,34 +194,55 @@ class SignupStepController extends Controller
         $userLessonSectionLayout->lesson_sections = $lessonLayout['lesson_sections'] ;
         $userLessonSectionLayout->save();
 
+        $signup_step_completed = 3;
+
+        $user = Auth::user();
+        $user->signup_step_completed = $signup_step_completed;
+        $user->save();
+
+      
          /* Add User Class Information*/
 
-        $userClass = auth()->user()->userClass()->first();
+         $userClasses = auth()->user()->userClass()->get();
 
-        if(!$userClass){
+        if(!$userClasses){
 
-            $userClass = new UserClass;
-
+            $userClasses = new UserClass;
         }
-
+        $this->data['userClasses'] = $userClasses;
        
         if($request->isMethod('POST'))
         {
 
-            $userClass->class_name = $request->get('class_name');
+            $deletedUserClasses = UserClass::where('user_id', Auth::id())->delete();
+
+            $classes = $request->get('classes');
+
+            if(!empty($classes)){
+                foreach ($classes as $class) {
+                    $userClass = new UserClass;
+                    $userClass->user_id = Auth::id();
+                    $userClass->class_name = $class['class_name'];
+                    $userClass->color = $class['class_color'];
+                    $userClass->save();
+                }
+            }
+
+            $signup_step_completed = 4;
+
+            $user = Auth::user();
+            $user->signup_step_completed = $signup_step_completed;
+            $user->save();
+
                
-            if($userClass->save())
-            {
-               return  redirect()->route("teacher.step5");
-            }
-            else{
-                return redirect()->back();
-            }
+
+            return  redirect()->route("teacher.step5");
+          
 
         }
         else
         {
-           return view('teacher.signUpStep.step4');   
+           return view('teacher.signUpStep.step4',$this->data);   
         }
 
     	
@@ -229,14 +250,21 @@ class SignupStepController extends Controller
 
     public function step5(Request $request)
     {
-    	if($request->isMethod('POST'))
-    	{
+
+        $signup_step_completed = 5;
+
+        $user = Auth::user();
+        $user->signup_step_completed = $signup_step_completed;
+        $user->save();
+
+    	/*if($request->isMethod('POST'))
+    	{*/
     		return  redirect()->route("teacher.dashboard");
-    	}
+    	/*}
     	else
     	{
     		return view('teacher.signUpStep.step5');	
-    	}
+    	}*/
     }
 
 
