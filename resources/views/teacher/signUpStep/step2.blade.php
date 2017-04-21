@@ -40,7 +40,7 @@
                 <label class="control-label col-sm-2" for="">Class Schedule</label>
                 <div class="col-sm-5">
                   <label>
-                    <input type="radio" name="class_schedule" id="oneWeek" value="one" @if(old('class_schedule',$userSchoolYear->class_schedule) == "one") checked @endif >
+                    <input type="radio" name="class_schedule" id="oneWeek" value="one" @if(old('class_schedule',$userSchoolYear->class_schedule) == "one" or $userSchoolYear->class_schedule == "") checked @endif >
                     One Week<br>
                     <input type="radio" name="class_schedule" id="twoWeeks" value="two" @if(old('class_schedule',$userSchoolYear->class_schedule) == "two") checked @endif >
                     Two Weeks<br>

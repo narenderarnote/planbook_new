@@ -35,10 +35,10 @@
 
                   @if(count($userClasses) > 0)
 
-                  @foreach($userClasses as $userClass)
+                  @foreach($userClasses as $key => $userClass)
                     <tr>
-                      <td><input type="text" name="classes[0][class_name]" id="class_name" value="{{$userClass->class_name}}" class="form-control" placeholder=" e.g. Mathematics"/></td>
-                      <td><input type="color" name="classes[0][class_color]" id="class_color" value="{{$userClass->color}}" class="form-control p-0" /></td>
+                      <td><input type="text" name="classes[{{$key}}][class_name]" id="class_name" value="{{$userClass->class_name}}" class="form-control" placeholder=" e.g. Mathematics"/></td>
+                      <td><input type="color" name="classes[{{$key}}][class_color]" id="class_color" value="{{$userClass->color}}" class="form-control p-0" /></td>
                       <td class="text-center"><div class="checkbox">
                           <label>
                             <input type="checkbox">
