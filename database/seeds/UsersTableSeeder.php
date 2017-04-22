@@ -37,6 +37,16 @@ class UsersTableSeeder extends Seeder
 
 		$user = new User;
 
+		$user->name      = "Gurinder";
+		$user->email 	 = "gurinder@techsparksit.com";
+		$user->password  = bcrypt('1');
+		$user->save();
+
+		//eloquent's original technique To attach Role with user
+		$user->roles()->attach(2); // id only
+
+		$user = new User;
+
 		$user->name      = "Student";
 		$user->email 	 = "student@gmail.com";
 		$user->password  = bcrypt('1');

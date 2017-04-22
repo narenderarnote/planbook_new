@@ -215,4 +215,30 @@ class Common
 		return $layouts[$layout];
 	}
 
+	public function ClassesScheduled()
+	{
+
+		$ClassDays = [
+
+			["text"=>"Sunday","day_no"=>"1","is_class"=>"0"],
+			["text"=>"Monday","day_no"=>"2","is_class"=>"1"],
+			["text"=>"Tuesday","day_no"=>"3","is_class"=>"1"],
+			["text"=>"Wednesday","day_no"=>"4","is_class"=>"1"],
+			["text"=>"Thursday","day_no"=>"5","is_class"=>"1"],
+			["text"=>"Friday","day_no"=>"6","is_class"=>"1"],
+			["text"=>"Saturday","day_no"=>"7","is_class"=>"0"],
+
+
+		]
+
+		$CycleDayNames = [
+
+			["text"=>"Day 1","display_name"=>"Day 1"],
+			
+
+
+		]
+
+	}
+
 }
