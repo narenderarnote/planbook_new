@@ -4,7 +4,7 @@
         <div class="col-sm-6 header-title">Class</div>
         <div class="col-sm-6 header-action-btn text-right">
           <button type="button" id="save_class_data_button" class="btn btn-primary"><span class="">Save</span></button>
-          <button class="btn btn-primary"><span class="">Cancel</span></button>
+          <button class="btn btn-primary" data-dismiss="modal"><span class="">Cancel</span></button>
           <a href="#" class="d-popoup-close btn px-3 text-white"><i class="fa fa-2x fa-times" aria-hidden="true"></i><span class="sr-only">Close</span></a> </div>
       </div>
     </div>

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Teacher;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use App\Classes;
+use App\UserClasses;
 
 
 use Illuminate\Support\Facades\Auth;

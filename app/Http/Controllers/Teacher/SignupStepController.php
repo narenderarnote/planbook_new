@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 
 
 use App\User;
-use App\UserSchoolYear;
+use App\SchoolYear;
 use App\UserLessonSectionLayout;
 use App\UserClass;
 use Facades\App\Helpers\Common;
@@ -95,11 +95,11 @@ class SignupStepController extends Controller
     {   
 
         
-        $userSchoolYear = auth()->user()->userSchoolYear()->first();
+        $userSchoolYear = auth()->user()->schoolYear()->first();
 
         if(!$userSchoolYear){
 
-            $userSchoolYear = new UserSchoolYear;
+            $userSchoolYear = new SchoolYear;
 
         }
 
@@ -223,7 +223,7 @@ class SignupStepController extends Controller
                     $userClass = new UserClass;
                     $userClass->user_id = Auth::id();
                     $userClass->class_name = $class['class_name'];
-                    $userClass->color = $class['class_color'];
+                    $userClass->class_color = $class['class_color'];
                     $userClass->save();
                 }
             }

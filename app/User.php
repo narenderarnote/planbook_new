@@ -29,9 +29,9 @@ class User extends Authenticatable
     ];
 
 
-    public function userSchoolYear(){
+    public function schoolYear(){
 
-        return $this->hasMany(UserSchoolYear::class);
+        return $this->hasMany(SchoolYear::class);
 
     }
 

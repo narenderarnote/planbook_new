@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Teacher;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use App\UserSchoolYear;
+use App\SchoolYear;
 
 
 use Illuminate\Support\Facades\Auth;
@@ -67,7 +67,7 @@ class SchoolYearController extends Controller
 
 	public function postAddSchoolYear(Request $request)
 	{
-        $school_year = new UserSchoolYear();
+        $school_year = new SchoolYear();
 
     	if($request->isMethod('POST')){
 

@@ -229,7 +229,7 @@ class Common
 			["text"=>"Saturday","day_no"=>"7","is_class"=>"0"],
 
 
-		]
+		];
 
 		$CycleDayNames = [
 
@@ -237,7 +237,7 @@ class Common
 			
 
 
-		]
+		];
 
 	}
 
