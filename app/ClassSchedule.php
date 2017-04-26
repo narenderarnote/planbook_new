@@ -29,5 +29,11 @@ class ClassSchedule extends Model
         return $this->belongsTo('App\User');
     }
 
+    public function userClass(){
+
+
+        return $this->belongsTo('App\UserClass');
+    }
+
    
 }

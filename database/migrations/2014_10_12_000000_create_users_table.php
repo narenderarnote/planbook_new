@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('promotional_code')->nullable();
             $table->string('signup_step_completed')->default(0);
             $table->string('email')->unique();
+            $table->string('current_selected_year')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

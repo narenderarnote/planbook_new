@@ -33,54 +33,34 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td class="text-center color-column"><a class="class-colors" style="background-color:green;"></a></td>
-            <td class="text-left class-column"><a href="#">English</a></td>
-            <td class="text-center class-column"><a href="#">04/29/2017</a></td>
-            <td class="text-center class-column"><a href="#">04/30/2017</a></td>
-            <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
-            <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
-            <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
-            <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
-            <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
-            <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
-            <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
-            <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
-            <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
-            <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
-          </tr>
-          <tr>
-            <td class="text-center color-column"><a class="class-colors" style="background-color:gray;"></a></td>
-            <td class="text-left class-column"><a href="#">Math</a></td>
-            <td class="text-center class-column"><a href="#">04/29/2017</a></td>
-            <td class="text-center class-column"><a href="#">04/30/2017</a></td>
-            <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
-            <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
-            <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
-            <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
-            <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
-            <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
-            <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
-            <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
-            <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
-            <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
-          </tr>
-          <tr>
-            <td class="text-center color-column"><a class="class-colors" style="background-color:red;"></a></td>
-            <td class="text-left class-column"><a href="#">English</a></td>
-            <td class="text-center class-column"><a href="#">04/29/2017</a></td>
-            <td class="text-center class-column"><a href="#">04/30/2017</a></td>
-            <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
-            <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
-            <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
-            <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
-            <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
-            <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
-            <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
-            <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
-            <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
-            <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
-          </tr>
+
+          @forelse($user_classes as $user_class)
+
+            <tr>
+              <td class="text-center color-column"><a class="class-colors" style="background-color:{{$user_class->class_color}};"></a></td>
+              <td class="text-left class-column"><a href="#">{{ $user_class->class_name }}</a></td>
+              <td class="text-center class-column"><a href="#">{{ $user_class->start_date }}</a></td>
+              <td class="text-center class-column"><a href="#">{{ $user_class->end_date }}</a></td>
+
+
+              <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
+              <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
+              <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
+              <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
+              <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
+              <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
+              <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
+              <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
+              <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
+              <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
+            </tr>
+
+          @empty
+            <tr>
+              <td colspan="8">No Record Found ! </td>
+            </tr>
+          @endforelse
+
         </tbody>
       </table>
     </div>
@@ -109,6 +89,20 @@
 
 // A $( document ).ready() block.
 $(document).ready(function() {
+
+
+  //popup-custom  hide
+  
+  $("body").on('click','.d-popoup-close',function(){
+
+     $(".d-render-popoup").fadeOut();
+
+  });
+
+
+
+
+
 
   $("#addClassButton").click(function(){
 
@@ -167,14 +161,15 @@ $(document).ready(function() {
 
           html += '<div id="success-box" class="alert alert-success fade in">';
           html += '<a href="#" class="close" data-dismiss="alert">&times;</a>';
-          html += '<strong>You Have Posted Feedback successfully !</strong>';
+          html += '<strong>You Have created Class successfully !</strong>';
           html += '</div>';
 
           $('#class_add_form').before(html);
           $('#class_add_form')[0].reset();
+          $(".d-render-popoup").fadeOut();
 
 
-          //window.location.reload();
+          window.location.reload();
         }
 
 

@@ -25,6 +25,13 @@ class UserClass extends Model
         return $this->belongsTo('App\User');
     }
 
+    public function classSchedule(){
+
+
+        return $this->hasMany('App\ClassSchedule','class_id');
+        //return $this->hasMany(Paper::class,'student_id');
+    }
+
     
 
    

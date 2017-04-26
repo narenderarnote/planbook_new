@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Teacher;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use App\UserClasses;
+use App\UserClass;
 
 
 use Illuminate\Support\Facades\Auth;
@@ -40,7 +40,7 @@ class ClassesController extends Controller
 	{
 
 		//echo"Hi  there!";die;
-
+		$this->data['user_classes'] = UserClass::whereUserId(Auth::id())->get();
 
 		return view('teacher.classes.index', $this->data);
 
@@ -53,12 +53,8 @@ class ClassesController extends Controller
 	public function getAddClass()
 	{
 
-		//echo"Hi  there!";die;
-
-
 		return view('teacher.classes.add', $this->data);
 
-		//return redirect()->to('/');
 	}
 
 	/**
@@ -70,7 +66,7 @@ class ClassesController extends Controller
 
 		$response = array();
 
-        $class = new Classes();
+        $UserClass = new UserClass();
 
 
         if($request->isMethod('post')) {
@@ -89,10 +85,14 @@ class ClassesController extends Controller
             }else{
 
 
-                $class->class_name = $request['class_name'];
+                $UserClass->user_id = Auth::id();
+                $UserClass->class_name = $request['class_name'];
+                $UserClass->start_date = $request['start_date'];
+                $UserClass->end_date = $request['end_date'];
+                $UserClass->class_color = $request['class_color'];
                 
 
-                if($class->save()){
+                if($UserClass->save()){
 
                     $response['success'] = 'TRUE';
 

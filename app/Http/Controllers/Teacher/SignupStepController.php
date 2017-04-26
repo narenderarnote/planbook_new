@@ -125,12 +125,6 @@ class SignupStepController extends Controller
                 
             } else {
 
-                $signup_step_completed = 2;
-
-                $user = Auth::user();
-                $user->signup_step_completed = $signup_step_completed;
-                $user->save();
-
                 
                 $userSchoolYear->user_id = Auth::user()->id;
                 $userSchoolYear->year_name = $request->get('year_name');
@@ -138,6 +132,13 @@ class SignupStepController extends Controller
                 $userSchoolYear->last_day = $request->get('last_day');
                 $userSchoolYear->class_schedule = $request->get('class_schedule');
                 $userSchoolYear->cycle_days = $request->get('cycle_days');
+
+                $signup_step_completed = 2;
+
+                $user = Auth::user();
+                $user->signup_step_completed = $signup_step_completed;
+                $user->current_selected_year = $request->get('year_name');
+                $user->save();
                
 
                 if($userSchoolYear->save()){
@@ -223,6 +224,7 @@ class SignupStepController extends Controller
                     $userClass = new UserClass;
                     $userClass->user_id = Auth::id();
                     $userClass->class_name = $class['class_name'];
+                  
                     $userClass->class_color = $class['class_color'];
                     $userClass->save();
                 }

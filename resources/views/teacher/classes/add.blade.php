@@ -22,7 +22,7 @@
         <div class="row">
           <label class="control-label col-sm-2 text-right">Start Day</label>
           <div class="form-group col-sm-8 ">
-            <input type="date" class="form-control"/>
+            <input type="date" id="start_date" name="start_date" value="" class="form-control"/>
             <div class="checkbox">
               <label>
                 <input type="checkbox">
@@ -33,7 +33,7 @@
         <div class="row">
           <label class="control-label col-sm-2 text-right">End Day</label>
           <div class="form-group col-sm-8 ">
-            <input type="date" class="form-control"/>
+            <input type="date" id="end_date" name="end_date" value="" class="form-control"/>
             <div class="checkbox">
               <label>
                 <input type="checkbox">
@@ -44,7 +44,7 @@
         <div class="row">
           <label class="control-label col-sm-2 text-right">Class color</label>
           <div class="form-group col-sm-5 ">
-            <input type="color" class="form-control"/>
+            <input type="color" id="class_color" name="class_color" class="form-control"/>
           </div>
         </div>
         <div class="row">
