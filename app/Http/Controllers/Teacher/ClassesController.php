@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\UserClass;
+use App\SchoolYear;
 
 
 use Illuminate\Support\Facades\Auth;
@@ -52,6 +53,9 @@ class ClassesController extends Controller
 	 */
 	public function getAddClass()
 	{
+		// get user classes schedule setting
+
+		$this->data['user_selected_school_year'] = SchoolYear::where('id',Auth::user()->current_selected_year)->where('user_id',Auth::user()->id)->first();
 
 		return view('teacher.classes.add', $this->data);
 
@@ -71,7 +75,7 @@ class ClassesController extends Controller
 
         if($request->isMethod('post')) {
 
-            //echo"<pre>";print_r($request->all());die;
+            echo"<pre>";print_r($request->all());die;
 
 
             $validation['class_name'] = 'required';

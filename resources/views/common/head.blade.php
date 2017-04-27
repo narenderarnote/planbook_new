@@ -10,6 +10,12 @@
     <title>Planbook.com - @yield('title', '')</title>
    
     <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css" />
+
+
+    <!-- Date Picker -->
+    <link rel="stylesheet" href="{{ asset('/plugins/datepicker/datepicker3.css') }}">
+    <!-- time picker css jonthornton-timepicker -->
+    <link rel="stylesheet" href="{{ asset('/plugins/jonthornton-timepicker/jquery.timepicker.css') }}">
     
     @stack('before-main-css')
     <link rel="stylesheet" href="/css/custom-style.css" type="text/css" />

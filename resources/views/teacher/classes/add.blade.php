@@ -22,7 +22,7 @@
         <div class="row">
           <label class="control-label col-sm-2 text-right">Start Day</label>
           <div class="form-group col-sm-8 ">
-            <input type="date" id="start_date" name="start_date" value="" class="form-control"/>
+            <input type="text" id="start_date" name="start_date" value="" class="form-control datepicker"/>
             <div class="checkbox">
               <label>
                 <input type="checkbox">
@@ -33,7 +33,7 @@
         <div class="row">
           <label class="control-label col-sm-2 text-right">End Day</label>
           <div class="form-group col-sm-8 ">
-            <input type="date" id="end_date" name="end_date" value="" class="form-control"/>
+            <input type="text" id="end_date" name="end_date" value="" class="form-control datepicker"/>
             <div class="checkbox">
               <label>
                 <input type="checkbox">
@@ -66,134 +66,180 @@
         <div class="text-center"> <a id="copyMonday" href="" class="text-bold">Copy</a> <span id="firstDayName">Day 1</span> times to all days </div>
         <div class="p-2"></div>
         <div class="row py-3">
-          <div class="col-sm-offset-5 col-sm-3">Start Days</div>
-          <div class="col-sm-3 ">Last Days</div>
+          <div class="col-sm-offset-5 col-sm-3">Start Time</div>
+          <div class="col-sm-3 ">End Time</div>
         </div>
+
+
         <div class="row pb-3">
           <label class="control-label col-sm-2 text-right">Class Days</label>
           <div class="form-group col-sm-9 ">
-            <div class="row pb-3">
-              <div class="col-sm-4">
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox">
-                    Day 1</label>
+
+            @if(count($user_selected_school_year) > 0)
+
+
+              @if($user_selected_school_year->class_schedule == "one")
+
+              <div class="row pb-3">
+                <div class="col-sm-4">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="class_schedule[][day_name]" value="">
+                      Sunday
+                    </label>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <input type="text" name="class_schedule[][start_time]" value="" class="form-control timepicker"/>
+                </div>
+                <div class="col-sm-4">
+                  <input type="text" name="class_schedule[][end_time]" value="" class="form-control timepicker"/>
                 </div>
               </div>
-              <div class="col-sm-4">
-                <input type="date" class="form-control"/>
-              </div>
-              <div class="col-sm-4">
-                <input type="date" class="form-control"/>
-              </div>
-            </div>
-            <div class="row pb-3">
-              <div class="col-sm-4">
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox">
-                    Day 2</label>
+
+              <div class="row pb-3">
+                <div class="col-sm-4">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="class_schedule[][day_name]" value="" checked>
+                      Monday
+                    </label>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <input type="text" name="class_schedule[][start_time]" value="" class="form-control timepicker"/>
+                </div>
+                <div class="col-sm-4">
+                  <input type="text" name="class_schedule[][end_time]" value="" class="form-control timepicker"/>
                 </div>
               </div>
-              <div class="col-sm-4">
-                <input type="date" class="form-control"/>
-              </div>
-              <div class="col-sm-4">
-                <input type="date" class="form-control"/>
-              </div>
-            </div>
-            <div class="row pb-3">
-              <div class="col-sm-4">
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox">
-                    Day 3</label>
+
+              <div class="row pb-3">
+                <div class="col-sm-4">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="class_schedule[][day_name]" value="" checked >
+                      Tuesday
+                    </label>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <input type="text" name="class_schedule[][start_time]" value="" class="form-control timepicker"/>
+                </div>
+                <div class="col-sm-4">
+                  <input type="text" name="class_schedule[][end_time]" value="" class="form-control timepicker"/>
                 </div>
               </div>
-              <div class="col-sm-4">
-                <input type="date" class="form-control"/>
-              </div>
-              <div class="col-sm-4">
-                <input type="date" class="form-control"/>
-              </div>
-            </div>
-            <div class="row pb-3">
-              <div class="col-sm-4">
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox">
-                    Day 4</label>
+
+              <div class="row pb-3">
+                <div class="col-sm-4">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="class_schedule[][day_name]" value="" checked >
+                      Wednesday
+                    </label>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <input type="text" name="class_schedule[][start_time]" value="" class="form-control timepicker"/>
+                </div>
+                <div class="col-sm-4">
+                  <input type="text" name="class_schedule[][end_time]" value="" class="form-control timepicker"/>
                 </div>
               </div>
-              <div class="col-sm-4">
-                <input type="date" class="form-control"/>
-              </div>
-              <div class="col-sm-4">
-                <input type="date" class="form-control"/>
-              </div>
-            </div>
-            <div class="row pb-3">
-              <div class="col-sm-4">
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox">
-                    Day 5</label>
+
+              <div class="row pb-3">
+                <div class="col-sm-4">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="class_schedule[][day_name]" value="" checked >
+                      Thursday
+                    </label>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <input type="text" name="class_schedule[][start_time]" value="" class="form-control timepicker"/>
+                </div>
+                <div class="col-sm-4">
+                  <input type="text" name="class_schedule[][end_time]" value="" class="form-control timepicker"/>
                 </div>
               </div>
-              <div class="col-sm-4">
-                <input type="date" class="form-control"/>
-              </div>
-              <div class="col-sm-4">
-                <input type="date" class="form-control"/>
-              </div>
-            </div>
-            <div class="row pb-3">
-              <div class="col-sm-4">
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox">
-                    Day 6</label>
+
+               <div class="row pb-3">
+                <div class="col-sm-4">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="class_schedule[][day_name]" value="" checked >
+                      Friday
+                    </label>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <input type="text" name="class_schedule[][start_time]" value="" class="form-control timepicker"/>
+                </div>
+                <div class="col-sm-4">
+                  <input type="text" name="class_schedule[][end_time]" value="" class="form-control timepicker"/>
                 </div>
               </div>
-              <div class="col-sm-4">
-                <input type="date" class="form-control"/>
-              </div>
-              <div class="col-sm-4">
-                <input type="date" class="form-control"/>
-              </div>
-            </div>
-            <div class="row pb-3">
-              <div class="col-sm-4">
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox">
-                    Day 7</label>
+
+              <div class="row pb-3">
+                <div class="col-sm-4">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="class_schedule[][day_name]" value="" >
+                      Saturday
+                    </label>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <input type="text" name="class_schedule[][start_time]" value="" class="form-control timepicker"/>
+                </div>
+                <div class="col-sm-4">
+                  <input type="text" name="class_schedule[][end_time]" value="" class="form-control timepicker"/>
                 </div>
               </div>
-              <div class="col-sm-4">
-                <input type="date" class="form-control"/>
-              </div>
-              <div class="col-sm-4">
-                <input type="date" class="form-control"/>
-              </div>
-            </div>
-            <div class="row pb-3">
-              <div class="col-sm-4">
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox">
-                    Day 8</label>
+
+
+
+              @elseif($user_selected_school_year->class_schedule == "two")
+
+
+              @elseif($user_selected_school_year->class_schedule == "cycle")
+
+                <div class="row pb-3">
+                  <div class="col-sm-4">
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox">
+                        Day 1</label>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <input type="date" class="form-control"/>
+                  </div>
+                  <div class="col-sm-4">
+                    <input type="date" class="form-control"/>
+                  </div>
                 </div>
-              </div>
-              <div class="col-sm-4">
-                <input type="date" class="form-control"/>
-              </div>
-              <div class="col-sm-4">
-                <input type="date" class="form-control"/>
-              </div>
-            </div>
+
+              @endif
+
+            @else
+              <tr>
+                  <td colspan="5">No Record Found ! </td>
+              </tr>
+
+            @endif
+
           </div>
         </div>
       </form>
     </div>
 </div>
+
+<script type="text/javascript">
+  
+  $('.datepicker').datepicker({format: 'dd/mm/yyyy',});
+  $('.timepicker').timepicker({'timeFormat': 'h:i A'});
+
+</script>

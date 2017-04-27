@@ -91,23 +91,25 @@
 $(document).ready(function() {
 
 
-  //popup-custom  hide
-  
-  $("body").on('click','.d-popoup-close',function(){
-
-     $(".d-render-popoup").fadeOut();
-
-  });
-
-
-
-
-
 
   $("#addClassButton").click(function(){
 
 
-    $("#dynamicRenderDiv").show().load("/teacher/classes/add");
+    $("#dynamicRenderDiv").show().load("/teacher/classes/add",function(){
+
+      //$('.datepicker').datepicker({format: 'dd/mm/yyyy',});
+      
+
+    });
+
+  });
+
+  //popup-custom  hide
+  
+  $("body").on('click','.d-popoup-close',function(){
+
+    $(".d-render-popoup").fadeOut();
+
   });
 
 

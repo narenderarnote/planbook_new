@@ -133,15 +133,16 @@ class SignupStepController extends Controller
                 $userSchoolYear->class_schedule = $request->get('class_schedule');
                 $userSchoolYear->cycle_days = $request->get('cycle_days');
 
-                $signup_step_completed = 2;
-
-                $user = Auth::user();
-                $user->signup_step_completed = $signup_step_completed;
-                $user->current_selected_year = $request->get('year_name');
-                $user->save();
-               
 
                 if($userSchoolYear->save()){
+
+
+                    $signup_step_completed = 2;
+
+                    $user = Auth::user();
+                    $user->signup_step_completed = $signup_step_completed;
+                    $user->current_selected_year = $userSchoolYear->id;
+                    $user->save();
 
                   
                    return  redirect()->route("teacher.step3");
