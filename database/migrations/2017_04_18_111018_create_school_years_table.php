@@ -19,7 +19,8 @@ class CreateSchoolYearsTable extends Migration
             $table->string('year_name')->nullable();
             $table->date('first_day')->nullable();
             $table->date('last_day')->nullable();
-            $table->string('class_schedule')->nullable();
+            $table->string('class_schedule_type')->nullable();
+            $table->text('class_schedule')->nullable();
             $table->string('cycle_days')->nullable();
             $table->timestamps();
         });

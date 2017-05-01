@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Teacher;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use Facades\App\Helpers\Common;
+
 use App\UserClass;
 use App\SchoolYear;
 
@@ -53,9 +55,33 @@ class ClassesController extends Controller
 	 */
 	public function getAddClass()
 	{
+		$classesSchedule = "";
 		// get user classes schedule setting
 
-		$this->data['user_selected_school_year'] = SchoolYear::where('id',Auth::user()->current_selected_year)->where('user_id',Auth::user()->id)->first();
+		$user_selected_school_year = SchoolYear::where('id',Auth::user()->current_selected_year)->where('user_id',Auth::user()->id)->first();
+
+		if($user_selected_school_year->class_schedule == "one"){
+
+			$classesSchedule = "one_week";
+
+		}elseif($user_selected_school_year->class_schedule == "two"){
+
+			$classesSchedule = "two_week";
+
+		}elseif($user_selected_school_year->class_schedule == "cycle"){
+
+			$classesSchedule = "cycle";
+
+		}else{
+
+			$classesSchedule = "one_week";
+		}
+
+		$this->data['DefaultClassesSchedules'] = Common::ClassesScheduled($classesSchedule);
+		$this->data['user_selected_school_year'] = $user_selected_school_year;
+
+		//dd($this->data['DefaultClassesSchedules']);
+
 
 		return view('teacher.classes.add', $this->data);
 

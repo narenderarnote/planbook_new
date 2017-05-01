@@ -75,155 +75,34 @@
           <label class="control-label col-sm-2 text-right">Class Days</label>
           <div class="form-group col-sm-9 ">
 
-            @if(count($user_selected_school_year) > 0)
+            @if(count($DefaultClassesSchedules) > 0)
 
 
-              @if($user_selected_school_year->class_schedule == "one")
-
-              <div class="row pb-3">
-                <div class="col-sm-4">
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" name="class_schedule[][day_name]" value="">
-                      Sunday
-                    </label>
-                  </div>
-                </div>
-                <div class="col-sm-4">
-                  <input type="text" name="class_schedule[][start_time]" value="" class="form-control timepicker"/>
-                </div>
-                <div class="col-sm-4">
-                  <input type="text" name="class_schedule[][end_time]" value="" class="form-control timepicker"/>
-                </div>
-              </div>
-
-              <div class="row pb-3">
-                <div class="col-sm-4">
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" name="class_schedule[][day_name]" value="" checked>
-                      Monday
-                    </label>
-                  </div>
-                </div>
-                <div class="col-sm-4">
-                  <input type="text" name="class_schedule[][start_time]" value="" class="form-control timepicker"/>
-                </div>
-                <div class="col-sm-4">
-                  <input type="text" name="class_schedule[][end_time]" value="" class="form-control timepicker"/>
-                </div>
-              </div>
-
-              <div class="row pb-3">
-                <div class="col-sm-4">
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" name="class_schedule[][day_name]" value="" checked >
-                      Tuesday
-                    </label>
-                  </div>
-                </div>
-                <div class="col-sm-4">
-                  <input type="text" name="class_schedule[][start_time]" value="" class="form-control timepicker"/>
-                </div>
-                <div class="col-sm-4">
-                  <input type="text" name="class_schedule[][end_time]" value="" class="form-control timepicker"/>
-                </div>
-              </div>
-
-              <div class="row pb-3">
-                <div class="col-sm-4">
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" name="class_schedule[][day_name]" value="" checked >
-                      Wednesday
-                    </label>
-                  </div>
-                </div>
-                <div class="col-sm-4">
-                  <input type="text" name="class_schedule[][start_time]" value="" class="form-control timepicker"/>
-                </div>
-                <div class="col-sm-4">
-                  <input type="text" name="class_schedule[][end_time]" value="" class="form-control timepicker"/>
-                </div>
-              </div>
-
-              <div class="row pb-3">
-                <div class="col-sm-4">
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" name="class_schedule[][day_name]" value="" checked >
-                      Thursday
-                    </label>
-                  </div>
-                </div>
-                <div class="col-sm-4">
-                  <input type="text" name="class_schedule[][start_time]" value="" class="form-control timepicker"/>
-                </div>
-                <div class="col-sm-4">
-                  <input type="text" name="class_schedule[][end_time]" value="" class="form-control timepicker"/>
-                </div>
-              </div>
-
-               <div class="row pb-3">
-                <div class="col-sm-4">
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" name="class_schedule[][day_name]" value="" checked >
-                      Friday
-                    </label>
-                  </div>
-                </div>
-                <div class="col-sm-4">
-                  <input type="text" name="class_schedule[][start_time]" value="" class="form-control timepicker"/>
-                </div>
-                <div class="col-sm-4">
-                  <input type="text" name="class_schedule[][end_time]" value="" class="form-control timepicker"/>
-                </div>
-              </div>
-
-              <div class="row pb-3">
-                <div class="col-sm-4">
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" name="class_schedule[][day_name]" value="" >
-                      Saturday
-                    </label>
-                  </div>
-                </div>
-                <div class="col-sm-4">
-                  <input type="text" name="class_schedule[][start_time]" value="" class="form-control timepicker"/>
-                </div>
-                <div class="col-sm-4">
-                  <input type="text" name="class_schedule[][end_time]" value="" class="form-control timepicker"/>
-                </div>
-              </div>
-
-
-
-              @elseif($user_selected_school_year->class_schedule == "two")
-
-
-              @elseif($user_selected_school_year->class_schedule == "cycle")
-
+              @foreach ($DefaultClassesSchedules as $key => $DefaultClassesSchedule)
+                
                 <div class="row pb-3">
                   <div class="col-sm-4">
                     <div class="checkbox">
                       <label>
-                        <input type="checkbox">
-                        Day 1</label>
+                        <input type="checkbox" name="{{ $DefaultClassesSchedule['name'] }}" value="" @if($DefaultClassesSchedule['is_class'] == 1) checked @endif/>
+                          {{ $DefaultClassesSchedule['text'] }}
+                      </label>
                     </div>
                   </div>
                   <div class="col-sm-4">
-                    <input type="date" class="form-control"/>
+                    <input type="text" name="class_schedule[0][start_time]" value="" class="form-control timepicker"/>
                   </div>
                   <div class="col-sm-4">
-                    <input type="date" class="form-control"/>
+                    <input type="text" name="class_schedule[0][end_time]" value="" class="form-control timepicker"/>
                   </div>
                 </div>
 
-              @endif
+                @if ($key+1 == $user_selected_school_year->cycle_days)
+                  @break
+                @endif
 
+              @endforeach
+           
             @else
               <tr>
                   <td colspan="5">No Record Found ! </td>
@@ -239,7 +118,7 @@
 
 <script type="text/javascript">
   
-  $('.datepicker').datepicker({format: 'dd/mm/yyyy',});
+  $('.datepicker').datepicker({format: 'dd/mm/yyyy',autoclose:true});
   $('.timepicker').timepicker({'timeFormat': 'h:i A'});
 
 </script>

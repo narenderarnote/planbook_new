@@ -27,24 +27,24 @@
               <div class="form-group">
                 <label class="control-label col-sm-2" for="">First Day</label>
                 <div class="col-sm-5">
-                  <input type="date" class="form-control" name="first_day" value="{{old('first_day',$userSchoolYear->first_day)}}" id="">
+                  <input type="text" class="form-control datepicker" name="first_day" value="{{old('first_day',$userSchoolYear->first_day)}}" id="">
                 </div>
               </div>
               <div class="form-group">
                 <label class="control-label col-sm-2" for="">Last Day</label>
                 <div class="col-sm-5">
-                  <input type="date" class="form-control"  name="last_day" value="{{old('first_day',$userSchoolYear->first_day)}}" id="">
+                  <input type="text" class="form-control datepicker"  name="last_day" value="{{old('first_day',$userSchoolYear->first_day)}}" id="">
                 </div>
               </div>
               <div class="form-group class-schedule">
                 <label class="control-label col-sm-2" for="">Class Schedule</label>
                 <div class="col-sm-5">
                   <label>
-                    <input type="radio" name="class_schedule" id="oneWeek" value="one" @if(old('class_schedule',$userSchoolYear->class_schedule) == "one" or $userSchoolYear->class_schedule == "") checked @endif >
+                    <input type="radio" name="class_schedule" id="oneWeek" value="one_week" @if(old('class_schedule',$userSchoolYear->class_schedule_type) == "one_week" or $userSchoolYear->class_schedule_type == "") checked @endif >
                     One Week<br>
-                    <input type="radio" name="class_schedule" id="twoWeeks" value="two" @if(old('class_schedule',$userSchoolYear->class_schedule) == "two") checked @endif >
+                    <input type="radio" name="class_schedule" id="twoWeeks" value="two_week" @if(old('class_schedule',$userSchoolYear->class_schedule_type) == "two_week") checked @endif >
                     Two Weeks<br>
-                    <input type="radio" name="class_schedule" id="dayCycle" value="cycle" @if(old('class_schedule',$userSchoolYear->class_schedule) == "cycle") checked @endif >
+                    <input type="radio" name="class_schedule" id="dayCycle" value="cycle" @if(old('class_schedule',$userSchoolYear->class_schedule_type) == "cycle") checked @endif >
                     Cycle of
                     <input type="text" id="cycleDays" name="cycle_days" value="{{old('cycle_days',$userSchoolYear->class_schedule == 'cycle' ? $userSchoolYear->cycle_days:'2')}}">
                     days 
@@ -64,5 +64,11 @@
     </div>
   </div>
 </div>
-
 @endsection
+
+@push('js')
+<script type="text/javascript">
+  $('.datepicker').datepicker({format: 'yyyy/mm/dd',autoclose:true});
+</script>
+
+@endpush

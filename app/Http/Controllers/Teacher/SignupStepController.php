@@ -130,10 +130,42 @@ class SignupStepController extends Controller
                 $userSchoolYear->year_name = $request->get('year_name');
                 $userSchoolYear->first_day = $request->get('first_day');
                 $userSchoolYear->last_day = $request->get('last_day');
-                $userSchoolYear->class_schedule = $request->get('class_schedule');
+                $userSchoolYear->class_schedule_type = $request->get('class_schedule');
                 $userSchoolYear->cycle_days = $request->get('cycle_days');
 
 
+                $classesSchedule = "";
+                // get user classes schedule setting
+
+                if($request->get('class_schedule') == "one_week"){
+
+                    $classesSchedule = "one_week";
+
+                }elseif($request->get('class_schedule') == "two_week"){
+
+                    $classesSchedule = "two_week";
+
+                }elseif($request->get('class_schedule') == "cycle"){
+
+                    $classesSchedule = "cycle";
+
+                }else{
+
+                    $classesSchedule = "one_week";
+                }
+
+                $defaultClassesSchedules = Common::ClassesScheduled($classesSchedule);
+
+
+                if($request->get('class_schedule') == "cycle"){
+
+                    $defaultClassesSchedules =  array_slice($defaultClassesSchedules, 0,$request->get('cycle_days'));
+                }
+               // echo"<pre>";print_r($defaultClassesSchedules);die;
+
+                $defaultClassesSchedules = json_encode($defaultClassesSchedules);
+               
+                $userSchoolYear->class_schedule = $defaultClassesSchedules;
                 if($userSchoolYear->save()){
 
 
