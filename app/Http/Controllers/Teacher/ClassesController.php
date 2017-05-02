@@ -26,8 +26,8 @@ use Exception;
 class ClassesController extends Controller
 {
     /**
-     * $data array pass data to view 
-     */
+    * $data array pass data to view 
+    */
     protected $data = [];
 
 	public function __construct(){
@@ -41,8 +41,8 @@ class ClassesController extends Controller
 	 */
 	public function index()
 	{
-
-		//echo"Hi  there!";die;
+		$user_selected_school_year = SchoolYear::where('id',Auth::user()->current_selected_year)->where('user_id',Auth::user()->id)->first();
+		$this->data['user_selected_school_year'] = $user_selected_school_year;
 		$this->data['user_classes'] = UserClass::whereUserId(Auth::id())->get();
 
 		return view('teacher.classes.index', $this->data);
@@ -55,32 +55,16 @@ class ClassesController extends Controller
 	 */
 	public function getAddClass()
 	{
-		$classesSchedule = "";
+	
 		// get user classes schedule setting
 
 		$user_selected_school_year = SchoolYear::where('id',Auth::user()->current_selected_year)->where('user_id',Auth::user()->id)->first();
 
-		if($user_selected_school_year->class_schedule == "one"){
-
-			$classesSchedule = "one_week";
-
-		}elseif($user_selected_school_year->class_schedule == "two"){
-
-			$classesSchedule = "two_week";
-
-		}elseif($user_selected_school_year->class_schedule == "cycle"){
-
-			$classesSchedule = "cycle";
-
-		}else{
-
-			$classesSchedule = "one_week";
-		}
-
-		$this->data['DefaultClassesSchedules'] = Common::ClassesScheduled($classesSchedule);
 		$this->data['user_selected_school_year'] = $user_selected_school_year;
 
-		//dd($this->data['DefaultClassesSchedules']);
+		$this->data['DefaultClassesSchedules'] = Common::ClassesScheduled("one_week");
+
+		//echo"<pre>";print_r($this->data['DefaultClassesSchedules']);die;
 
 
 		return view('teacher.classes.add', $this->data);
@@ -101,7 +85,7 @@ class ClassesController extends Controller
 
         if($request->isMethod('post')) {
 
-            echo"<pre>";print_r($request->all());die;
+            //echo"<pre>";print_r($request->all());die;
 
 
             $validation['class_name'] = 'required';
@@ -114,12 +98,18 @@ class ClassesController extends Controller
 
             }else{
 
+            	$format = 'd/m/Y';
 
                 $UserClass->user_id = Auth::id();
                 $UserClass->class_name = $request['class_name'];
-                $UserClass->start_date = $request['start_date'];
-                $UserClass->end_date = $request['end_date'];
+                $UserClass->start_date = \Carbon\Carbon::createFromFormat($format, $request['start_date']);
+                $UserClass->end_date = \Carbon\Carbon::createFromFormat($format,$request['end_date']);
                 $UserClass->class_color = $request['class_color'];
+                $UserClass->collaborate = $request['collaborate'];
+
+
+                $class_schedule = json_encode($request['class_schedule']);
+                $UserClass->class_schedule = $class_schedule;
                 
 
                 if($UserClass->save()){

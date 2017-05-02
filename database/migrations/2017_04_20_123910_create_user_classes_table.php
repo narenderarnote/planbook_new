@@ -23,6 +23,7 @@ class CreateUserClassesTable extends Migration
             $table->time('end_time')->nullable();
             $table->string('class_color')->nullable();
             $table->string('collaborate')->nullable();
+            $table->text('class_schedule')->nullable();
             $table->timestamps();
         });
     }

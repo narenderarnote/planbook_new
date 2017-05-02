@@ -44,20 +44,20 @@
         <div class="row">
           <label class="control-label col-sm-2 text-right">Class color</label>
           <div class="form-group col-sm-5 ">
-            <input type="color" id="class_color" name="class_color" class="form-control"/>
+            <input type="color" id="class_color" name="class_color" value="#008000" class="form-control"/>
           </div>
         </div>
         <div class="row">
           <label class="control-label col-sm-2 text-right">Collaborate</label>
           <div class="form-group col-sm-8 ">
             <div class="radio ">
-              <input type="radio" name="class collaboration" value="" >
+              <input type="radio" name="collaborate" id="nocollab" value="1" checked >
               <strong>None</strong> - Do not allow collaboration for this class<br>
-              <input type="radio" name="class collaboration" value="">
+              <input type="radio" name="collaborate" id="viewonly" value="2">
               <strong>View/Import</strong> - Allow teachers to view/import, but NOT edit, my lessons<br>
-              <input type="radio" name="class collaboration" value="">
+              <input type="radio" name="collaborate" id="viewedit" value="3">
               <strong>View/Edit</strong> - Allow teachers to view AND edit my lessons<br>
-              <input type="radio" name="class collaboration" value="">
+              <input type="radio" name="collaborate" id="seelessons" value="4">
               <strong>Replica</strong> - This class will show lessons from another class<br>
             </div>
           </div>
@@ -75,32 +75,38 @@
           <label class="control-label col-sm-2 text-right">Class Days</label>
           <div class="form-group col-sm-9 ">
 
-            @if(count($DefaultClassesSchedules) > 0)
+            @if(count($user_selected_school_year) > 0)
+
+            @php
+
+              $classesSchedules = json_decode($user_selected_school_year->class_schedule);
 
 
-              @foreach ($DefaultClassesSchedules as $key => $DefaultClassesSchedule)
+            @endphp
+              @foreach ($classesSchedules as $key => $classesSchedule)
                 
                 <div class="row pb-3">
                   <div class="col-sm-4">
                     <div class="checkbox">
                       <label>
-                        <input type="checkbox" name="{{ $DefaultClassesSchedule['name'] }}" value="" @if($DefaultClassesSchedule['is_class'] == 1) checked @endif/>
-                          {{ $DefaultClassesSchedule['text'] }}
+                        <input type="hidden" name="class_schedule[{{$key}}][text]" value="{{ $classesSchedule->text }}"/>
+                        <input type="hidden" name="class_schedule[{{$key}}][name]" value="{{ $classesSchedule->name }}"/>
+                        <input type="hidden" name="class_schedule[{{$key}}][day_no]" value="{{ $classesSchedule->day_no }}"/>
+                        <input type="hidden" name="class_schedule[{{$key}}][is_class]" value="0"/>
+                        <input type="checkbox" name="class_schedule[{{$key}}][is_class]" value="1" @if($classesSchedule->is_class == 1) checked @endif/>
+                          {{ $classesSchedule->text }}
                       </label>
                     </div>
                   </div>
                   <div class="col-sm-4">
-                    <input type="text" name="class_schedule[0][start_time]" value="" class="form-control timepicker"/>
+                    <input type="text" name="class_schedule[{{$key}}][start_time]" value="{{ $classesSchedule->start_time }}" class="form-control timepicker"/>
                   </div>
                   <div class="col-sm-4">
-                    <input type="text" name="class_schedule[0][end_time]" value="" class="form-control timepicker"/>
+                    <input type="text" name="class_schedule[{{$key}}][end_time]" value="{{ $classesSchedule->end_time }}" class="form-control timepicker"/>
                   </div>
                 </div>
 
-                @if ($key+1 == $user_selected_school_year->cycle_days)
-                  @break
-                @endif
-
+               
               @endforeach
            
             @else
@@ -119,6 +125,10 @@
 <script type="text/javascript">
   
   $('.datepicker').datepicker({format: 'dd/mm/yyyy',autoclose:true});
-  $('.timepicker').timepicker({'timeFormat': 'h:i A'});
+  $('.timepicker').timepicker({
+    'timeFormat': 'h:i A',
+    'scrollDefault' : '8:00am',
+    'forceRoundTime' : false,
+  });
 
 </script>

@@ -20,16 +20,32 @@
             <th class="text-left bg-theme class-column">Class Name</th>
             <th class="text-center bg-theme start-date">Start Date</th>
             <th class="text-center bg-theme end-date">End Date</th>
-            <th class="text-center bg-theme class-numbering">1</th>
-            <th class="text-center bg-theme class-numbering">2</th>
-            <th class="text-center bg-theme class-numbering">3</th>
-            <th class="text-center bg-theme class-numbering">4</th>
-            <th class="text-center bg-theme class-numbering">5</th>
-            <th class="text-center bg-theme class-numbering">6</th>
-            <th class="text-center bg-theme class-numbering">7</th>
-            <th class="text-center bg-theme class-numbering">8</th>
-            <th class="text-center bg-theme class-numbering">9</th>
-            <th class="text-center bg-theme class-numbering">10</th>
+
+            @if(count($user_selected_school_year) > 0)
+
+              @if($user_selected_school_year->class_schedule_type == "one_week")
+                <th class="text-center bg-theme class-numbering">S</th>
+                <th class="text-center bg-theme class-numbering">M</th>
+                <th class="text-center bg-theme class-numbering">T</th>
+                <th class="text-center bg-theme class-numbering">W</th>
+                <th class="text-center bg-theme class-numbering">T</th>
+                <th class="text-center bg-theme class-numbering">F</th>
+                <th class="text-center bg-theme class-numbering">S</th>
+
+              @elseif($user_selected_school_year->class_schedule_type == "two_week")
+
+              @elseif($user_selected_school_year->class_schedule_type == "cycle")
+
+
+
+              @endif
+              
+            @else
+              <tr>
+                  <td colspan="5">No Record Found ! </td>
+              </tr>
+
+            @endif
           </tr>
         </thead>
         <tbody>
@@ -43,16 +59,25 @@
               <td class="text-center class-column"><a href="#">{{ $user_class->end_date }}</a></td>
 
 
-              <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
-              <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
-              <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
-              <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
-              <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
-              <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
-              <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
-              <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
-              <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
-              <td class="text-center class-column class-numbering"><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
+              @php
+
+                $classesSchedules = json_decode($user_class->class_schedule);
+
+
+
+              @endphp
+
+              @forelse($classesSchedules as $class_schedule)
+
+                <td class="text-center class-column class-numbering"><a href="#"><i class="fa @if($class_schedule->is_class == 1) fa-check @endif" aria-hidden="true"></i></a></td>
+
+              @empty
+                <tr>
+                  <td colspan="8">No Record Found ! </td>
+                </tr>
+              @endforelse
+              
+              
             </tr>
 
           @empty
