@@ -46,7 +46,7 @@
                     Two Weeks<br>
                     <input type="radio" name="class_schedule" id="dayCycle" value="cycle" @if(old('class_schedule',$userSchoolYear->class_schedule_type) == "cycle") checked @endif >
                     Cycle of
-                    <input type="text" id="cycleDays" name="cycle_days" value="{{old('cycle_days',$userSchoolYear->class_schedule == 'cycle' ? $userSchoolYear->cycle_days:'2')}}">
+                    <input type="text" id="cycleDays" name="cycle_days" value="{{old('cycle_days',$userSchoolYear->class_schedule_type == 'cycle' ? $userSchoolYear->cycle_days:'2')}}">
                     days 
                   </label>
                 </div>

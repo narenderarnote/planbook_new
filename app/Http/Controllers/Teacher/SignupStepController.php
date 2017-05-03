@@ -213,6 +213,11 @@ class SignupStepController extends Controller
 
     public function step4(Request $request, $LessonSectionLayout)
     {
+
+
+        $user_selected_school_year = SchoolYear::where('id',Auth::user()->current_selected_year)->where('user_id',Auth::user()->id)->first();
+        $this->data['user_selected_school_year'] = $user_selected_school_year;
+
         //print_r($LessonSectionLayout);die;
         
         /* Add User lesson section layout*/
@@ -247,27 +252,46 @@ class SignupStepController extends Controller
        
         if($request->isMethod('POST'))
         {
-
             $deletedUserClasses = UserClass::where('user_id', Auth::id())->delete();
 
-            $classes = $request->get('classes');
+            $rules = array(
+                'classes.*.class_name'   => 'required',
+                
+            );
 
-            if(!empty($classes)){
-                foreach ($classes as $class) {
-                    $userClass = new UserClass;
-                    $userClass->user_id = Auth::id();
-                    $userClass->class_name = $class['class_name'];
-                  
-                    $userClass->class_color = $class['class_color'];
-                    $userClass->save();
+            $validator = Validator::make($request->all(), $rules);
+            if ($validator->fails()) {
+
+                return redirect()->back()->withInput()->withErrors($validator->errors());
+                
+            } else {
+
+
+                $classes = $request->get('classes');
+                //echo"<pre>";print_r($classes);die;
+
+                if(!empty($classes)){
+                    foreach ($classes as $class) {
+                        $userClass = new UserClass;
+                        $userClass->user_id = Auth::id();
+                        $userClass->class_name = $class['class_name'];
+                        $userClass->class_color = $class['class_color'];
+                        $userClass->start_date = $user_selected_school_year->first_day;
+                        $userClass->end_date = $user_selected_school_year->last_day;
+
+                        $class_schedule = json_encode($class['class_schedule']);
+                        $userClass->class_schedule = $class_schedule;
+                        $userClass->save();
+                    }
                 }
+
+                $signup_step_completed = 4;
+
+                $user = Auth::user();
+                $user->signup_step_completed = $signup_step_completed;
+                $user->save();
+
             }
-
-            $signup_step_completed = 4;
-
-            $user = Auth::user();
-            $user->signup_step_completed = $signup_step_completed;
-            $user->save();
 
                
 
