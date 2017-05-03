@@ -70,7 +70,7 @@
 
           @forelse($user_classes as $user_class)
 
-            <tr data-class_id="{{ $user_class->id }}" >
+            <tr class="edit_class" data-class_id="{{ $user_class->id }}" >
               <td class="text-center color-column"><a class="class-colors" style="background-color:{{$user_class->class_color}};"></a></td>
               <td class="text-left class-column"><a href="#">{{ $user_class->class_name }}</a></td>
               <td class="text-center class-column"><a href="#">{{ $user_class->start_date }}</a></td>
