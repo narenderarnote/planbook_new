@@ -9,7 +9,7 @@
     <div class="col-sm-12">
       <div class="teacher-dash-action pt-5">
         <button type="button" class="btn btn-primary bg-white border-2 border-theme add-comments popup-custom-show" id="addClassButton" ><i class="fa fa-plus" aria-hidden="true"></i><span class="">Add Class</span></button>
-        <button type="button" class="btn btn-primary bg-white border-2 return-toplan "><span class="">Copy/Import Lessons</span></button>
+       <!--  <button type="button" class="btn btn-primary bg-white border-2 return-toplan "><span class="">Copy/Import Lessons</span></button> -->
       </div>
     </div>
     <div class="table-responsive col-sm-12 pt-5">
@@ -70,7 +70,7 @@
 
           @forelse($user_classes as $user_class)
 
-            <tr class="edit_class" data-class_id="{{ $user_class->id }}" >
+            <tr class="edit_class" data-class-id="{{ $user_class->id }}" >
               <td class="text-center color-column"><a class="class-colors" style="background-color:{{$user_class->class_color}};"></a></td>
               <td class="text-left class-column"><a href="#">{{ $user_class->class_name }}</a></td>
               <td class="text-center class-column"><a href="#">{{ $user_class->start_date }}</a></td>
@@ -133,6 +133,15 @@
 // A $( document ).ready() block.
 $(document).ready(function() {
 
+  /* send AJAX REQUEST TO ADD NEW CLASS DATA*/
+
+  function formToJson(formArray) {
+    var returnArray = {};
+    for (var i = 0; i < formArray.length; i++){
+      returnArray[formArray[i]['name']] = formArray[i]['value'];
+    }
+    return returnArray;
+  }
 
 
   $("#addClassButton").click(function(){
@@ -155,11 +164,7 @@ $(document).ready(function() {
 
   });
 
-
-
-  /* send AJAX REQUEST TO ADD NEW CLASS DATA*/
-
-
+/* Add class dtatt*/
 
   $("body").on('click','#save_class_data_button',function(){
 
@@ -235,7 +240,95 @@ $(document).ready(function() {
 
 
 
+  /* Edit class */
 
+  $(".edit_class").click(function(){
+
+    var class_id = $(this).data("class-id");
+
+    $("#dynamicRenderDiv").show().load("/teacher/classes/edit/"+class_id,function(){
+
+      //$('.datepicker').datepicker({format: 'dd/mm/yyyy',});
+      
+
+    });
+
+  });
+
+  /* Save edit classs datra*/
+
+  $("body").on('click','#save_edit_class_data_button',function(){
+
+    var class_id = $("#class_id").val();
+
+    var formData = $("#class_edit_form").serialize();
+
+    var obj = $(this);
+    $.ajax({
+      type:'POST',
+      url: BASE_URL +'/teacher/classes/edit/'+class_id,
+      data: formData,
+      dataType: 'json',
+
+      beforeSend: function () {
+        //obj.html('Sending... <i class="fa fa-send"></i>');
+      },
+      complete: function () {
+        //obj.html('Sent <i class="fa fa-send"></i>');
+      },
+
+      success: function (response) {
+        var html = '';
+
+        $('#warning-box').remove();
+        $('#success-box').remove();
+
+        if(response['error']){
+            html += '<div id="warning-box" class="alert alert-danger fade in">';
+            html += '<a href="#" class="close" data-dismiss="alert">&times;</a>';
+            html += '<strong>Error!</strong>';
+
+            for (var i = 0; i < response['error'].length; i++) {
+                html += '<p>' + response['error'][i] + '</p>';
+            }
+
+            html += '</div>';
+            $('#class_add_form').before(html);
+            
+        }
+
+        if(response['success']){
+               
+          console.log(response['success']);
+
+          html += '<div id="success-box" class="alert alert-success fade in">';
+          html += '<a href="#" class="close" data-dismiss="alert">&times;</a>';
+          html += '<strong>You Have updated class successfully !</strong>';
+          html += '</div>';
+
+          $('#class_add_form').before(html);
+          //$('#class_add_form')[0].reset();
+          $(".d-render-popoup").fadeOut();
+
+
+          window.location.reload();
+        }
+
+
+        },
+
+
+      error: function(data){
+        console.log("error");
+        console.log(data);
+      }
+
+    });
+      
+
+
+
+  }); 
 
 
 

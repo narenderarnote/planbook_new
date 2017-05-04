@@ -318,7 +318,7 @@ class SignupStepController extends Controller
 
     	/*if($request->isMethod('POST'))
     	{*/
-    		return  redirect()->route("teacher.dashboard");
+    		return  redirect()->route("teacher.dashboard.index");
     	/*}
     	else
     	{

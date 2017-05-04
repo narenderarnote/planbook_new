@@ -4,7 +4,7 @@
         <div class="col-sm-6 header-title">Class</div>
         <div class="col-sm-6 header-action-btn text-right">
           <button type="button" id="save_class_data_button" class="btn btn-primary"><span class="">Save</span></button>
-          <button class="btn btn-primary" data-dismiss="modal"><span class="">Cancel</span></button>
+         <!--  <button class="btn btn-primary" data-dismiss="modal"><span class="">Cancel</span></button> -->
           <a href="#" class="d-popoup-close btn px-3 text-white"><i class="fa fa-2x fa-times" aria-hidden="true"></i><span class="sr-only">Close</span></a> </div>
       </div>
     </div>
@@ -19,10 +19,21 @@
             <input type="text" id="class_name" name="class_name" value="" class="form-control"/>
           </div>
         </div>
+
+        @php
+            $var = $user_selected_school_year->first_day;
+            $date1 = str_replace('-', '/', $var);
+            $start_date =  date('d/m/Y', strtotime($date1));
+
+            $var = $user_selected_school_year->last_day;
+            $date = str_replace('-', '/', $var);
+            $end_date =  date('d/m/Y', strtotime($date));
+          @endphp
+
         <div class="row">
           <label class="control-label col-sm-2 text-right">Start Day</label>
           <div class="form-group col-sm-8 ">
-            <input type="text" id="start_date" name="start_date" value="" class="form-control datepicker"/>
+            <input type="text" id="start_date" name="start_date" value="{{ old('start_date',$start_date) }}" class="form-control datepicker"/>
             <div class="checkbox">
               <label>
                 <input type="checkbox">
@@ -33,7 +44,7 @@
         <div class="row">
           <label class="control-label col-sm-2 text-right">End Day</label>
           <div class="form-group col-sm-8 ">
-            <input type="text" id="end_date" name="end_date" value="" class="form-control datepicker"/>
+            <input type="text" id="end_date" name="end_date" value="{{ old('end_date',$end_date) }}" class="form-control datepicker"/>
             <div class="checkbox">
               <label>
                 <input type="checkbox">
@@ -63,7 +74,7 @@
           </div>
         </div>
         <div class="p-2"></div>
-        <div class="text-center"> <a id="copyMonday" href="" class="text-bold">Copy</a> <span id="firstDayName">Day 1</span> times to all days </div>
+        <!-- <div class="text-center"> <a id="copyMonday" href="" class="text-bold">Copy</a> <span id="firstDayName">Day 1</span> times to all days </div> -->
         <div class="p-2"></div>
         <div class="row py-3">
           <div class="col-sm-offset-5 col-sm-3">Start Time</div>

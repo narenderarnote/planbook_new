@@ -42,10 +42,14 @@ Route::group(['namespace' => 'Teacher','prefix' => 'teacher', 'as' => 'teacher.'
 
     Route::group(['middleware'=>'IsSignupCompleted'],function(){
 
+        /* Teacher Dashboard Routes*/
 
+        Route::group([ 'prefix' => "dashboard", 'as' => 'dashboard.' ], function()
+        {
+            Route::get('/index', ['as' => 'index', 'uses' => 'DashboardController@index']);
+            Route::get('/showCalendar', ['as' => 'showCalendar', 'uses' => 'DashboardController@showCalendar']);
 
-        Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
-
+        });
 
 
         /* School Year Routes*/
@@ -69,7 +73,8 @@ Route::group(['namespace' => 'Teacher','prefix' => 'teacher', 'as' => 'teacher.'
             Route::match(['get','post'], '/index', [ 'as' => 'index', 'uses' => "ClassesController@index"]);
             Route::match(['get'], '/add', [ 'as' => 'getAddClass', 'uses' => "ClassesController@getAddClass"]);
             Route::match(['post'], '/add', [ 'as' => 'postAddClass', 'uses' => "ClassesController@postAddClass"]);
-            Route::match(['get','post'], '/edit/{class_id}', [ 'as' => 'edit', "uses" => "ClassesController@editClass"]);
+            Route::match(['get'], '/edit/{class_id}', [ 'as' => 'edit', "uses" => "ClassesController@getEditClass"]);
+            Route::match(['post'], '/edit/{class_id}', [ 'as' => 'edit', "uses" => "ClassesController@postEditClass"]);
 
         });
 

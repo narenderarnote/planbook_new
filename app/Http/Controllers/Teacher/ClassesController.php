@@ -125,6 +125,84 @@ class ClassesController extends Controller
 	}
 
 
+	/**
+	 * Get edit Class view
+	 */
+	public function getEditClass($class_id)
+	{
+	
+		// get user class
+
+		$this->data['userClass'] = UserClass::where('id', $class_id)->first();
+		
+
+		//echo"<pre>";print_r($this->data['userClass']);die;
+
+		return view('teacher.classes.edit', $this->data);
+
+	}
+
+	/**
+	 * Post Edit Class
+	 */
+
+	public function postEditClass(Request $request, $class_id)
+	{
+
+		$response = array();
+
+        $UserClass = UserClass::where('id', $class_id)->first();
+
+
+        if($request->isMethod('post')) {
+
+            //echo"<pre>";print_r($request->all());die;
+
+
+            $validation['class_name'] = 'required';
+
+
+            $rules = array(
+                'class_name'   => 'required',
+                'start_date'   => 'required',
+                'end_date'   => 'required',
+                
+            );
+
+            $validator = Validator::make($request->all(), $rules);
+
+            if($validator->fails()) {
+
+                $response['error'] = $validator->errors()->all();
+
+            }else{
+
+            	$format = 'd/m/Y';
+               
+                $UserClass->class_name = $request['class_name'];
+                $UserClass->start_date = \Carbon\Carbon::createFromFormat($format, $request['start_date']);
+                $UserClass->end_date = \Carbon\Carbon::createFromFormat($format,$request['end_date']);
+                $UserClass->class_color = $request['class_color'];
+                $UserClass->collaborate = $request['collaborate'];
+
+                $class_schedule = json_encode($request['class_schedule']);
+                $UserClass->class_schedule = $class_schedule;
+
+                if($UserClass->save()){
+
+                    $response['success'] = 'TRUE';
+
+                }
+
+            }
+
+        }
+
+        return response()->json($response);
+
+	}
+
+
 
 
 
