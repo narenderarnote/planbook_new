@@ -74,7 +74,7 @@ class GuestController extends Controller
                 Auth::login($user);
 
                 $response['success'] = 'TRUE';
-                $response['success_redirect_url'] = '/teacher/dashboard';
+                $response['success_redirect_url'] = '/teacher/dashboard/index';
 
 
                 break;
