@@ -176,9 +176,8 @@ class DashboardController extends Controller
          
         return
             '<script>'.
-                ''.$this->naviHref.'?month='.sprintf('%02d',$preMonth).'&year='.$preYear.'">Prev</a>'.
-                    '<span class="title">'.date('Y M',strtotime($this->currentYear.'-'.$this->currentMonth.'-1')).'</span>'.
-                ''.$this->naviHref.'?month='.sprintf("%02d", $nextMonth).'&year='.$nextYear.'">Next</a>'.
+                '$("#pPrev").attr("href","?month='.sprintf('%02d',$preMonth).'&year='.$preYear.'");'.
+                 '$("#pNext").attr("href","?month='.sprintf("%02d", $nextMonth).'&year='.$nextYear.'");'.
             '</script>';
     }
          

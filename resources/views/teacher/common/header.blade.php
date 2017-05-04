@@ -41,7 +41,10 @@
           <ul class="p-0 m-0">
             <li><a href="#" class="btn btn-primary px-3 py-2">Today</a></li>
             <li><a href="#" class="color-theme"><i class="fa fa-2x fa-calendar" aria-hidden="true"></i><span class="sr-only">calendar</span></a></li>
-            <li><a href="#" class="btn btn-primary px-3 py-2"><i class="fa fa-chevron-left" aria-hidden="true"></i><span class="sr-only">goto left</span></a> <a href="#" class="btn btn-primary px-3 py-2"><i class="fa fa-chevron-right" aria-hidden="true"></i><span class="sr-only">goto right</span></a> </li>
+            <li>
+              <a href="#" class="btn btn-primary px-3 py-2 get-calendar" id="pPrev"><i class="fa fa-chevron-left" aria-hidden="true"></i><span class="sr-only">goto left</span></a>
+              <a href="#" class="btn btn-primary px-3 py-2 get-calendar" id="pNext"><i class="fa fa-chevron-right" aria-hidden="true"></i><span class="sr-only">goto right</span></a> 
+            </li>
             <li><a href="#" class="color-theme "><i class="fa fa-2x fa-file-text-o" aria-hidden="true"></i><span class="sr-only">calendar</span></a></li>
             <li><a href="#" class="btn btn-primary px-3 py-2">Copy</a></li>
             <li class="dropdown">
@@ -75,7 +78,7 @@
           <ul class="p-0 m-0">
             <li><a href="#" class="color-theme"><i class="fa fa-2x fa-search" aria-hidden="true"></i><span class="sr-only">Search</span></a></li>
             <li><a href="#" class="color-theme"><i class="fa fa-2x fa-print" aria-hidden="true"></i><span class="sr-only">Print</span></a></li>
-            <li><a href="#" class="btn btn-primary px-3 py-2"><i class="fa fa-minus" aria-hidden="true"></i><span class="sr-only"></span></a> </li>
+            <li><a href="#" class="btn btn-primary px-3 py-2" ><i class="fa fa-minus" aria-hidden="true"></i><span class="sr-only"></span></a> </li>
             <li><a href="#" class="color-theme "><i class="fa fa-2x fa-file-text-o" aria-hidden="true"></i><span class="sr-only">collepse</span></a></li>
             <li class="type-view-drop dropdown">
               <button class="btn btn-primary px-3 py-2 dropdown-toggle" type="button" data-toggle="dropdown">View <span class="caret"></span></button>
