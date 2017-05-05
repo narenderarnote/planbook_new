@@ -32,9 +32,7 @@ class DashboardController extends Controller
 
 	public function __construct(){
 
-		$this->naviHref = htmlentities($_SERVER['PHP_SELF']);
-
-
+		
 		
 	}
    
@@ -215,7 +213,7 @@ class DashboardController extends Controller
         // find number of days in this month
         $daysInMonths = $this->_daysInMonth($month,$year);
          
-        $numOfweeks = ($daysInMonths%7==0?0:1) + intval($daysInMonths/7);
+        $numOfweeks =  ceil($daysInMonths/7);
          
         $monthEndingDay= date('N',strtotime($year.'-'.$month.'-'.$daysInMonths));
          
