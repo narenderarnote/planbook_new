@@ -101,6 +101,7 @@ class ClassesController extends Controller
             	$format = 'd/m/Y';
 
                 $UserClass->user_id = Auth::id();
+                $UserClass->year_id = Auth::user()->current_selected_year;
                 $UserClass->class_name = $request['class_name'];
                 $UserClass->start_date = \Carbon\Carbon::createFromFormat($format, $request['start_date']);
                 $UserClass->end_date = \Carbon\Carbon::createFromFormat($format,$request['end_date']);

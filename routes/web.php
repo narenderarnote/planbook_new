@@ -78,6 +78,20 @@ Route::group(['namespace' => 'Teacher','prefix' => 'teacher', 'as' => 'teacher.'
 
         });
 
+         /* teacher units Routes*/
+
+        Route::group([ 'prefix' => "units", 'as' => 'units.' ], function()
+        {
+
+            Route::match(['get','post'], '/index', [ 'as' => 'index', 'uses' => "UnitsController@index"]);
+            Route::match(['get'], '/add', [ 'as' => 'getAddUnit', 'uses' => "UnitsController@getAddUnit"]);
+            Route::match(['post'], '/add', [ 'as' => 'postAddUnit', 'uses' => "UnitsController@postAddUnit"]);
+            Route::match(['get'], '/edit/{unit_id}', [ 'as' => 'getEditUnit', "uses" => "UnitsController@getEditUnit"]);
+            Route::match(['post'], '/edit/{unit_id}', [ 'as' => 'postEditUnit', "uses" => "UnitsController@postEditUnit"]);
+
+        });
+
+
     });
   
 

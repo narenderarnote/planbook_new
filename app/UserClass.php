@@ -29,7 +29,20 @@ class UserClass extends Model
 
 
         return $this->hasMany('App\ClassSchedule','class_id');
-        //return $this->hasMany(Paper::class,'student_id');
+        //return $this->hasMany(ClassSchedule::class,'class_id');
+    }
+
+    public function classLesson(){
+
+
+        return $this->hasMany('App\ClassLesson','class_id');
+        //return $this->hasMany(ClassLesson::class,'class_id');
+    }
+
+     public function schoolYear(){
+
+        return $this->belongsTo(SchoolYear::class,'year_id');
+
     }
 
     

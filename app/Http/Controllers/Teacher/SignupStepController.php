@@ -274,6 +274,7 @@ class SignupStepController extends Controller
                     foreach ($classes as $class) {
                         $userClass = new UserClass;
                         $userClass->user_id = Auth::id();
+                        $userClass->year_id = Auth::user()->current_selected_year;
                         $userClass->class_name = $class['class_name'];
                         $userClass->class_color = $class['class_color'];
                         $userClass->start_date = $user_selected_school_year->first_day;

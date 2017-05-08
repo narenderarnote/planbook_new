@@ -16,6 +16,7 @@ class CreateUserClassesTable extends Migration
         Schema::create('user_classes', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
+            $table->integer('year_id')->unsigned();
             $table->string('class_name')->nullable();
             $table->date('start_date')->nullable();
             $table->time('start_time')->nullable();
