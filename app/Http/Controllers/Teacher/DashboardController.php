@@ -246,14 +246,7 @@ class DashboardController extends Controller
     /*  Custom functions to get calendar data */
 
     private function _get_class_lesson($month=null,$year=null){
-         
-        if(null==($year))
-            $year =  date("Y",time()); 
- 
-        if(null==($month))
-            $month = date("m",time());
-             
-        return date('t',strtotime($year.'-'.$month.'-01'));
+       
     }
 
 }
