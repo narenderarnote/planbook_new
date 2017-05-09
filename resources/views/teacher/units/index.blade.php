@@ -1,4 +1,3 @@
-
 @extends('layouts.teacher')
 
 @section('content')
@@ -18,8 +17,8 @@
           <tr>
             <th class="text-center bg-theme color-column"></th>
             <th class="text-left bg-theme class-column">Class Name</th>
-            <th class="text-center bg-theme start-date">Start on</th>
-            <th class="text-center bg-theme end-date">End on</th>
+            <th class="text-center bg-theme start-date">Start</th>
+            <th class="text-center bg-theme end-date">End</th>
             <th class="text-center bg-theme">ID</th>
             <th class="text-center bg-theme">Title</th>
 
@@ -30,9 +29,10 @@
           @forelse($units as $unit)
 
             <tr class="edit_unit" data-unit-id="{{ $unit->id }}" >
-              <td class="text-center color-column"><a class="class-colors" style="background-color:{{$unit->class()->class_color}};"></a></td>
-              <td class="text-left class-column"><a href="#">{{ $unit->class_name }}</a></td>
-              <td class="text-center class-column"><a href="#">{{ $unit->start_on }}</a></td>
+              <td class="text-center color-column"><a class="class-colors" style="background-color:{{ $unit->userClass->class_color }};"></a></td>
+              <td class="text-left class-column"><a href="#">{{ $unit->userClass->class_name }}</a></td>
+              <td class="text-center class-column"><a href="#">{{ $unit->starts_on }}</a></td>
+              <td class="text-center class-column"><a href="#">{{ $unit->ends_on }}</a></td>
               <td class="text-center class-column"><a href="#">{{ $unit->unit_id }}</a></td>
               <td class="text-center class-column"><a href="#">{{ $unit->unit_title }}</a></td>
 
@@ -48,10 +48,6 @@
         </tbody>
       </table>
     </div>
-
-   
-
-
   </div>
 </div>
 
@@ -244,7 +240,7 @@ $(document).ready(function() {
 
           html += '<div id="success-box" class="alert alert-success fade in">';
           html += '<a href="#" class="close" data-dismiss="alert">&times;</a>';
-          html += '<strong>You Have updated class successfully !</strong>';
+          html += '<strong>You Have updated Unit successfully !</strong>';
           html += '</div>';
 
           $('#unit_edit_form').before(html);

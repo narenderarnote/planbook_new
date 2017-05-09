@@ -14,38 +14,56 @@
       {{ csrf_field() }}
 
       <div class="row">
-        <label class="control-label col-sm-2 text-right" for="sel1">Class </label>
-        <select id="unit_class" name="unit_class" class="form-control col-sm-5 ">
+        <label class="control-label col-sm-2 text-right"">Class </label>
 
-          <option value="0" >Select Class</option>
-          @forelse($userClasses as $userClass)
+        <div class="form-group col-sm-5 ">
+          <select id="unit_class" name="unit_class" class="form-control">
 
-          <option value="{{$userClass->id}}" >{{$userClass->class_name}}</option>
-         
-          @empty
-           <option value="0" >NO Class Avail</option>
-          @endforelse
-        </select>
+            <option value="" >Select Class</option>
+            @forelse($userClasses as $userClass)
+
+            <option value="{{$userClass->id}}" >{{$userClass->class_name}}</option>
+           
+            @empty
+             <option value="" >NO Class Avail</option>
+            @endforelse
+          </select>
+        </div>
       </div>
 
       <div class="row">
-        <label class="control-label col-sm-2 text-right">Class</label>
+        <label class="control-label col-sm-2 text-right">Unit ID</label>
         <div class="form-group col-sm-5 ">
-          <input type="text" id="unit_class" name="unit_class" value="" class="form-control"/>
+          <input type="text" id="unit_id" name="unit_id" value="" class="form-control"/>
+        </div>
+      </div>
+
+      <div class="row">
+        <label class="control-label col-sm-2 text-right">Title</label>
+        <div class="form-group col-sm-5 ">
+          <input type="text" id="unit_title" name="unit_title" value="" class="form-control"/>
         </div>
       </div>
 
       <div class="row">
         <label class="control-label col-sm-2 text-right">Starts On</label>
-        <div class="form-group col-sm-8 ">
+        <div class="form-group col-sm-5 ">
           <input type="text" id="starts_on" name="starts_on" value="{{ old('starts_on') }}" class="form-control datepicker"/>
           
         </div>
       </div>
       <div class="row">
         <label class="control-label col-sm-2 text-right">Ends On</label>
-        <div class="form-group col-sm-8 ">
+        <div class="form-group col-sm-5 ">
           <input type="text" id="ends_on" name="ends_on" value="{{ old('ends_on') }}" class="form-control datepicker"/>
+         
+        </div>
+      </div>
+
+       <div class="row">
+        <label class="control-label col-sm-2 text-right">Description</label>
+        <div class="form-group col-sm-5 ">
+          <textarea id="unit_description" name="unit_description" rows="7" cols="45"></textarea>
          
         </div>
       </div>

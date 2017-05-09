@@ -46,6 +46,8 @@ class UnitsController extends Controller
 	
 		$this->data['units'] = $units;
 
+        //echo"<pre>";print_r($units);die;
+
 		return view('teacher.units.index', $this->data);
 
 		//return redirect()->to('/');
@@ -86,8 +88,9 @@ class UnitsController extends Controller
 
 
             $validation['unit_class'] = 'required';
-            $validation['unit_title'] = 'required';
             $validation['unit_id'] = 'required';
+            $validation['unit_title'] = 'required';
+            
 
             $validator = Validator::make($request->all(), $validation);
 
@@ -96,6 +99,8 @@ class UnitsController extends Controller
                 $response['error'] = $validator->errors()->all();
 
             }else{
+
+                //echo"<pre>";print_r($request->all());die;
 
             	$format = 'd/m/Y';
 
@@ -128,9 +133,14 @@ class UnitsController extends Controller
 	 */
 	public function getEditUnit($unit_id)
 	{
+
+        // get user class
+        
+        $this->data['userClasses'] = UserClass::where('year_id',Auth::user()->current_selected_year)->where('user_id',Auth::user()->id)->with('schoolYear')->get();
+
 		// get unit
 
-		$this->data['Unit'] = Unit::where('id', $unit_id)->first();
+		$this->data['unit'] = Unit::where('id', $unit_id)->with('userClass')->first();
 
 		//echo"<pre>";print_r($this->data['Unit']);die;
 
@@ -155,13 +165,11 @@ class UnitsController extends Controller
             //echo"<pre>";print_r($request->all());die;
 
 
-            $validation['class_name'] = 'required';
-
 
             $rules = array(
                 'unit_class'   => 'required',
-                'unit_title'   => 'required',
                 'unit_id'   => 'required',
+                'unit_title'   => 'required',
                 
             );
 
@@ -175,7 +183,7 @@ class UnitsController extends Controller
 
             	$format = 'd/m/Y';
                
-                $Unit->user_id = Auth::id();
+                //$Unit->user_id = Auth::id();
                 $Unit->class_id = $request['unit_class'];
                 $Unit->starts_on = \Carbon\Carbon::createFromFormat($format, $request['starts_on']);
                 $Unit->ends_on = \Carbon\Carbon::createFromFormat($format,$request['ends_on']);

@@ -92,6 +92,18 @@ Route::group(['namespace' => 'Teacher','prefix' => 'teacher', 'as' => 'teacher.'
         });
 
 
+         /* teacher My Files Routes*/
+
+        Route::group([ 'prefix' => "my_files", 'as' => 'my_files.' ], function()
+        {
+
+            Route::match(['get','post'], '/index', [ 'as' => 'index', 'uses' => "MyFilesController@index"]);
+            Route::match(['post'], '/myFileUpload', [ 'as' => 'myFileUpload', 'uses' => "MyFilesController@myFileUpload"]);
+            
+
+        });
+
+
     });
   
 
