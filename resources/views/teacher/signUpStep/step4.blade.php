@@ -101,7 +101,7 @@
                       @if(count($user_selected_school_year) > 0)
 
                       @php
-                        $classesSchedules = json_decode($user_selected_school_year->class_schedule);
+                        $classesSchedules = $user_selected_school_year->class_schedule;
                       @endphp
 
                       @foreach ($classesSchedules as $key => $classesSchedule)

@@ -11,7 +11,7 @@
       @endphp
       <div class="lesson-heading" onclick="$('#dynamicRenderDiv').show().load('');" style="background-color:{{ $filter['class_color'] }}; color:#fff;" >
          <span class="lesson-name">{{ $filter['class_name'] }}</span>
-         <span class="lesson-timing"> 7:45am-8:00am </span>
+         <span class="lesson-timing"> <!-- 7:45am-8:00am --> </span>
 
       </div>
    </div>

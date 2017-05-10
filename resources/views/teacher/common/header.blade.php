@@ -10,7 +10,9 @@
           </ul>
         </div>
       </div>
-      <div class="col-sm-8"><img class="img-responsive mx-auto" src="/images/planbook.png" alt=""></div>
+      <div class="col-sm-8">
+        <a href="{{route('teacher.dashboard.index')}}"><img class="img-responsive mx-auto" src="/images/planbook.png" alt=""></a>
+      </div>
       <div class="user-drop li-inline pull-right text-right col-sm-2">
         <div class="dropdown">
           <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
@@ -37,7 +39,7 @@
       </div>
       <div class="clearfix"></div>
       <div class="col-sm-6">
-        <div class="h-l-menu header-t-menu text-left li-inline">
+        <!-- <div class="h-l-menu header-t-menu text-left li-inline">
           <ul class="p-0 m-0">
             <li><a href="#" class="btn btn-primary px-3 py-2">Today</a></li>
             <li><a href="#" class="color-theme"><i class="fa fa-2x fa-calendar" aria-hidden="true"></i><span class="sr-only">calendar</span></a></li>
@@ -70,29 +72,29 @@
                   Unit</span></a></li>
               </ul>
             </li>
-          </ul>
+          </ul> -->
         </div>
       </div>
       <div class="col-sm-6">
         <div class="h-r-menu header-t-menu text-right li-inline">
           <ul class="p-0 m-0">
-            <li><a href="#" class="color-theme"><i class="fa fa-2x fa-search" aria-hidden="true"></i><span class="sr-only">Search</span></a></li>
+            <!-- <li><a href="#" class="color-theme"><i class="fa fa-2x fa-search" aria-hidden="true"></i><span class="sr-only">Search</span></a></li>
             <li><a href="#" class="color-theme"><i class="fa fa-2x fa-print" aria-hidden="true"></i><span class="sr-only">Print</span></a></li>
             <li><a href="#" class="btn btn-primary px-3 py-2" ><i class="fa fa-minus" aria-hidden="true"></i><span class="sr-only"></span></a> </li>
-            <li><a href="#" class="color-theme "><i class="fa fa-2x fa-file-text-o" aria-hidden="true"></i><span class="sr-only">collepse</span></a></li>
-            <li class="type-view-drop dropdown">
+            <li><a href="#" class="color-theme "><i class="fa fa-2x fa-file-text-o" aria-hidden="true"></i><span class="sr-only">collepse</span></a></li> -->
+            <!-- <li class="type-view-drop dropdown">
               <button class="btn btn-primary px-3 py-2 dropdown-toggle" type="button" data-toggle="dropdown">View <span class="caret"></span></button>
               <ul class="dropdown-menu">
                 <li><a href="#">2017</a></li>
                 <li><a href="#">Add a year</a></li>
               </ul>
-            </li>
+            </li> -->
             <li class="goto-drop dropdown">
               <button class="btn btn-primary px-3 py-2 dropdown-toggle" type="button" data-toggle="dropdown">Go to <span class="caret"></span></button>
               <ul class="dropdown-menu">
-                <li><a href="#"><span class="add-ico"><img src="/images/plans.png" alt="plan"></span> <span class="add-text">Plan</span></a></li>
-                <li><a href="#"><span class="add-ico"><img src="/images/assessments.png" alt="assessment"></span> <span class="add-text">Assessments</span></a></li>
-                <li><a href="#"><span class="add-ico"><img src="/images/assignments.png" alt="assignment"></span> <span class="add-text">Assignments</span></a></li>
+                <li><a href="{{route('teacher.dashboard.index')}}"><span class="add-ico"><img src="/images/plans.png" alt="plan"></span> <span class="add-text">Plan</span></a></li>
+                <li><a href="{{route('teacher.assessments.index')}}"><span class="add-ico"><img src="/images/assessments.png" alt="assessment"></span> <span class="add-text">Assessments</span></a></li>
+                <li><a href="{{route('teacher.assignments.index')}}"><span class="add-ico"><img src="/images/assignments.png" alt="assignment"></span> <span class="add-text">Assignments</span></a></li>
                 <li><a href="{{route('teacher.classes.index')}}"><span class="add-ico"><img src="/images/classes.png" alt="classes"></span> <span class="add-text">Classes</span></a></li>
                 <li><a href="#"><span class="add-ico"><img src="/images/display.png" alt="display settings"></span> <span class="add-text">Display Settings</span></a></li>
                 <li><a href="#"><span class="add-ico"><img src="/images/icon-events.png" alt="event"></span> <span class="add-text">Events</span></a></li>

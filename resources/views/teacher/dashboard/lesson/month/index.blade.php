@@ -12,11 +12,8 @@ $classes = $monthView->getClasses();
 
 @endphp
 <style type="text/css">
-   .day-sunday [data-day], .day-monday [data-day],
-   .day-tuesday [data-day], .day-wednesday [data-day],
-   .day-thursday [data-day], .day-friday [data-day], 
-   .day-saturday [data-day]{
-      display: none !important;
+   .month-view [data-day]{
+      /*display: none !important;*/
    }
    .day-sunday [data-day="sunday"], .day-monday [data-day="monday"],
    .day-tuesday [data-day="tuesday"], .day-wednesday [data-day="wednesday"],
@@ -36,8 +33,10 @@ $classes = $monthView->getClasses();
          </ul>
       </div>
       <div class="calendar-data">
-         <ul class="p-0 m-0">
-            @for( $i=0; $i<$weeksInMonth; $i++ )
+
+         @for( $i=0; $i<$weeksInMonth; $i++ )
+            <ul class="p-0 m-0">
+            
                @for($j=1;$j<=7;$j++)
                   @php $content = $monthView->_showDay($i*7+$j);@endphp
                   <li data-date="{{ $content['date'] }}" @if($content['date'] != "") data-day="{{ strtolower(date('l', strtotime($content['date']) )) }}" @endif>
@@ -46,8 +45,8 @@ $classes = $monthView->getClasses();
                   @include("teacher.dashboard.lesson.show")
                @endfor
                </li>
-            @endfor
-         </ul>
+            </ul>
+         @endfor
       </div>
       {!! $monthView->_createNavi() !!}
    </div>

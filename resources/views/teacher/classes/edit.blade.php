@@ -90,7 +90,7 @@
 
             @php
 
-              $classSchedules = json_decode($userClass->class_schedule);
+              $classSchedules = $userClass->class_schedule;
 
 
             @endphp

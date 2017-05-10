@@ -78,7 +78,7 @@ Route::group(['namespace' => 'Teacher','prefix' => 'teacher', 'as' => 'teacher.'
 
         });
 
-         /* teacher units Routes*/
+        /* teacher units Routes*/
 
         Route::group([ 'prefix' => "units", 'as' => 'units.' ], function()
         {
@@ -92,13 +92,41 @@ Route::group(['namespace' => 'Teacher','prefix' => 'teacher', 'as' => 'teacher.'
         });
 
 
-         /* teacher My Files Routes*/
+        /* teacher My Files Routes*/
 
         Route::group([ 'prefix' => "my_files", 'as' => 'my_files.' ], function()
         {
 
             Route::match(['get','post'], '/index', [ 'as' => 'index', 'uses' => "MyFilesController@index"]);
             Route::match(['post'], '/myFileUpload', [ 'as' => 'myFileUpload', 'uses' => "MyFilesController@myFileUpload"]);
+            
+
+        });
+
+        /* teacher Assignments Routes*/
+
+        Route::group([ 'prefix' => "assignments", 'as' => 'assignments.' ], function()
+        {
+
+            Route::match(['get','post'], '/index', [ 'as' => 'index', 'uses' => "AssignmentsController@index"]);
+            Route::match(['get'], '/add', [ 'as' => 'getAddAssignment', 'uses' => "AssignmentsController@getAddAssignment"]);
+            Route::match(['post'], '/add', [ 'as' => 'postAddAssignment', 'uses' => "AssignmentsController@postAddAssignment"]);
+            Route::match(['get'], '/edit/{assignment_id}', [ 'as' => 'getEditAssignment', "uses" => "AssignmentsController@getEditAssignment"]);
+            Route::match(['post'], '/edit/{assignment_id}', [ 'as' => 'postEditAssignment', "uses" => "AssignmentsController@postEditAssignment"]);
+            
+
+        });
+
+        /* teacher Assessment Routes*/
+
+        Route::group([ 'prefix' => "assessments", 'as' => 'assessments.' ], function()
+        {
+
+            Route::match(['get','post'], '/index', [ 'as' => 'index', 'uses' => "AssessmentsController@index"]);
+            Route::match(['get'], '/add', [ 'as' => 'getAddAssignment', 'uses' => "AssessmentsController@getAddAssessment"]);
+            Route::match(['post'], '/add', [ 'as' => 'postAddAssignment', 'uses' => "AssessmentsController@postAddAssessment"]);
+            Route::match(['get'], '/edit/{assessment_id}', [ 'as' => 'getEditAssignment', "uses" => "AssessmentsController@getEditAssessment"]);
+            Route::match(['post'], '/edit/{assessment_id}', [ 'as' => 'postEditAssignment', "uses" => "AssessmentsController@postEditAssessment"]);
             
 
         });

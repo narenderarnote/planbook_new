@@ -280,7 +280,7 @@ class SignupStepController extends Controller
                         $userClass->start_date = $user_selected_school_year->first_day;
                         $userClass->end_date = $user_selected_school_year->last_day;
 
-                        $class_schedule = json_encode($class['class_schedule']);
+                        $class_schedule = $class['class_schedule'];
                         $userClass->class_schedule = $class_schedule;
                         $userClass->save();
                     }

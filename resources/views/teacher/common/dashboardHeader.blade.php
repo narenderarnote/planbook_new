@@ -10,7 +10,9 @@
           </ul>
         </div>
       </div>
-      <div class="col-sm-8"><img class="img-responsive mx-auto" src="/images/planbook.png" alt=""></div>
+      <div class="col-sm-8">
+      <a href="{{route('teacher.dashboard.index')}}"><img class="img-responsive mx-auto" src="/images/planbook.png" alt=""></a>
+      </div>
       <div class="user-drop li-inline pull-right text-right col-sm-2">
         <div class="dropdown">
           <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
@@ -50,9 +52,9 @@
             <li class="dropdown">
               <button class="btn btn-primary px-3 py-2 dropdown-toggle" type="button" data-toggle="dropdown">Add <span class="caret"></span></button>
               <ul class="dropdown-menu">
-                <li><a href="#"><span class="add-ico"><img src="/images/assessment-add.png" alt="add-assessment"></span> <span class="add-text">Add<br>
+                <li><a href="{{route('teacher.assessments.index')}}"><span class="add-ico"><img src="/images/assessment-add.png" alt="add-assessment"></span> <span class="add-text">Add<br>
                   Assessment</span></a></li>
-                <li><a href="#"><span class="add-ico"><img src="/images/assignment-add.png" alt="add assignment"></span> <span class="add-text">Add<br>
+                <li><a href="{{route('teacher.assignments.index')}}"><span class="add-ico"><img src="/images/assignment-add.png" alt="add assignment"></span> <span class="add-text">Add<br>
                   Assignment</span></a></li>
                 <li><a href="{{route('teacher.classes.index')}}"><span class="add-ico"><img src="/images/class-add.png"  alt="add class"></span> <span class="add-text">Add<br>
                   Class</span></a></li>
@@ -62,11 +64,11 @@
                   Extra Lesson</span></a></li>
                 <li><a href="#"><span class="add-ico"><img src="/images/noschool.png" alt="add assignment"></span> <span class="add-text">Add No<br>
                   School Day</span></a></li>
-                <li><a href="#"><span class="add-ico"><img src="/images/addyear.png" alt="add school year"></span> <span class="add-text">Add<br>
+                <li><a href="{{route('teacher.school_year.getAddSchoolYear')}}"><span class="add-ico"><img src="/images/addyear.png" alt="add school year"></span> <span class="add-text">Add<br>
                   School year</span></a></li>
                 <li><a href="#"><span class="add-ico"><img src="/images/template-add.png" alt="add template"></span> <span class="add-text">Add<br>
                   Template</span></a></li>
-                <li><a href="#"><span class="add-ico"><img src="/images/unit-add.png" alt="add unit"></span> <span class="add-text">Add<br>
+                <li><a href="{{route('teacher.units.index')}}"><span class="add-ico"><img src="/images/unit-add.png" alt="add unit"></span> <span class="add-text">Add<br>
                   Unit</span></a></li>
               </ul>
             </li>
@@ -90,9 +92,9 @@
             <li class="goto-drop dropdown">
               <button class="btn btn-primary px-3 py-2 dropdown-toggle" type="button" data-toggle="dropdown">Go to <span class="caret"></span></button>
               <ul class="dropdown-menu">
-                <li><a href="#"><span class="add-ico"><img src="/images/plans.png" alt="plan"></span> <span class="add-text">Plan</span></a></li>
-                <li><a href="#"><span class="add-ico"><img src="/images/assessments.png" alt="assessment"></span> <span class="add-text">Assessments</span></a></li>
-                <li><a href="#"><span class="add-ico"><img src="/images/assignments.png" alt="assignment"></span> <span class="add-text">Assignments</span></a></li>
+                <li><a href="{{route('teacher.dashboard.index')}}"><span class="add-ico"><img src="/images/plans.png" alt="plan"></span> <span class="add-text">Plan</span></a></li>
+                <li><a href="{{route('teacher.assessments.index')}}"><span class="add-ico"><img src="/images/assessments.png" alt="assessment"></span> <span class="add-text">Assessments</span></a></li>
+                <li><a href="{{route('teacher.assignments.index')}}"><span class="add-ico"><img src="/images/assignments.png" alt="assignment"></span> <span class="add-text">Assignments</span></a></li>
                 <li><a href="{{route('teacher.classes.index')}}"><span class="add-ico"><img src="/images/classes.png" alt="classes"></span> <span class="add-text">Classes</span></a></li>
                 <li><a href="#"><span class="add-ico"><img src="/images/display.png" alt="display settings"></span> <span class="add-text">Display Settings</span></a></li>
                 <li><a href="#"><span class="add-ico"><img src="/images/icon-events.png" alt="event"></span> <span class="add-text">Events</span></a></li>
