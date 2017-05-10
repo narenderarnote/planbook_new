@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Auth;
 use Illuminate\Database\Eloquent\Model;
 
 use DB; // used for queries like DB::table('table_name')->get();
@@ -39,12 +40,20 @@ class UserClass extends Model
         //return $this->hasMany(ClassLesson::class,'class_id');
     }
 
-     public function schoolYear(){
+    public function schoolYear(){
 
         return $this->belongsTo(SchoolYear::class,'year_id');
 
     }
 
+    public function scopeGetClasses($q, $start, $end){
+
+        return $q->whereBetween("start_date", [$start, $end])
+                 ->orWhere(function ($query) use($start, $end) {
+                        $query->whereBetween("end_date", [$start, $end]);
+                })
+                ->whereYearId(Auth::user()->current_selected_year);
+    }
     
 
    

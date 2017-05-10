@@ -42,9 +42,12 @@ class User extends Authenticatable
     }
 
     public function userClass(){
-
         return $this->hasMany(UserClass::class);
+    }
 
+
+    public function selectedYear(){
+        return $this->belongsTo(SchoolYear::class,'current_selected_year');
     }
 
 

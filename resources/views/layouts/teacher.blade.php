@@ -18,5 +18,6 @@
 		@yield('content')
 
 		@include('teacher.common.footer')
+		{{ debug("user") }}
   </body>
 </html>

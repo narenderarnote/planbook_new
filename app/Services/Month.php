@@ -1,12 +1,19 @@
 <?php
 
-namespace App\Helpers;
+namespace App\Services;
+
+use Auth;
+use App\User;
+use App\UserClass;
+use App\SchoolYear;
+use App\ClassLesson;
 
 class Month
 {
 /********************* PROPERTY ********************/  
     private $dayLabels = array("Mon","Tue","Wed","Thu","Fri","Sat","Sun");
-     
+    private $dayFullLabels = array("monday","tuesday","wednesday","thursday","friday","saturday", "sunday");
+
     private $currentYear=0;
      
     private $currentMonth=0;
@@ -131,7 +138,7 @@ class Month
          
         foreach($this->dayLabels as $index=>$label){
              
-            $content.='<li class="'.($label==6?'end title':'start title').' title">'.$label.'</li>';
+            $content.='<li class="'.($label==6?'end title':'start title').' title" data-day="'. $this->dayFullLabels[$index].'">'.$label.'</li>';
  
         }
          
@@ -185,4 +192,22 @@ class Month
         return date('t',strtotime($year.'-'.$month.'-01'));
     }
 
+    public function getClasses(){
+
+        $start = $this->currentYear .'-'. $this->currentMonth .'-01';
+        $end   = $this->currentYear .'-'. $this->currentMonth .'-'. $this->_daysInMonth();
+
+        return  UserClass::getClasses($start, $end)->with(["classLesson" => function($q) use($start, $end) {
+                    $q->whereBetween("lesson_date", [$start, $end]);
+        }])->get();
+    }
+
+    //public function getClassesLesson($classesId){
+
+    //    $start = $this->currentYear .'-'. $this->currentMonth .'-01';
+    //    $end   = $this->currentYear .'-'. $this->currentMonth .'-'. $this->_daysInMonth();
+
+    //    return ClassLesson::getLesson($start, $end, $classesId)->get();
+
+    //}
 }

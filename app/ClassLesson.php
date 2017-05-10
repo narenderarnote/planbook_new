@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 use DB; // used for queries like DB::table('table_name')->get();
-class UserClass extends Model
+class ClassLesson extends Model
 {
     /**
      * The table associated with the model.
@@ -19,13 +19,16 @@ class UserClass extends Model
 
 	
 
-    public function class(){
-
-
-        return $this->belongsTo('App\UserClass');
-    }
+    //public function class(){
+    //    return $this->belongsTo('App\UserClass');
+   // }
 
     
+    public function scopeGetLesson($q, $start, $end, $classId = [] ){
 
+       return $q->where("lesson_date","<=", $start)
+                ->where("lesson_date",">=", $end)
+                ->whereIn('class_id', $classId);
+    }
    
 }
