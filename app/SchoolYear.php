@@ -17,9 +17,9 @@ class SchoolYear extends Model
 	//public $timestamps = false;
 
 
-    protected $casts = [
-        "class_schedule" => "array"
-    ];
+    //protected $casts = [
+    //    "class_schedule" => "array"
+    //];
 	
 
     public function user(){

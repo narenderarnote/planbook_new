@@ -108,7 +108,7 @@ class ClassesController extends Controller
                 $UserClass->class_color = $request['class_color'];
                 $UserClass->collaborate = $request['collaborate'];
 
-                $class_schedule = $request['class_schedule'];
+                $class_schedule = json_encode($request['class_schedule']);
                 $UserClass->class_schedule = $class_schedule;
 
                 if($UserClass->save()){
@@ -186,7 +186,7 @@ class ClassesController extends Controller
                 $UserClass->class_color = $request['class_color'];
                 $UserClass->collaborate = $request['collaborate'];
 
-                $class_schedule = $request['class_schedule'];
+                $class_schedule = json_encode($request['class_schedule']);
                 $UserClass->class_schedule = $class_schedule;
 
                 if($UserClass->save()){

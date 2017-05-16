@@ -90,7 +90,7 @@
 
             @php
 
-              $classesSchedules = $user_selected_school_year->class_schedule;
+              $classesSchedules = json_decode($user_selected_school_year->class_schedule);
 
 
             @endphp
