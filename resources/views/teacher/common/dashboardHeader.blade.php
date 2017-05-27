@@ -84,10 +84,101 @@
             <li><a href="#" class="color-theme "><i class="fa fa-2x fa-file-text-o" aria-hidden="true"></i><span class="sr-only">collepse</span></a></li>
             <li class="type-view-drop dropdown">
               <button class="btn btn-primary px-3 py-2 dropdown-toggle" type="button" data-toggle="dropdown">View <span class="caret"></span></button>
-              <ul class="dropdown-menu">
-                <li><a href="#">2017</a></li>
-                <li><a href="#">Add a year</a></li>
-              </ul>
+              <ul class="dropdown-menu view-dropdown">
+					<div class="viewnav-tabs">
+						<ul class="nav nav-pills">
+							<li class="active"><a href="#day" class="btn btn-info calBtn" data-toggle="tab">Day</a>
+							</li>
+							<li><a href="#week" class="btn btn-info calBtn" data-toggle="tab">Week</a>
+							</li>
+							<li><a href="#Month" class="btn btn-info calBtn" data-toggle="tab">Month</a>
+							</li>
+							<li><a href="#" class="btn btn-info calBtn" data-toggle="tab">List</a>
+							</li>
+						</ul>
+					</div>
+					<div class="view-list">
+						<div class="col-md-6">
+							<div class="viewlistleft">
+								<div class="viewlist-header"> View Items </div>
+								<div class="viewlist-body">
+									<ul>
+										<li> All Items</li>
+										<li> No Items</li>
+										<li>
+											<input type="checkbox" name="list1" value="Unitid"> Unit Id</li>
+										<li>
+											<input type="checkbox" name="list2" value="lessontitle"> Lesson Title</li>
+										<li>
+											<input type="checkbox" name="list3" value="lesson"> Lesson
+										</li>
+										<li>
+											<input type="checkbox" name="list4" value="homework"> Homework
+										</li>
+										<li>
+											<input type="checkbox" name="list5" value="notes"> Notes
+										</li>
+										<li>
+											<input type="checkbox" name="list6" value="standardid"> Standard ID</li>
+										<li>
+											<input type="checkbox" name="list7" value="standard-desc"> Standard Desc</li>
+										<li>
+											<input type="checkbox" name="list8" value="attachments"> Attachments
+										</li>
+										<li>
+											<input type="checkbox" name="list9" value="assignments"> Assignments
+										</li>
+										<li>
+											<input type="checkbox" name="list10" value="assessments"> Assessments
+										</li>
+										<li>
+											<input type="checkbox" name="list11" value="templates"> Templates
+										</li>
+										<li>
+											<input type="checkbox" name="list12" value="times"> Times
+										</li>
+										<li>
+											<input type="checkbox" name="list13" value="events"> Events
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="viewlistleft">
+								<div class="viewlist-header"> View Classes </div>
+								<div class="viewlist-body">
+									<ul>
+										<li> All Classes</li>
+										<li> No Classes</li>
+										<li>
+											<input type="checkbox" name="list14" value="language-arts"> Language Arts</li>
+										<li>
+											<input type="checkbox" name="list15" value="mathematics"> Mathematics
+										</li>
+										<li>
+											<input type="checkbox" name="list16" value="reading"> Reading
+										</li>
+										<li>
+											<input type="checkbox" name="list17" value="science"> Science
+										</li>
+										<li>
+											<input type="checkbox" name="list18" value="social-studies"> Social Studies</li>
+										<li>
+											<input type="checkbox" name="list19" value="supermarket"> Supermarket
+										</li>
+										<li>
+											<input type="checkbox" name="list20" value="writing"> Writing
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="preferencebutton">
+							<button type="button" class="btn btn-info calBtn">Save Preferences</button>
+						</div>
+					</div>
+				</ul>
             </li>
             <li class="goto-drop dropdown">
               <button class="btn btn-primary px-3 py-2 dropdown-toggle" type="button" data-toggle="dropdown">Go to <span class="caret"></span></button>
