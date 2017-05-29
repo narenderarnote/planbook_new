@@ -22,7 +22,7 @@ $classes = $monthView->getClasses();
       display: block !important;
    }
 </style>
-	<div class="listtab-content tab-content">
+	<div class="listtab-content tab-content" id="ActiveCalendar">
 		<div class="calendar-view container-fluid tab-pane active month-view" id="Month">
 		   <div class="container-fluid {{ implode(' ', $visibleDay)}}" >
 			  <div class="view-title">
@@ -42,7 +42,7 @@ $classes = $monthView->getClasses();
 						  @php $content = $monthView->_showDay($i*7+$j);@endphp
 						  <li data-date="{{ $content['date'] }}" @if($content['date'] != "") data-day="{{ strtolower(date('l', strtotime($content['date']) )) }}" @endif>
 						  <div class="dates text-right">{{ $content['day'] }}</div>
-
+						  
 						  @include("teacher.dashboard.lesson.show")
 					   @endfor
 					   </li>
@@ -53,9 +53,31 @@ $classes = $monthView->getClasses();
 		   </div>
 		</div>
 		<!--Day content start here-->
-		<div class="daycontent tab-pane fade in" id="day">
-			<div class="date"> Friday 05/26/2017</div>
-			<div class="languagearts daytab-content">Language Arts 
+		@php 
+		$currentDate = date("l m/d/Y"); 
+		@endphp
+		<div class="daycontent tab-pane fade" id="day">
+			<div class="date">{{ $currentDate  }}</div>
+			@php	
+		    $DayName = date("Y-m-d"); 
+			$filtered = $classes->where('start_date', '<=' , $DayName)->where('end_date', '>=', $DayName)->where('user_id', '=' , Auth::user()->id )->all();
+			@endphp
+			@if(!empty($filtered))
+				@foreach($filtered as $filter)
+   
+        @php
+         $url = empty($filter->classlesson);
+		 $dayFormat = date("l m/d/Y");
+		 $weekDay = date('l', strtotime($DayName) );
+		 
+		 $hasClass = !collect(json_decode($filter->class_schedule))
+						->where("text", $weekDay)
+						->where("is_class" , "1")
+						->isEmpty();
+      @endphp
+	  
+	  @if($hasClass)
+			<div class="languagearts daytab-content" style="background-color:{{ $filter['class_color'] }}; color:#fff;"> {{ $filter['class_name'] }} 
 				<span class="icons">
 					<ul>
 					  <li><img src="/images/move-icon.png" class="move-icon"></li>
@@ -72,96 +94,77 @@ $classes = $monthView->getClasses();
 					</ul>
 				</span> 
 			</div>
-			<div class="mathematics daytab-content">Mathematics 
-				<span class="icons">
-					<ul>
-					  <li><img src="/images/move-icon.png" class="move-icon"></li>
-					  <li><img src="/images/downarrow2.png" class="downarrow-icon"></li>
-					</ul>
-				</span> 
-			</div>
-			<div class="reading daytab-content">Reading 
-				<span class="icons">
-					<ul>
-					  <li><img src="/images/move-icon.png" class="move-icon"></li>
-					  <li><img src="/images/downarrow2.png" class="downarrow-icon"></li>
-					</ul>
-				</span> 
-			</div>
-			<div class="science daytab-content">Science 
-				<span class="icons">
-					<ul>
-					  <li><img src="/images/move-icon.png" class="move-icon"></li>
-					  <li><img src="/images/downarrow2.png" class="downarrow-icon"></li>
-					</ul>
-				</span> 
-			</div>
-			<div class="social-studies daytab-content">Social Studies 
-				<span class="icons">
-					<ul>
-					  <li><img src="/images/move-icon.png" class="move-icon"></li>
-					  <li><img src="/images/downarrow2.png" class="downarrow-icon"></li>
-					</ul>
-				</span> 
-			</div>
-			<div class="supermarket daytab-content">Supermarket 
-				<span class="icons">
-					<ul>
-					  <li><img src="/images/move-icon.png" class="move-icon"></li>
-					  <li><img src="/images/downarrow2.png" class="downarrow-icon"></li>
-					</ul>
-				</span> 
-			</div>
-			<div class="writing daytab-content">Writing 
-				<span class="icons">
-					<ul>
-					  <li><img src="/images/move-icon.png" class="move-icon"></li>
-					  <li><img src="/images/downarrow2.png" class="downarrow-icon"></li>
-					</ul>
-				</span> 
-			</div>
+			@endif
+   @endforeach
+   @endif
 		</div>
 		<!--End Day View-->
 		<!--Week Calendar View -->
-		<div class="weekcontent tab-pane fade" id="week">
-			@for($i=2;$i<=6;$i++)
+		<div class="weekcontent tab-pane fade in" id="week">
+            <div class="week-data">
+               <ul>
+			    @for($i=0;$i<=4;$i++)
 				@php $weekDays = date("l m/d/Y",strtotime("+$i days")); 
-				$daysName = date("l",strtotime("+$i days"))
 				@endphp
-				<div class="{{ strtolower($daysName) }}week">
-					<div class="week-head">{{ $weekDays }}</div>
-				</div>	
-				
-			@endfor	
-			<div class="class="calendar-data">
+                  <li class="week-head">{{ $weekDays }}</li>
+                @endfor
+               </ul>
+            </div>
 			
-				@for($i=2;$i<=6;$i++)
-				@php $weekDays = date("l m/d/Y",strtotime("+$i days")); 
-				$daysName = date("Y-m-d",strtotime("+$i days"));
-				$filtered = $classes->where('start_date', '<=' , $daysName)->where('end_date', '>=', $daysName)->where('user_id', '=' , Auth::user()->id )->all();
-   
-					   @endphp
-						 @foreach($filtered as $filters)
+			<div class="week-bodydata">
+			<ul>
+            @for($j=0;$j<=4;$j++)   
+			@php	
+		    $daysName = date("Y-m-d",strtotime("+$j days")); 
+			$AllDays = date("l Y-m-d",strtotime("+$j days"));
+			$filtered = $classes->where('start_date', '<=' , $daysName)->where('end_date', '>=', $daysName)->where('user_id', '=' , Auth::user()->id )->all();
+			@endphp
+            
+                @if(!empty($filtered))    					
+                  <li class="weektab-content">
+				  @foreach($filtered as $filters)
 					   
 						  @php
 							 $url = empty($filter->classlesson);
 							 
-							 $weekDay = date('l', strtotime($weekDays) );
+							 $weekDay = date('l', strtotime($daysName) );
 							 
 							 $hasClass = !collect(json_decode($filters->class_schedule))
 							->where("text", $weekDay)
 							->where("is_class" , "1")
 							->isEmpty();
-						@endphp
-				 @if($hasClass)		
-				<li style="float:left; width:20%;">
-					<div class="week-head">{{ $filters['class_name'] }}</div>
-				</li>
-				@endif				
-				 @endforeach
-			@endfor	
-            </div>			
-		</div>
+						@endphp 
+						@if($hasClass)
+                    <div class="languagearts week-tabcontentinner" style="background-color:{{ $filters['class_color'] }}; color:#fff; border-color: {{ $filters['class_color'] }};">
+                      {{ $filters['class_name'] }}
+					  <span class="week-icons">
+                           <ul>
+                              <li class="dropdown"><img src="/images/move-icon.png" class="move-icon dropdown-toggle"> </li>
+                              <li class="dropdown">
+                                 <img src="/images/downarrow2.png" class="downarrow-icon dropdown-toggle" data-toggle="dropdown">
+                                 <ul class="dropdown-menu languagelessondropdown">
+                                    <div class="lessondropdown-header"> Lesson Actions <span class="cross-icon"> <i class="fa fa-close" aria-hidden="true"></i></span></div>
+                                    <div class="lesondropdown-body">
+                                       <ul>
+                                          <li> <i class="fa fa-pencil" aria-hidden="true"></i> Edit Lesson</li>
+                                          <li> <i class="fa fa-arrows" aria-hidden="true"></i> Move Lesson</li>
+                                          <li> <i class="fa fa-arrows" aria-hidden="true"></i> Copy</li>
+                                       </ul>
+                                    </div>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </span>
+                     </div>
+                     @endif
+				    
+				 @endforeach  
+				 @endif
+				 </li>
+			@endfor	  
+            </ul>   
+            </div>
+         </div>
 		<!--End Week View-->
 	</div>
 	<!-- Add class Popup Starts Here -->

@@ -380,12 +380,13 @@ input[type=color].form-control { padding: 0; width: auto; min-width: 40px; }
 .lessondropdown-header .cross-icon i { font-size: 20px; }
 .lesondropdown-body > ul { padding: 0px; margin: 0px; }
 .lesondropdown-body li { color: #000; font-size: 16px; margin: 4px 0; }
-.lesondropdown-body { padding: 0px 15px; }
+.lesondropdown-body { padding: 0; }
 .lesondropdown-body li i { padding-right: 6px; }
-.mondayweek { width: 20%; float: left; }
-.weekcontent .week-head { background-color: #dbdfe8; color: #0057c1; font-size: 12pt; margin: 5px 0 8px; padding: 5px; text-align: center; }
+.week-data .week-head { background-color: #dbdfe8; color: #0057c1; float: left; font-size: 12pt; list-style: outside none none; margin: 0; padding: 5px 0px; text-align: center; width: 20%; }
+.week-bodydata .weektab-content { cursor: pointer; float: left; font-size: 10pt; font-weight: 600; list-style: outside none none; margin-bottom: 8px; margin-right: 6px; padding: 2px 8px 4px; width: 19.5%; }
+.week-bodydata { float: left; margin-top: 13px; width: 100%; }
+.week-tabcontentinner { padding: 4px 9px; margin-bottom: 11px; }
 .memoriallesson { border-color: #c3d9ff; cursor: pointer; background-color: #C3D9FF; color: #0000ff; }
-.weektab-content { font-size: 10pt; font-weight: 600; padding: 2px 8px 4px; width: 97%; margin-bottom: 8px; }
 .listtab-content .week-icons .downarrow-icon img { margin: 7px 2px 0; }
 .week-icons { float: right; }
 .week-icons ul li { display: inline-block; list-style: outside none none; }
@@ -395,12 +396,6 @@ input[type=color].form-control { padding: 0; width: auto; min-width: 40px; }
 .weekdropdownbody li { padding: 6px; }
 .weekdropdownbody li { color: #000; font-size: 16px; font-weight: normal; padding: 6px; width: 100%; }
 .week-icons li i { padding-right: 4px; }
-.tuesdayweek { width: 20%; float: left; }
-.weekcontent .languagearts { background-color: #603f99; border-color: #603f99; color: #fff; }
 .weekcontent .mathematics { background-color: #fe090a; border-color: #fe090a; color: #fff; }
 .reading { background-color: #fe090a; border-color: #fe090a; color: #fff; }
-.wednesdayweek { width: 20%; float: left; }
-.thursdayweek { width: 20%; float: left; }
-.fridayweek { width: 20%; float: left; }
 .reading { background-color: #fe9c0a; border-color: #fe9c0a; color: #fff; }
-.calBtn{ background-color: #0057c1; border-color: #fe9c0a; color: #fff; }

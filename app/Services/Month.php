@@ -7,7 +7,6 @@ use App\User;
 use App\UserClass;
 use App\SchoolYear;
 use App\ClassLesson;
-
 class Month
 {
 /********************* PROPERTY ********************/  
@@ -122,7 +121,7 @@ class Month
         $preMonth = $this->currentMonth==1?12:intval($this->currentMonth)-1;
          
         $preYear = $this->currentMonth==1?intval($this->currentYear)-1:$this->currentYear;
-        return
+        return 
             '<script>'.
                 '$("#pPrev").attr("href","?month='.sprintf('%02d',$preMonth).'&year='.$preYear.'");'.
                 '$("#pNext").attr("href","?month='.sprintf("%02d", $nextMonth).'&year='.$nextYear.'");'.
@@ -195,9 +194,11 @@ class Month
     public function getClasses(){
 
         $start = $this->currentYear .'-'. $this->currentMonth .'-01';
-        $end   = $this->currentYear .'-'. $this->currentMonth .'-'. $this->_daysInMonth();
+        $end   = $this->currentYear .'-'. $this->currentMonth .'-'. $this->_daysInMonth(); 
 
-        return  UserClass::getClasses($start, $end)->with(["classLesson" => function($q) use($start, $end) {
+        return  UserClass::where('start_date', '>=', $start)->Where('end_date', '<=' , $end)->orWhere(function($q) use($start, $end){
+       $q->where('end_date', '>=' ,$start )->where('start_date' ,'<=', $end);
+})->with(["classLesson" => function($q) use($start, $end) {
                     $q->whereBetween("lesson_date", [$start, $end]);
         }])->get();
     }

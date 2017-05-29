@@ -14,7 +14,6 @@
 //$( document ).ready() block.
 
 $(document).ready(function() {
-
 	$("#dynamicCalendarContent").load("/teacher/dashboard/showCalendar",function(){
 
 	    //$('.datepicker').datepicker({format: 'dd/mm/yyyy',});
@@ -29,7 +28,13 @@ $(document).ready(function() {
 
 		e.preventDefault();
 	});
-
+    $('.calBtn').click(function() {
+      var currentActive = $("#ActiveCalendar").find(".active").attr('id');	  
+	  var href = $(this).attr('href');
+      $('#'+currentActive).removeClass('active').addClass('fade');	  
+	  $(href).removeClass('fade');
+	  $(href).addClass('active');
+	});
 });
 
 </script>

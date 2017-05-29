@@ -44,7 +44,7 @@
             <li><a href="#" class="btn btn-primary px-3 py-2">Today</a></li>
             <li><a href="#" class="color-theme"><i class="fa fa-2x fa-calendar" aria-hidden="true"></i><span class="sr-only">calendar</span></a></li>
             <li>
-              <a href="#" class="btn btn-primary px-3 py-2 get-calendar" id="pPrev"><i class="fa fa-chevron-left" aria-hidden="true"></i><span class="sr-only">goto left</span></a>
+              <a href="#" class="btn btn-primary px-3 py-2 get-calendar" id="pPrev"><i class="fa fa-chevron-left" aria-hidden="true"></i><span class="sr-only"></span></a>
               <a href="#" class="btn btn-primary px-3 py-2 get-calendar" id="pNext"><i class="fa fa-chevron-right" aria-hidden="true"></i><span class="sr-only">goto right</span></a> 
             </li>
             <li><a href="#" class="color-theme "><i class="fa fa-2x fa-file-text-o" aria-hidden="true"></i><span class="sr-only">calendar</span></a></li>
@@ -87,11 +87,11 @@
               <ul class="dropdown-menu view-dropdown">
 					<div class="viewnav-tabs">
 						<ul class="nav nav-pills">
-							<li class="active"><a href="#day" class="btn btn-info calBtn" data-toggle="tab">Day</a>
+							<li><a href="#day" class="btn btn-info calBtn">Day</a>
 							</li>
-							<li><a href="#week" class="btn btn-info calBtn" data-toggle="tab">Week</a>
+							<li><a href="#week" class="btn btn-info calBtn" >Week</a>
 							</li>
-							<li><a href="#Month" class="btn btn-info calBtn" data-toggle="tab">Month</a>
+							<li><a href="#Month" class="btn btn-info calBtn">Month</a>
 							</li>
 							<li><a href="#" class="btn btn-info calBtn" data-toggle="tab">List</a>
 							</li>
