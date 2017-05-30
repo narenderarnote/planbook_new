@@ -103,8 +103,18 @@ $classes = $monthView->getClasses();
 		<div class="weekcontent tab-pane fade in" id="week">
             <div class="week-data">
                <ul>
-			    @for($i=0;$i<=4;$i++)
-				@php $weekDays = date("l m/d/Y",strtotime("+$i days")); 
+			   @php
+			    $date = date("Y-m-d", strtotime('monday this week'));
+				$ts = strtotime($date);
+				$dow = date('w', $ts);
+				$offset = $dow - 1;
+				if ($offset < 0) {
+					$offset = 6;
+				}
+				$ts = $ts - $offset*86400;
+				@endphp
+				@for ($i = 0; $i < 5; $i++, $ts += 86400)
+				@php $weekDays = date("l m/d/Y", $ts); 
 				@endphp
                   <li class="week-head">{{ $weekDays }}</li>
                 @endfor
@@ -113,9 +123,19 @@ $classes = $monthView->getClasses();
 			
 			<div class="week-bodydata">
 			<ul>
-            @for($j=0;$j<=4;$j++)   
+			@php
+            $date = date("Y-m-d", strtotime('monday this week'));
+			$ts = strtotime($date);
+			$dow = date('w', $ts);
+			$offset = $dow - 1;
+			if ($offset < 0) {
+				$offset = 6;
+			}
+			$ts = $ts - $offset*86400;
+			@endphp
+			@for ($i = 0; $i < 5; $i++, $ts += 86400)
 			@php	
-		    $daysName = date("Y-m-d",strtotime("+$j days")); 
+		    $daysName = date("Y-m-d", $ts); 
 			$AllDays = date("l Y-m-d",strtotime("+$j days"));
 			$filtered = $classes->where('start_date', '<=' , $daysName)->where('end_date', '>=', $daysName)->where('user_id', '=' , Auth::user()->id )->all();
 			@endphp
@@ -127,7 +147,7 @@ $classes = $monthView->getClasses();
 						  @php
 							 $url = empty($filter->classlesson);
 							 
-							 $weekDay = date('l', strtotime($daysName) );
+							$weekDay = date("l", $ts);
 							 
 							 $hasClass = !collect(json_decode($filters->class_schedule))
 							->where("text", $weekDay)

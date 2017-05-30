@@ -1,4 +1,3 @@
-
 @extends('layouts.teacher')
 
 @section('content')
@@ -35,6 +34,7 @@ $(document).ready(function() {
 	  $(href).removeClass('fade');
 	  $(href).addClass('active');
 	});
+	
 });
 
 </script>

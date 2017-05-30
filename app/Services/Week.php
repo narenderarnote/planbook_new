@@ -7,15 +7,15 @@ use App\User;
 use App\UserClass;
 use App\SchoolYear;
 use App\ClassLesson;
-class Month
+class Week
 {
 /********************* PROPERTY ********************/  
     private $dayLabels = array("Mon","Tue","Wed","Thu","Fri","Sat","Sun");
     private $dayFullLabels = array("monday","tuesday","wednesday","thursday","friday","saturday", "sunday");
 
-    private $currentYear=0;
-     
     private $currentMonth=0;
+     
+    private $currentWeek=0;
      
     private $currentDay=0;
      
@@ -203,15 +203,12 @@ class Month
         }])->get();
     }
     
-    public function getWeek()
-	{
-		$date = date("Y-m-d", strtotime('monday this week'));
-		return $date;
-	}
-	public function getDay($l)
-	{
-		$date = date("l m/d/Y");
-		return $date;
-	}
-	
+    //public function getClassesLesson($classesId){
+
+    //    $start = $this->currentYear .'-'. $this->currentMonth .'-01';
+    //    $end   = $this->currentYear .'-'. $this->currentMonth .'-'. $this->_daysInMonth();
+
+    //    return ClassLesson::getLesson($start, $end, $classesId)->get();
+
+    //}
 }
