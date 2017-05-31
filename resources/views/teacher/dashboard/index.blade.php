@@ -1,8 +1,9 @@
 @extends('layouts.teacher')
 
 @section('content')
-
+@php $url = request()->view ; @endphp
 <div id="dynamicCalendarContent" >
+
 </div>
 
 @endsection
@@ -11,14 +12,34 @@
 <script type="text/javascript">
 
 //$( document ).ready() block.
-
 $(document).ready(function() {
-	$("#dynamicCalendarContent").load("/teacher/dashboard/showCalendar",function(){
+	var url = '@php echo $url @endphp' ;
+	if(url == 'week'){
+	$("#dynamicCalendarContent").load("/teacher/dashboard/weekCalendar");
+		$(".get-calendar").click(function(e){
 
-	    //$('.datepicker').datepicker({format: 'dd/mm/yyyy',});
+		$("#dynamicCalendarContent").load("/teacher/dashboard/weekCalendar"+$(this).attr('href') ,function(){
+
+		    //$('.datepicker').datepicker({format: 'dd/mm/yyyy',});
+		});
+
+		e.preventDefault();
+	});	
+	}
+	else if(url == 'day'){
+		$("#dynamicCalendarContent").load("/teacher/dashboard/dayCalendar");
+		$(".get-calendar").click(function(e){
+		$("#dynamicCalendarContent").load("/teacher/dashboard/dayCalendar"+$(this).attr('href') ,function(){
+         alert(url);
+		    //$('.datepicker').datepicker({format: 'dd/mm/yyyy',});
+		});
+
+		e.preventDefault();
 	});
-
-	$(".get-calendar").click(function(e){
+	}
+	else{
+		$("#dynamicCalendarContent").load("/teacher/dashboard/showCalendar");
+		$(".get-calendar").click(function(e){
 
 		$("#dynamicCalendarContent").load("/teacher/dashboard/showCalendar"+$(this).attr('href') ,function(){
 
@@ -27,12 +48,14 @@ $(document).ready(function() {
 
 		e.preventDefault();
 	});
+	}
+	
     $('.calBtn').click(function() {
-      var currentActive = $("#ActiveCalendar").find(".active").attr('id');	  
+      /*var currentActive = $("#ActiveCalendar").find(".active").attr('id');	  
 	  var href = $(this).attr('href');
       $('#'+currentActive).removeClass('active').addClass('fade');	  
 	  $(href).removeClass('fade');
-	  $(href).addClass('active');
+	  $(href).addClass('active');*/
 	});
 	
 });

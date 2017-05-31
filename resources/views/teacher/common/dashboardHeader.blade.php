@@ -87,11 +87,11 @@
               <ul class="dropdown-menu view-dropdown">
 					<div class="viewnav-tabs">
 						<ul class="nav nav-pills">
-							<li><a href="#day" class="btn btn-info calBtn">Day</a>
+							<li><a href="{{route('teacher.dashboard.index',['view'=>'day'])}}" class="btn btn-info calBtn">Day</a>
 							</li>
-							<li><a href="#week" class="btn btn-info calBtn" >Week</a>
+							<li><a href="{{route('teacher.dashboard.index',['view'=>'week'])}}" class="btn btn-info calBtn" >Week</a>
 							</li>
-							<li><a href="#Month" class="btn btn-info calBtn">Month</a>
+							<li><a href="{{route('teacher.dashboard.index')}}" class="btn btn-info calBtn">Month</a>
 							</li>
 							<li><a href="#" class="btn btn-info calBtn" data-toggle="tab">List</a>
 							</li>

@@ -32,7 +32,10 @@ class Month
     	$year  = null;
          
         $month =  null;
-         
+        
+        $week = null;		
+		
+		$calDay = null;
         if(null==$year && isset($_GET['year'])){
  
             $year = $_GET['year'];
@@ -52,10 +55,32 @@ class Month
             $month = date("m",time());
          
         }  
+		if(null==$week && isset($_GET['week'])){
+ 
+            $week = $_GET['week'];
+         
+        }else if(null==$week){
+ 
+            $week  = date("Y-m-d", strtotime("monday this week"));
+         
+        }
+		
+		if(null==$calDay && isset($_GET['day'])){
+ 
+            $calDay = $_GET['day'];
+         
+        }else if(null==$calDay){
+ 
+            $calDay = date("Y-m-d");
+         
+        }
+		
         $this->currentMonth =   $month;
         $this->currentYear  =   $year; 
-        $this->daysInMonth=$this->_daysInMonth($month,$year);            
-    }
+		$this->currentWeek  =   $week;
+		$this->currentCalDay   =   $calDay;
+        $this->daysInMonth  =   $this->_daysInMonth($month,$year);            
+    }  
 
     public function getMonth(){
     	return $this->currentMonth;
@@ -64,7 +89,17 @@ class Month
     public function getYear(){
     	return $this->currentYear;
     }
-
+    
+	public function getWeek(){
+		$year = $this->currentYear;
+		$weeks = date('W', strtotime($this->currentWeek));
+    	return date("Y-m-d", strtotime("{$year}-W{$weeks}-1"));
+    }
+	
+	public function getDay(){
+    	return $this->currentCalDay;
+    }
+	
     public function setDate($year, $month){
 
     	$this->currentYear=$year;
@@ -202,16 +237,35 @@ class Month
                     $q->whereBetween("lesson_date", [$start, $end]);
         }])->get();
     }
-    
-    public function getWeek()
-	{
-		$date = date("Y-m-d", strtotime('monday this week'));
-		return $date;
+    public function currentWeek(){
+		
+	
 	}
-	public function getDay($l)
-	{
-		$date = date("l m/d/Y");
-		return $date;
-	}
+    public function _createWeekNavi(){
+        $year = $this->currentYear;
+		$weeks = date('W', strtotime($this->currentWeek));
+		$next = ($weeks + 1);
+		$previous = ($weeks - 1);
+        $nextWeek = date("Y-m-d", strtotime("{$year}-W{$next}-1"));   
+        $preWeek =  date("Y-m-d", strtotime("{$year}-W{$previous}-1"));
+         
+        return 
+            '<script>'.
+                '$("#pPrev").attr("href","?week='.sprintf( $preWeek).'");'.
+                '$("#pNext").attr("href","?week='.sprintf($nextWeek).'");'.
+            '</script>';
+    }
+	
+	public function _createDayNavi(){
+		$date = $this->currentCalDay;
+        $nextDay = date('Y-m-d', strtotime($date .' +1 day'));   
+        $preDay =  date('Y-m-d', strtotime($date .' -1 day'));
+         
+        return 
+            '<script>'.
+                '$("#pPrev").attr("href","?day='.sprintf($preDay).'");'.
+                '$("#pNext").attr("href","?day='.sprintf($nextDay).'");'.
+            '</script>';
+    }
 	
 }

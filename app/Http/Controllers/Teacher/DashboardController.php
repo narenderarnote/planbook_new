@@ -43,15 +43,21 @@ class DashboardController extends Controller
 	public function index()
 	{
 
-		//echo"Hi  there!";die;
-
-
 		return view('teacher.dashboard.index', $this->data);
 
-		//return redirect()->to('/');
 	}
+    public function weekView()
+	{
 
+		return view('teacher.dashboard.weekCalendar', $this->data);
 
+	}
+    public function dayView()
+	{
+
+		return view('teacher.dashboard.dayCalendar', $this->data);
+
+	}
     /**
     * print out the calendar
     */
@@ -112,8 +118,7 @@ class DashboardController extends Controller
                  
         $content.='</div>'.
 
-			$this->_createNavi()
-        ;
+			$this->_createNavi();
 
 
         $this->data['content'] = $content;

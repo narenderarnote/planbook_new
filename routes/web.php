@@ -48,7 +48,8 @@ Route::group(['namespace' => 'Teacher','prefix' => 'teacher', 'as' => 'teacher.'
         {
             Route::get('/index', ['as' => 'index', 'uses' => 'DashboardController@index']);
             Route::get('/showCalendar', ['as' => 'showCalendar', 'uses' => 'DashboardController@showCalendar']);
-
+			Route::get('/weekCalendar', ['as' => 'week', 'uses' => 'DashboardController@weekView']);
+            Route::get('/dayCalendar', ['as' => 'day', 'uses' => 'DashboardController@dayView']);
         });
 
 
