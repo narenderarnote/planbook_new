@@ -87,13 +87,13 @@
               <ul class="dropdown-menu view-dropdown">
 					<div class="viewnav-tabs">
 						<ul class="nav nav-pills">
-							<li><a href="{{route('teacher.dashboard.index',['view'=>'day'])}}" class="btn btn-info calBtn">Day</a>
+							<li><a href="{{route('teacher.dashboard.index',['view'=>'day'])}}" class="btn btn-primary calBtn">Day</a>
 							</li>
-							<li><a href="{{route('teacher.dashboard.index',['view'=>'week'])}}" class="btn btn-info calBtn" >Week</a>
+							<li><a href="{{route('teacher.dashboard.index',['view'=>'week'])}}" class="btn btn-primary calBtn" >Week</a>
 							</li>
-							<li><a href="{{route('teacher.dashboard.index')}}" class="btn btn-info calBtn">Month</a>
+							<li><a href="{{route('teacher.dashboard.index')}}" class="btn btn-primary calBtn">Month</a>
 							</li>
-							<li><a href="#" class="btn btn-info calBtn" data-toggle="tab">List</a>
+							<li><a href="#" class="btn btn-primary calBtn" data-toggle="tab">List</a>
 							</li>
 						</ul>
 					</div>
@@ -175,7 +175,7 @@
 							</div>
 						</div>
 						<div class="preferencebutton">
-							<button type="button" class="btn btn-info calBtn">Save Preferences</button>
+							<button type="button" class="btn btn-primary calBtn">Save Preferences</button>
 						</div>
 					</div>
 				</ul>

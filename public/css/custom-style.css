@@ -318,9 +318,17 @@ input[type=color].form-control { padding: 0; width: auto; min-width: 40px; }
 .month-view li { float: left; width: 14.285%; }
 .calendar-view .dates { font-size: 11px; background-color: #DBDFE8; line-height: normal; padding: 1px 5px; }
 .month-view .calendar-data li:nth-child( 7n+7) { border-right: 2px solid #0057c1; }
-.calendar-view.month-view .calendar-data li { max-height: 150px; min-height: 150px; position: relative; z-index: 0 }
+.calendar-view.month-view .calendar-data li {
+    max-height: 150px;
+    min-height: 150px;
+    position: relative;
+    z-index: initial;
+}
 .cell-main-data { max-height: 130px; overflow-y: auto; text-align: left; }
-.lesson-heading { padding: 3px 5px 3px; }
+.lesson-heading {
+    padding: 3px 5px 3px;
+    font-size: 12px;
+}
 .sub-lesson .lesson-title { border-top: 1px solid green; padding-left: 2px; font-weight: 600; }
 .sub-lesson .sub-lesson-content { padding-left: 7px; }
 .cell-main-data .lesson { border: 1px solid green; margin: 4px; }
@@ -375,12 +383,13 @@ input[type=color].form-control { padding: 0; width: auto; min-width: 40px; }
 .daycontent .writing { background-color: #0000ff; border-color: #0000ff; }
 .daycontent .icons li { display: inline-block; }
 .daycontent .daycontentdropdown { left: auto; right: -10px; top: -6px; width: 360px; padding: 0px; }
-.lessondropdown-header { background-color: #0057c1; color: #fff; padding: 2px 4px; font-size: 16px; }
+.lessondropdown-header { background-color: #0057C2; color: #fff; padding: 2px 4px; font-size: 16px; }
 .lessondropdown-header .cross-icon { float: right; margin-top: 0px; }
-.lessondropdown-header .cross-icon i { font-size: 20px; }
+.lessondropdown-header .cross-icon i { font-size: 18px; padding: 0px 6px; }
 .lesondropdown-body > ul { padding: 0px; margin: 0px; }
 .lesondropdown-body li { color: #000; font-size: 16px; margin: 4px 0; }
-.lesondropdown-body { padding: 0; }
+.lesondropdown-body { padding: 0; position: relative; }
+.lesondropdown-body:before { background-image: url(../images/picklisttop.png); background-repeat: no-repeat; top: -10px; content: ""; left: 85%; height: inherit; right: 0; z-index: 1; position: absolute; background-size: cover; width: 17px; height: 10px; }
 .lesondropdown-body li i { padding-right: 6px; }
 .week-data .week-head { background-color: #dbdfe8; color: #0057c1; float: left; font-size: 12pt; list-style: outside none none; margin: 0; padding: 5px 0px; text-align: center; width: 20%; }
 .week-bodydata .weektab-content { cursor: pointer; float: left; font-size: 10pt; font-weight: 600; list-style: outside none none; margin-bottom: 8px; margin-right: 6px; padding: 2px 8px 4px; width: 19.5%; }
@@ -396,6 +405,215 @@ input[type=color].form-control { padding: 0; width: auto; min-width: 40px; }
 .weekdropdownbody li { padding: 6px; }
 .weekdropdownbody li { color: #000; font-size: 16px; font-weight: normal; padding: 6px; width: 100%; }
 .week-icons li i { padding-right: 4px; }
+.weekcontent .languagearts { background-color: #603f99; border-color: #603f99; color: #fff; }
 .weekcontent .mathematics { background-color: #fe090a; border-color: #fe090a; color: #fff; }
 .reading { background-color: #fe090a; border-color: #fe090a; color: #fff; }
 .reading { background-color: #fe9c0a; border-color: #fe9c0a; color: #fff; }
+/*list tab content start*/
+
+.listtab-content .list-header { color: #0057c1; font-size: 17px; margin-bottom: 20px; }
+.list-contentbutton .caret { border-left: 8px solid transparent; border-right: 8px solid transparent; border-top: 8px dashed; margin-left: 14px; vertical-align: middle; }
+.languagebuton { background-color: rgb(96, 63, 153); color: #fff; }
+.language-dropdown { border: 2px solid #0057c1; padding-top: 17px; width: 181px; }
+.list-contentbutton .dropdown-menu .languagebuton:hover { color: #fff; background-color: rgb(96, 63, 153); }
+.list-contentbutton .dropdown-menu .language-dropbutons { border-radius: 4px; font-size: 15px; margin: 0 auto 11px; padding: 4px 0 6px 11px; text-align: left; width: 145px; color: #fff; }
+.list-contentbutton .dropdown-menu .language-dropbutons:hover { color: #fff; }
+.list-contentbutton .dropdown-menu .mathematics { background-color: #fe090a; }
+.list-contentbutton .dropdown-menu .reading { background-color: #fe9c0a; }
+.list-contentbutton .dropdown-menu .sciencebuton { background-color: #3c995b; }
+.list-contentbutton .dropdown-menu .sciencebuton:hover { background-color: #3c995b; }
+.list-contentbutton .btn-group { margin-right: 17px; }
+.list-contentbutton .dropdown-menu .socialstudybuton { background-color: #914d14; }
+.list-contentbutton .dropdown-menu .socialstudybuton:hover { background-color: #914d14; }
+.list-contentbutton .dropdown-menu .supermarketbutton { background-color: #3c995b; }
+.list-contentbutton .dropdown-menu .supermarketbutton:hover { background-color: #3c995b; }
+.list-contentbutton .dropdown-menu .writingbutton { background-color: #0000ff; }
+.list-contentbutton .dropdown-menu .writingbutton:hover { background-color: #0000ff; }
+.list-contentmainbuton { font-size: 16px; padding: 6px 8px; text-align: left; }
+.list-contentbutton .unitsbutton { background-color: #ffffff; border: 2px solid #0057c1; border-radius: 5px; color: #0057c1; font-weight: bold; }
+.list-contentbutton .unitsbutton:hover { background-color: #0057c1; border-radius: 5px; color: #fff; font-weight: bold; }
+.list-contentbutton .dropdown-menu .unitdropbuton { background-color: #dbdfe8; border: 2px solid #0057c1; color: #0057c1; }
+.list-contentbutton .dropdown-menu .unitdropbuton:hover { background-color: #0057c1; color: #fff; }
+.lesson-text { margin-top: 15px; text-align: center; color: #444; font-size: 16px; }
+.list-contenttable .table-header { background-color: #0057c1; height: auto; width: 100%; }
+.list-contenttable th.first-feild { width: 28px; }
+.list-contenttable thead th { border-right: 1px solid #fff; color: #fff; text-align: center; }
+.list-contenttable thead th.last-field { width: 66%; }
+.list-contenttable table { border: 1px solid #ddd; }
+.list-contenttable table td { border-right: 1px solid #ddd; }
+.list-contenttable td { text-align: center; }
+.languagelessondropdown { left: auto; right: -11px; top: 0; width: 248px; }
+.lesondropdown-body ul li { color: #444; cursor: pointer; font-size: 14px; font-weight: normal; list-style: outside none none; margin: 0; padding: 8px; width: 100%; }
+.lesondropdown-body ul li:hover { background-color: #DBDFE8; }
+.lesondropdown-body li { padding: 8px 15px; }
+.weekcontent ul { padding: 0; }
+.all-select .btn-group .btn { padding: 2px 12px; }
+.all-select .btn-group .btn-all { background-color: #cfd2d9; }
+.list-tablecolumn1 { cursor: pointer; background-color: rgb(96, 63, 153); border: 1px solid rgb(96, 63, 153); border-top-width: 0; border-bottom-color: white; }
+.list-tablecoloumn2 { background-color: #DBDFE8; color: #0057C1; font-size: 12pt; cursor: pointer; }
+.lesondropdown { background-color: #fff; border: 2px solid #0057c1; border-radius: 4px; display: none; height: auto; left: auto; position: absolute; right: -9px; top: -5px; width: 242px; z-index: 1; }
+.copy-dropdown { float: right; position: relative; }
+.copy-dropdown .btn-copy { background-color: #CFD2D9; padding: 2px 31px 2px 15px; text-align: left; }
+.copy-dropdown .caret-button { position: absolute; top: 1px; right: -2px; background-color: #0057C2; color: #fff; padding: 3px 5px 2px 5px; border-radius: 4px; }
+.copydropdown-inner { min-width: 130px; }
+.lesondropdown .lesondropdown-body .copy-dropdown ul li { font-size: 14px; padding: 4px 10px; color: #444; }
+.copy-incrementfunction { float: right; background-color: #0057C2; }
+.copy-incrementfunction input[type="button"] { background-color: #0057C2; border: medium none; border-radius: 4px; color: #fff; font-size: 18px; margin: 0; padding: 0; text-align: center; width: 22px; }
+.copydropdown-value { background-color: #cfd2d9; border: medium none; padding: 4px 8px; width: 26px; }
+.week-tabcontentinner:hover .week-icons { display: block; }
+.week-icons li img { opacity: 0; }
+.week-tabcontentinner:hover .week-icons li img { opacity: 1; }
+/*move lesson popup start*/
+.movemodalcontent .modal-dialog { margin: 22% auto; width: 660px; }
+.movemodalcontent .modal-content { border: 5px solid #003b81; }
+.movemodalcontent .modal-header { background-color: #003b81; padding: 6px; text-align: center; color: #fff; }
+.movemodalcontent .modal-title { font-weight: normal; }
+.movemodalcontent .modal-body p { color: #58595b; padding-bottom: 8px; }
+.renew-button { background-color: #0057c1; border: 1px solid #0057c1; border-radius: 3px; box-shadow: -1px 1px 0 0 #54a3f7 inset; color: #ffffff; padding: 10px 24px; font-size: 13pt; margin-right: 20px; }
+.close-button { background-color: #696969; border: 1px solid #696969; border-radius: 3px; box-shadow: -1px 1px 0 0 #a3a3a3 inset; color: #ffffff; padding: 10px 24px; font-size: 13pt; }
+.movemodalcontent .modal-body { position: relative; padding: 15px; height: auto; display: inline-block; width: 100%; }
+.movemodalcontent .modal-body .button-group { margin: 8px 0; }
+.pastemodalcontent .modal-dialog { width: 480px; }
+.return-button { margin: 0 auto; display: block; }
+.lessondropdown-header .cross-icon i:hover { background-color: red; border-radius: 4px; }
+/*30-5*/
+.editmodalcontent .modal-dialog { width: 800px; }
+.editmodalcontent .modal-content { border: 5px solid #003b81; background-color: #dbdfe8; }
+.editmodalcontent .modal-header { background-color: #003b81; color: white; cursor: move; font-size: 18pt; padding: 3px; height: auto; }
+.actiondropbutton { padding: 4px 15px; }
+.actiondropdown { width: 257px; background-color: #fff; position: absolute; height: auto; left: auto; right: 15px; top: 43px; z-index: 1; border: 2px solid #0057C1; border-radius: 4px; display: none; }
+.actiondropdown .lesondropdown-body .copy-dropdown ul li { font-size: 14px; padding: 4px 10px; color: #444; }
+.actiondropdown .copydropdown-inner { padding: 0px; }
+.editmodalcontent .actionbutton { float: left; position: relative; }
+.editmodalcontent .actionright { margin-right: 22px; }
+.closebutton i { font-size: 31px; }
+.editmodalcontent .closebutton { color: #fff; cursor: pointer; padding-top: 2px; float: right; }
+.editlessonform .form-group label { color: #58595b; width: 28%; float: left; line-height: 20px; padding-top: 2px; }
+.editlessonform .form-group .editlessonformtext { float: right; width: 72%; color: #0057c1; font-weight: bold; font-size: 15px; padding: 2px 0px; line-height: 20px; }
+.editlessonform .form-group .input-fields { height: 26px; width: 150px; }
+.editlessonform .form-group select { height: 26px; width: 150px; }
+.editlessonform .checkbox-field label { width: 100%; }
+.editlessonform .checkbox-field input[type=checkbox] { margin-right: 2px; }
+.editlessonform .titlefield input { width: 89%; height: 26px; }
+.editlessonform .titlefield label { width: 8.5%; }
+.editsectiontabs .tab-content { background-color: #0057C1; color: #fff; padding: 5px 7px; }
+.editsectiontabs .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover { color: #fff; cursor: default; background-color: #0057C1; border: 1px solid #0057C1; border-bottom-color: transparent; }
+.editsectiontabs .nav-tabs>li>a { margin-right: 8px; background-color: #fff; border-radius: 8px 8px 0px 0px; color: #0057c1; padding: 4px 15px; }
+.editsectiontabs .edittabsheader { background-color: #003b81; color: #fff; width: 100%; padding: 5px 8px; font-size: 16px; }
+.standard-button { background-color: #0057c1; border: 1px solid #0057c1; border-radius: 3px; box-shadow: -1px 1px 0 0 #54a3f7 inset; color: #ffffff; cursor: pointer; padding: 4px 4px 2px 4px; }
+.standardedit-modal { width: 693px; height: auto; border: 5px solid #003b81; position: absolute; top: 11%; left: 0; z-index: 999999999; opacity: 1; display: none; right: 0; margin: 0 auto; border-radius: 5px; }
+.editsectiontabs .edittabmiddle { background-color: #dbdfe8; min-height: 542px; overflow: hidden; }
+.standardeditheader { background-color: #003b81; width: 100%; text-align: center; cursor: move; color: #fff; font-size: 16pt; }
+.standardedit-body { background-color: #dbdfe8; height: auto; padding: 20px 11px; }
+.standardedit-body .form-group select { width: 270px; height: 27px; }
+.standardedit-body .form-group a { background-color: #0057c1; border: 1px solid #0057c1; border-radius: 3px; box-shadow: -1px 1px 0 0 #54a3f7 inset; color: #ffffff; padding: 5px 4px; margin: 0px 8px; text-transform: capitalize; cursor: pointer; }
+.standardedit-modal .form-group label { color: #58595b; margin-right: 8px; text-align: right; width: 16%; }
+.standardedit-body .form-group input { width: 270px; height: 27px; }
+.main-buton { background-color: #0057c1; border: 1px solid #0057c1; border-radius: 3px; box-shadow: -1px 1px 0 0 #54a3f7 inset; color: #ffffff; padding: 5px 4px; margin: 0px 8px; text-transform: capitalize; }
+.standardedit-body .form-group { margin-bottom: 6px; }
+.standardform-text { color: #58595b; font-size: 12px; margin: 0px; white-space: normal; word-break: break-word; line-height: 20px; }
+.standardmodaltable p { color: #58595b; font-weight: bold; font-style: italic; }
+.standardmodaltable .table th { background-color: #0057c1; border: 1px solid #fff; color: #fff; text-align: center; }
+.standardmodaltable .table .description-field { width: 88%; }
+.standardmodaltable .table { background-color: #fff; border: 1px solid #ddd; color: #58595b; }
+.standardmodaltable .standardtable-inner { max-height: 288px; width: 100%; overflow-y: scroll; }
+.standardmodaltable .standardtable-inner td { border-right: 1px solid #ddd; }
+.standardmodaltable .standardtable-inner .table tbody tr:hover { background-color: #dbdfe8; cursor: pointer; }
+.standardmodal-buttons button { padding: 6px 28px; font-size: 15px; margin-left: 0px; }
+.standardmodal-buttons { width: 100%; margin: 20px 0px 0px 0px; }
+.cancelstandard-button { background-color: #696969; border: 1px solid #696969; border-radius: 3px; box-shadow: -1px 1px 0 0 #a3a3a3 inset; color: #ffffff; padding: 9px 28px; font-size: 15px; cursor: pointer; }
+.standardstatemoremodal { z-index: 9999999999; }
+.standardstatemoremodal .modal-dialog { margin: 12% auto; width: 640px; }
+.standardstatemoremodal .statelist li { list-style: none; width: 100%; border-bottom: 1px solid #ddd; padding: 10px 20px; cursor: pointer; }
+.standardstatemoremodal .statelist li:hover { background-color: #dbdfe8; }
+.standardstatemoremodal .statelist li { list-style: none; width: 100%; border-bottom: 1px solid #ddd; padding: 10px 35px; cursor: pointer; }
+.stateactivelist { background-image: url(../images/apply.png); background-repeat: no-repeat; background-position: 2% 52%; }
+.standardstatemoremodal .statelist ul { padding: 0px; }
+.standardstatemoremodal .modal-body { padding: 0px 0px; }
+.standardstatemoremodal .statelist { height: 242px; overflow-y: scroll; }
+.standardstatemoremodal .statemore-buttons { padding: 13px 11px; }
+/*31-5*/
+.standardsubjectlist li { background-image: url(../images/apply.png); list-style: none; width: 100%; border-bottom: 1px solid #fff; padding: 10px 35px; cursor: pointer; background-position: 2% 52%; background-color: #dbdfe8; background-repeat: no-repeat; }
+.standardsubjectlist ul { padding: 0px; }
+.standardstatemoremodal .standardsubjectlist { height: 242px; overflow-y: scroll; }
+.editmodalcontent form.editlessonform { width: 100%; margin-bottom: 29px; }
+.editmodalcontent .attachment-field { width: 100%; display: inline-block; margin-top: 15px; }
+.editmodalcontent .attachment-field .form-group label { font-weight: bold; font-size: 15px; width: auto; margin-right: 7px; }
+.editmodalcontent .attachment-button { padding: 2px 4px 4px 4px; cursor: pointer; margin-left: 0px; }
+.fileattachment-modal { width: 600px; height: auto; border: 5px solid #003b81; position: absolute; top: 37%; left: 0; z-index: 999999999; opacity: 1; background-color: #ffffff; right: 0; margin: 0 auto; border-radius: 5px; display: none; }
+.fileattachment-header { background-color: #003b81; color: white; font-size: 12pt; padding: 3px; text-align: center; }
+.fileattachment-body { height: auto; }
+.file-attchedinput { width: 100%; font-size: 10pt; height: 28px; border: 1px solid #ddd; padding: 0px 8px; }
+.file-attchedtext { height: 220px; overflow-y: scroll; background-color: white; }
+.file-attchedbutton .file-attchment input[type=file] { opacity: 0; display: inline-block; position: absolute; top: 0; bottom: 0; right: 0; left: 0; width: 153px; }
+.file-attchedbutton .file-attchment { float: left; width: 153px; padding: 4px 22px; font-size: 15px; position: relative; }
+.file-attchedbutton .filebuttons { float: left; padding: 4px 22px; font-size: 15px; margin-right: 0px; }
+.file-attchedbutton { margin-bottom: 20px; float: left; }
+.main-button:hover { background-color: #0068de; }
+.close-filebutton { background-color: #696969; border: 1px solid #696969; border-radius: 3px; box-shadow: -1px 1px 0 0 #a3a3a3 inset; color: #ffffff; }
+.filetable table { width: 100%; }
+.filetable tr { background-color: #fff; }
+.filetable td { border-right: 1px solid #ddd; padding: 2px 5px; font-size: 16px; }
+.filetable td.filename { width: 79%; }
+.filetable td.filename a { vertical-align: top; }
+.filetable td label { color: #58595b; margin: 0px 8px; }
+.filetable td label input[type=checkbox] { margin: 3px 5px 0px 0px; vertical-align: top; }
+.filetable td .trash-button i { font-size: 22px; padding: 0px; }
+.filetable td .trash-button { padding: 7px 0px 5px 6px; width: auto; margin-bottom: 0px; cursor: pointer; }
+.edittabmiddle .cke_top { background: #f0f0f0 none repeat scroll 0 0; }
+.edittabmiddle .mce-branding-powered-by { display: none; }
+.lesondropdown-body.lessondrop-bodymain:before { background-image: none; }
+
+.memorialactiondropdown {
+    width: 124px;
+}
+.memorialactiondropdown .lesondropdown-body:before {
+    left: 71%;
+}
+.ui-loader {
+    display: none;
+}
+.lesson-heading:hover  span.icons {
+    display: block;
+}
+.cell-main-data span.icons {
+    display: none;
+}
+.icon-ul li{
+ border:none;
+}
+.listtab-content .lesson-heading .icons {
+    float: right;
+    position: absolute;
+    left: 55%;
+    top: 21px;
+    z-index: initial;
+}
+.listtab-content  .lesson-heading  .downarrow-icon {
+   
+    margin-left: 13px;
+    
+}
+div.activeCalendar {
+    padding: 0px;
+}
+ .actionul li{
+    height:auto;
+	position:relative;
+ }
+ .calendar-view.month-view .calendar-data .actionul li {
+    height: auto;
+    min-height: 0;
+    float: left;
+    text-align: left;
+    border: 0;
+}
+.actionlesson {
+   
+    right: -28px;
+    
+}
+.actionlesson .lessondropdown-header {
+    
+    text-align: left;
+}

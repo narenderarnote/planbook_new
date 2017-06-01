@@ -227,7 +227,6 @@ class Month
     }
 
     public function getClasses(){
-
         $start = $this->currentYear .'-'. $this->currentMonth .'-01';
         $end   = $this->currentYear .'-'. $this->currentMonth .'-'. $this->_daysInMonth(); 
 
@@ -237,10 +236,28 @@ class Month
                     $q->whereBetween("lesson_date", [$start, $end]);
         }])->get();
     }
-    public function currentWeek(){
-		
+    
+	public function getWeekClasses(){
+        $start = $this->currentWeek;
+        $weekEnd   = $this->currentWeek; 
+        $end =  date('Y-m-d', strtotime($weekEnd.' +7 day'));
+        return  UserClass::where('start_date', '>=', $start)->Where('end_date', '<=' , $end)->orWhere(function($q) use($start, $end){
+       $q->where('end_date', '>=' ,$start )->where('start_date' ,'<=', $end);
+})->with(["classLesson" => function($q) use($start, $end) {
+                    $q->whereBetween("lesson_date", [$start, $end]);
+        }])->get();
+    }
 	
-	}
+	public function getDayClasses(){
+        $start = $this->currentCalDay;
+		$end = $this->currentCalDay;
+        return  UserClass::where('start_date', '>=', $start)->Where('end_date', '<=' , $end)->orWhere(function($q) use($start, $end){
+       $q->where('end_date', '>=' ,$start )->where('start_date' ,'<=', $end);
+})->with(["classLesson" => function($q) use($start, $end) {
+                    $q->whereBetween("lesson_date", [$start, $end]);
+        }])->get();
+    }
+	
     public function _createWeekNavi(){
         $year = $this->currentYear;
 		$weeks = date('W', strtotime($this->currentWeek));

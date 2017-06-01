@@ -22,7 +22,7 @@ $classes = $monthView->getClasses();
       display: block !important;
    }
 </style>
-	<div class="listtab-content tab-content" id="ActiveCalendar">
+	<div class="listtab-content tab-content activeCalendar" id="ActiveCalendar">
 		<div class="calendar-view container-fluid tab-pane active month-view" id="Month">
 		   <div class="container-fluid {{ implode(' ', $visibleDay)}}" >
 			  <div class="view-title">
@@ -62,3 +62,24 @@ $classes = $monthView->getClasses();
    
 </script>
 @endpush
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".downarrowtoggle").click(function(){
+			$(".lesondropdown").hide();
+			$(this).next(".lesondropdown").show();
+			
+		});
+		
+		$('body').click(function(e) {
+		 if($(e.target).is('.downarrowtoggle'))	
+			 return false;
+			if (!$(e.target).closest('.lesondropdown').length){
+				$(".lesondropdown").hide();
+			}
+		});
+		
+		$(".copydropcrossicons").click(function(){
+			 $(this).parents(".lesondropdown").hide();
+		});
+	});		 
+	</script>
