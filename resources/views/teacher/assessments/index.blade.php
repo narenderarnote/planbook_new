@@ -3,13 +3,37 @@
 @section('content')
 
 <div class="clearfix"></div>
-<div class=" class-page">
+<div class=" class-page events-section assessment-section">
   <div class="container-fluid">
     <div class="col-sm-12">
-      <div class="teacher-dash-action pt-5">
-        <button type="button" class="btn btn-primary bg-white border-2 border-theme add-comments popup-custom-show" id="addAssessmentButton" ><i class="fa fa-plus" aria-hidden="true"></i><span class="">Add Assessment</span></button>
-       <!--  <button type="button" class="btn btn-primary bg-white border-2 return-toplan "><span class="">Copy/Import Lessons</span></button> -->
+		<div class="teacher-dash-action pt-5 list-contentbutton gradebutons">
+      <div class="btn-group">
+  			<button type="button" class="btn unitsbutton list-contentmainbuton dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> All Classes<span class="caret"></span> </button>
+          <ul class="dropdown-menu language-dropdown">
+  				@forelse($classes as $className)
+  					<li><a href="#" class="language-dropbutons  unitdropbuton" style="background-color:{{ $className['class_color'] }}; color: #fff;">{{ $className['class_name'] }}</a></li>	
+  				@empty
+  				@endforelse
+  			</ul>
+      </div>  
+      <div class="btn-group">
+  			<button type="button" class="btn unitsbutton list-contentmainbuton dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> All Units<span class="caret"></span> </button>
+          <ul class="dropdown-menu language-dropdown">
+                <li><a href="#" class="language-dropbutons unitdropbuton">All Units </a></li>
+           @forelse($units as $unit)
+            <li><a href="#" class="unit-dropbutons language-dropbutons" style="background-color:{{ $unit->class_color }}; color: #fff;">{{ $unit->unit_title}}</a></li>  
+          @empty
+          @endforelse
+        </ul> 
       </div>
+      <div class="btn-group">
+			<button type="button" class="btn btn-primary bg-white border-2 border-theme add-comments popup-custom-show unitsbutton list-contentmainbuton" id="addAssessmentButton" ><i class="fa fa-plus" aria-hidden="true"></i><span class="">Add Assessment</span></button>
+			</div>
+      <div class="btn-group">
+      <button type="button" class="btn btn-primary bg-white border-2 border-theme add-comments popup-custom-show unitsbutton list-contentmainbuton scoreButton" id="scoreButton" ><span class="">Score Weighting</span></button>	
+      </div>
+		    <!--<button type="button" class="btn btn-primary bg-white border-2 return-toplan "><span class="">Copy/Import Lessons</span></button> -->
+		</div>
     </div>
     <div class="table-responsive col-sm-12 pt-5">
       <table class="table table-bordered table-hover">
@@ -53,7 +77,7 @@
 
 
 <!-- Add class Popup Starts Here -->
-<div class="d-render-popoup t-data-popup" id="dynamicRenderDiv" style="display:none;">
+<div class="d-render-popoup t-data-popup modal fade editmodalcontent in" id="dynamicRenderDiv" role="dialog">
   
 
 
@@ -182,7 +206,7 @@ $(document).ready(function() {
   $(".edit_assessment").click(function(){
 
     var assessment_id = $(this).data("assessment-id");
-
+    
     $("#dynamicRenderDiv").show().load("/teacher/assessments/edit/"+assessment_id,function(){
 
       //$('.datepicker').datepicker({format: 'dd/mm/yyyy',});
@@ -191,6 +215,17 @@ $(document).ready(function() {
     });
 
   });
+
+  /*Score Weighting*/
+
+
+  $(".scoreButton").click(function(){
+    $("#dynamicRenderDiv").show().load("/teacher/assessments/score/",function(){
+    });
+
+  });
+
+
 
   /* Save edit classs datra*/
 

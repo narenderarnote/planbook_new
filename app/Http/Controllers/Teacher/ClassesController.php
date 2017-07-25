@@ -22,7 +22,8 @@ use Redirect;
 use View;
 use Mail;
 use Exception;
-
+use App\Unit;
+use App\ClassLesson;
 class ClassesController extends Controller
 {
     /**
@@ -202,8 +203,32 @@ class ClassesController extends Controller
         return response()->json($response);
 
 	}
+	/*popup for edit class*/
+    public function getClass(Request $request)
+	{
+	
+		// get user class
+		$date = $request->sendDate;
+		$getDate = explode(' ', $date);
+		$classData = UserClass::where('id', $request->classID)->first();
+		/* $getTime = collect(json_decode($classData->class_schedule))
+									->where("text", $request->day)
+									->where("is_class" , "1")
+									->first(); */
+		$getTime = ClassLesson::where('class_id',$request->classID)->where('lesson_date',$getDate[1])->first();							
+		$this->data['times'] = $getTime;
+		
+		$this->data['userClass'] = $classData->class_name;
+		
+		$lessonData = ClassLesson::where('class_id',$request->classID)->where('lesson_date',$getDate[1])->first();
+		
+		$this->data['lessonDetails'] = $lessonData;
+		
+		$this->data['unit'] = Unit::where('class_id',$request->classID)->where('user_id',Auth::id())->get()->pluck('unit_title');
+		
+		return  $this->data;
 
-
+	}
 
 
 

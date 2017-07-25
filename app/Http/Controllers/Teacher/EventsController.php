@@ -25,7 +25,7 @@ use View;
 use Mail;
 use Exception;
 
-class AssessmentsController extends Controller
+class EventsController extends Controller
 {
     /**
     * $data array pass data to view 
@@ -43,16 +43,13 @@ class AssessmentsController extends Controller
 	 */
 	public function index()
 	{
-        $user_id = Auth::user()->id;
-		$assessments = Assessment::where('user_id',Auth::user()->id)->get();
+		/*$assessments = Assessment::where('user_id',Auth::user()->id)->get();
 		$authClasses = UserClass::where('year_id',Auth::user()->current_selected_year)->where('user_id',Auth::user()->id)->with('schoolYear')->get();
 		$this->data['assessments'] = $assessments;
 		$this->data['classes'] = $authClasses;
-        $this->data['units'] = DB::table('units')
-             ->where('units.user_id',Auth::user()->id)
-             ->leftJoin('user_classes', 'units.class_id', '=', 'user_classes.id')
-             ->get();
-		          return view('teacher.assessments.index', $this->data);
+        //echo"<pre>";print_r($authClasses);die;*/
+
+		return view('teacher.events.index', $this->data);
 
 		//return redirect()->to('/');
 	}
@@ -220,9 +217,7 @@ class AssessmentsController extends Controller
 	}
 
 
-    public function getScoreAssessment(){
-        return view('teacher.assessments.score');
-    }
+
 
 
 
