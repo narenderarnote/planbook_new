@@ -8,20 +8,20 @@
     <div class="col-sm-12">
 		<div class="teacher-dash-action pt-5 list-contentbutton gradebutons">
       <div class="btn-group">
-  			<button type="button" class="btn unitsbutton list-contentmainbuton dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> All Classes<span class="caret"></span> </button>
+  			<button type="button" class="btn classBtn unitsbutton list-contentmainbuton dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> All Classes<span class="caret"></span> </button>
           <ul class="dropdown-menu language-dropdown">
   				@forelse($classes as $className)
-  					<li><a href="#" class="language-dropbutons  unitdropbuton" style="background-color:{{ $className['class_color'] }}; color: #fff;">{{ $className['class_name'] }}</a></li>	
+  					<li class="classSelected"><a href="#" class="language-dropbutons  unitdropbuton" style="background-color:{{ $className['class_color'] }}; color: #fff;">{{ $className['class_name'] }}</a></li>	
   				@empty
   				@endforelse
   			</ul>
       </div>  
       <div class="btn-group">
-  			<button type="button" class="btn unitsbutton list-contentmainbuton dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> All Units<span class="caret"></span> </button>
+  			<button type="button" class="btn unitBtn unitsbutton list-contentmainbuton dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> All Units<span class="caret"></span> </button>
           <ul class="dropdown-menu language-dropdown">
-                <li><a href="#" class="language-dropbutons unitdropbuton">All Units </a></li>
+                <li class="unitSelected"><a href="#" class="language-dropbutons unitdropbuton">All Units </a></li>
            @forelse($units as $unit)
-            <li><a href="#" class="unit-dropbutons language-dropbutons" style="background-color:{{ $unit->class_color }}; color: #fff;">{{ $unit->unit_title}}</a></li>  
+            <li class='unitSelected'><a href="#" class="unit-dropbutons language-dropbutons" style="background-color:{{ $unit->class_color }}; color: #fff;">{{ $unit->unit_title}}</a></li>  
           @empty
           @endforelse
         </ul> 
@@ -308,6 +308,15 @@ $(document).ready(function() {
 
 });
 
+$('.classSelected a').on('click',function(){
+  var classVar = $(this).text();
+  $('.classBtn').html(classVar +' <span class="caret"></span>');
+});
 
+$('.unitSelected').on('click',function(){
+  var classVar = $(this).text();
+  alert(classVar);
+  $('.unitBtn').html(classVar +' <span class="caret"></span>');
+});
 </script>
 @endpush
